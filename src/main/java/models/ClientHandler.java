@@ -45,9 +45,10 @@ public class ClientHandler implements Runnable
   @Override
   public void run()
   {
-    String incommingMessage = null;
+    String incommingMessage = "";
      while (this.socket.isConnected())
      {
+
        try
        {
          incommingMessage = this.bufferedReader.readLine();
@@ -69,6 +70,7 @@ public class ClientHandler implements Runnable
       {
         if(!clientHandler.clientUsername.equals(this.clientUsername))
         {
+
           clientHandler.bufferedWriter.write(messageToSend);
           clientHandler.bufferedWriter.newLine();
           clientHandler.bufferedWriter.flush();
@@ -87,7 +89,7 @@ public class ClientHandler implements Runnable
     clientHandlers.remove(this);
     broadcastMessage(this.clientUsername + " hat den Chat verlassen");
   }
-  private void closeEverything()
+  public void closeEverything()
   {
     removeClientHandler();
     try

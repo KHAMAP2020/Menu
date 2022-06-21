@@ -1,6 +1,6 @@
 package views;
 
-import Server.Server;
+
 import controller.ClientController;
 import controller.GUIController;
 import javafx.scene.control.*;
@@ -83,21 +83,12 @@ public class StartPane
           alert.setContentText(s);
           //alert.show();
           AServer server = new AServer(loginData.getPort());
-          server.startAServer();
-          //GUIController.setCenterPane(CenterPaneType.CHAT);
-          System.out.println();
-          /*
-          Server server = new Server(loginData.getPort());
+          server.start();
+          GUIController.setCenterPane(CenterPaneType.CHAT);
+          AClient aClient = new AClient(loginData.getServerName(),loginData.getPort(), loginData.getName());
+          ClientController.setAClient(aClient);
+          System.out.println("chat startet");
 
-          System.out.println("StartPane Z.82 : " + loginData.getPort());
-          try {
-            server.start();
-            clientSocket = new Socket("localhost",LoginData.port);
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-           */
-          
 
         }
       }

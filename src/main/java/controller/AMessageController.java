@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,14 +29,30 @@ public class AMessageController
   public static void sendMessage(String messageToSend)
   {
     Message message = new Message(messageToSend, ChatConstants.MASSAGE_GOES_OUT,maxWidth);
-    messages.add(message);
-    ClientController.getAClient().sendMessage(messageToSend);
+    Platform.runLater(new Runnable()
+    {
+      @Override
+      public void run()
+      {
+        messages.add(message);
+        ClientController.getAClient().sendMessage(messageToSend);
+      }
+    });
+
   }
   
   public static void incommingMessage(String incomingMessage)
   {
-    //System.out.println("hallo");
-    //Message message = new Message(incomingMessage, ChatConstants.MASSAGE_COMES_IN,maxWidth);
-    //messages.add(message);
+    Platform.runLater(new Runnable()
+    {
+      @Override
+      public void run()
+      {
+        Message message = new Message(incomingMessage, ChatConstants.MASSAGE_COMES_IN,maxWidth);
+        messages.add(message);
+
+      }
+    });
+
   }
 }

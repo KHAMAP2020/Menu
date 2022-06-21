@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class AServer
+public class AServer extends Thread
 {
   private ServerSocket serverSocket= null;
   
@@ -15,25 +15,27 @@ public class AServer
       this.serverSocket = new ServerSocket(port);
     } catch (IOException e)
     {
-      System.out.println("Fehler beim Serverkonstrultor");
+      System.out.println("Fehler beim Serverkonstruktor");
       throw new RuntimeException(e);
     }
   }
   
-  public void startAServer()
+  @Override
+  public void run()
   {
+    System.out.println("Server gestartet");
     try
     {
       while (!this.serverSocket.isClosed())
       {
         Socket socket = null;
-        
+
         socket = serverSocket.accept();
-        
+
         System.out.println("ein neuer Client hat sich verbunden");
-        
+
         ClientHandler clientHandler = new ClientHandler(socket);
-        
+
         Thread thread = new Thread(clientHandler);
         thread.start();
       }

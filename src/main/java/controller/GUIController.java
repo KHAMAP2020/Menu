@@ -10,6 +10,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
+import models.ClientHandler;
 import models.interfaces.GUIConstantss.GUIControllerConstants;
 import views.*;
 
@@ -118,6 +119,7 @@ public class GUIController
           String s = "Server muss jetzt geschlosssen werden";
           alert.setContentText(s);
           alert.show();
+
 
         }
       }

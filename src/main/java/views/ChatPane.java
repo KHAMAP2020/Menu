@@ -112,11 +112,7 @@ static Socket socket;
    */
   private static void buttenEventsSettings()
   {
-    try {
-      receiveMessage();
-    }catch (IOException e){
-      e.printStackTrace();
-    }
+
 
     sendButton.setOnAction
     (new EventHandler<ActionEvent>()
@@ -143,12 +139,7 @@ static Socket socket;
             
              */
             AMessageController.sendMessage(massageText);
-            try {
-              sendMessage();
 
-            } catch (IOException e) {
-              throw new RuntimeException(e);
-            }
             textArea.clear();
           }
           else
@@ -211,27 +202,7 @@ static Socket socket;
     return vBox;
   }
   
-  public static void sendMessage() throws IOException {
-    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(StartPane.clientSocket.getOutputStream()));
-    out.write(textArea.getText());
-    out.newLine();
-    out.flush();
-    System.out.println("Message gesendet");
-  }
 
-  public static void receiveMessage() throws IOException {
-    BufferedReader in = new BufferedReader(new InputStreamReader(StartPane.clientSocket.getInputStream()));
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          System.out.println("Client message wird gelesen");
-          System.out.println("Client Naricht erhalten: " + in.readLine());
-          System.out.println("message erhalten client");
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    });
+
+
   }
-}
