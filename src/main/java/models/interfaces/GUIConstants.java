@@ -1,5 +1,6 @@
 package models.interfaces;
 
+import views.CenterPaneType;
 import views.StartMenu;
 
 /**
@@ -15,15 +16,15 @@ public interface GUIConstants
      */
     public final String STAGE_NAME = "Name der Stage";
 
-    public final int START_SCENE_WIDTH = 600;
+    public final int SCENE_WIDTH = 600;
 
-    public final int START_SCENE_HEIGHT = 400;
+    public final int SCENE_HEIGHT = 400;
 
-    public final int CHAT_SCENE_WIDTH = 600;
-
-    public final int CHAT_SCENE_HEIGHT = 400;
+    public final Boolean RESIZABLE = false;
 
     public final int START_V_BOX_SPACING = 10;
+
+    public final CenterPaneType INITIAL_CENTER_PANE = CenterPaneType.START;
 //---------------------------------------------------------
 //Menu Konstanten
 
@@ -41,10 +42,15 @@ public interface GUIConstants
     public final String BRIGHT_THEME_PATH = StartMenu.class.getResource(GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
     public final String DARK_THEME_PATH = StartMenu.class.getResource(GUIConstants.DARK_THEME_FILE).toExternalForm();;
 
-    public final Boolean SET_BRIGHT = true;
+    public final Boolean START_RETURN_TO_START_ITEM = false;
 
-    public final Boolean SET_DARK = false;
+    public final Boolean CHAT_RETURN_TO_START_ITEM = true;
 
+    public final Boolean SCHEME_BRIGHT_INITIAL_STATUS = true;
+
+    public final Boolean SCHEME_DARK_INITIAL_STATUS = false;
+
+    public final Boolean RETURN_TO_START_INITIAL_STATUS = false;
 //---------------------------------------------------------
 //StartPane Konstanten
 

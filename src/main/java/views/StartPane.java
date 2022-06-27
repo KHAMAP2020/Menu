@@ -1,8 +1,6 @@
 package views;
 
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,32 +11,24 @@ import models.interfaces.GUIConstants;
 import java.util.Optional;
 import models.Client;
 
-public class StartSceneCreator
+public class StartPane
 {
-    private static BorderPane borderPane = new BorderPane();
-
-    private static Scene scene = new Scene(borderPane,GUIConstants.START_SCENE_WIDTH,GUIConstants.START_SCENE_HEIGHT);
-    private static VBox vBox = new VBox(GUIConstants.START_V_BOX_SPACING);
-    private static MenuBar startMenu = null;
+    private static VBox startBox = new VBox(GUIConstants.START_V_BOX_SPACING);
     private static Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
     private static Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
     private static Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
 
-
-    public static Scene createStartScene()
+    StartPane()
     {
-        startMenu = new StartMenu(scene).getMenu();
-        borderPane.setTop(startMenu);
-        //startPane.setCenter(new ChatPaneCreator().createChatPane());
+        createStartBox();
+    }
 
-        borderPane.setCenter(vBox);
-
-        vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(welcomeLabel,joinButton,hostButton);
+    public static void createStartBox()
+    {
+        startBox.setAlignment(Pos.CENTER);
+        startBox.getChildren().addAll(welcomeLabel,joinButton,hostButton);
 
         setButtonEvents();
-
-        return scene;
     }
 
     private static void setButtonEvents()
@@ -90,9 +80,9 @@ public class StartSceneCreator
         );
     }
 
-    public static Scene getScene()
+    public VBox getPane()
     {
-        return scene;
+        return startBox;
     }
 }
 

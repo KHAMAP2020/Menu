@@ -5,23 +5,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import models.Massage;
 import models.interfaces.GUIConstants;
 
-public class ChatSceneCreator
+public class ChatPane
 {
-    private static BorderPane borderPane = new BorderPane();
-
-    private static Scene scene =  new Scene(borderPane,GUIConstants.CHAT_SCENE_WIDTH,GUIConstants.CHAT_SCENE_HEIGHT);
-    private static VBox vBox = new VBox();
-
-    private static MenuBar chatMenu = null;
+    private static VBox chatBox = new VBox();
 
     private static ObservableList<Massage> massages = FXCollections.observableArrayList();
 
@@ -34,9 +27,12 @@ public class ChatSceneCreator
     private static Button sendButton = new Button(GUIConstants.SEND_BUTTON_NAME);
 
 
-    public static Scene createChatScene()
+    public ChatPane()
     {
-        chatMenu = new ChatMenu(scene).getMenu();
+        createChatBox();
+    }
+    public static void createChatBox()
+    {
         massageTextfield.setWrapText(true);
         massageTextfield.setPromptText(GUIConstants.MASSAGE_PROMT_TEXT);
         massageView.setItems(massages);
@@ -46,10 +42,7 @@ public class ChatSceneCreator
 
         sendBar.getChildren().addAll(massageTextfield,sendButton);
         sendBar.setAlignment(Pos.CENTER_LEFT);
-        vBox.getChildren().addAll(massageView,sendBar);
-        borderPane.setTop(chatMenu);
-        borderPane.setCenter(vBox);
-        return scene;
+        chatBox.getChildren().addAll(massageView,sendBar);
     }
 
     private static void setButtenEvents()
@@ -106,5 +99,10 @@ public class ChatSceneCreator
         {
             return true;
         }
+    }
+
+    public VBox getPane()
+    {
+        return chatBox;
     }
 }

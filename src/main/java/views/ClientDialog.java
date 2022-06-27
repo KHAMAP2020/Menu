@@ -8,7 +8,6 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.Client;
 import models.interfaces.GUIConstants;
-import org.controlsfx.control.action.Action;
 
 public class ClientDialog
 {

@@ -3,43 +3,46 @@ package views;
 import controller.GUIController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import models.interfaces.GUIConstants;
 
 public class StartMenu
 {
-    private RadioMenuItem schemeBright = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
-    private RadioMenuItem schemeDark = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
+    private static RadioMenuItem schemeBright = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
+    private static RadioMenuItem schemeDark = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
 
-    private MenuBar menuBar = new MenuBar();
+    private static MenuBar menuBar = new MenuBar();
 
-    private Menu schemeMenu =new Menu(GUIConstants.SCHEME_NAME);
-
-    private ToggleGroup schemeToggleGroup = new ToggleGroup();
-    private Scene scene = null;
-    public StartMenu(Scene scene)
+    private static Menu schemeMenu =new Menu(GUIConstants.SCHEME_NAME);
+    private static MenuItem returnToStartItem = new MenuItem(GUIConstants.RETURN_BUTTEN_STRING);
+    private static Menu returnMenu = new Menu(GUIConstants.END_CHAT_MENU);
+    private static ToggleGroup schemeToggleGroup = new ToggleGroup();
+    public static MenuBar createMenu()
     {
-        this.scene = scene;
         schemeBright.setToggleGroup(schemeToggleGroup);
         schemeDark.setToggleGroup(schemeToggleGroup);
 
         schemeMenu.getItems().setAll(schemeBright,schemeDark);
-
-        setRadioSchemeEvents();
+        returnMenu.getItems().add(returnToStartItem);
+        setItemEvents();
 
         //Initiale RadioEinstellung
-        schemeBright.setSelected(true);
+        schemeBright.setSelected(GUIConstants.SCHEME_BRIGHT_INITIAL_STATUS);
+        schemeDark.setSelected(GUIConstants.SCHEME_DARK_INITIAL_STATUS);
+        returnToStartItem.setVisible(GUIController.getCurrentMenuSettings().getReturnToStartItem());
+        returnMenu.setVisible(GUIController.getCurrentMenuSettings().getReturnMenu());
+        menuBar.getMenus().setAll(schemeMenu,returnMenu);
 
-        setStylesheet(GUIConstants.SET_BRIGHT);
-
-        menuBar.getMenus().setAll(schemeMenu);
+        return menuBar;
+    }
+    private static void setItemEvents()
+    {
+        setSchemeBrightEvent();
+        setSchemeDarkEvents();
+        setReturnToStartEvent();
     }
 
-    private void setRadioSchemeEvents()
+    private static void setSchemeBrightEvent()
     {
         schemeBright.setOnAction
         (
@@ -47,47 +50,45 @@ public class StartMenu
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    setStylesheet(GUIConstants.SET_BRIGHT);
+                    GUIController.setStyle(Style.BRIGHT);
                 }
             }
         );
 
+    }
+
+    private static void setSchemeDarkEvents()
+    {
         schemeDark.setOnAction
         (
             new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    setStylesheet(GUIConstants.SET_DARK);
+                    GUIController.setStyle(Style.DARK);
                 }
             }
         );
     }
 
-    private void setStylesheet(Boolean isBright)
+    private static void setReturnToStartEvent()
     {
-        scene = StartSceneCreator.getScene();
-
-        String brightThemePath = GUIConstants.BRIGHT_THEME_PATH;
-        String darkThemePath = GUIConstants.DARK_THEME_PATH;
-
-        scene.getStylesheets().remove(darkThemePath);
-        scene.getStylesheets().remove(brightThemePath);
-
-        if (isBright == true)
-        {
-            //GUIController.setStyle(GUIConstants.BRIGHT_THEME_PATH);
-            scene.getStylesheets().add(brightThemePath);
-        }
-        else
-        {
-            scene.getStylesheets().add(darkThemePath);
-            //GUIController.setStyle(GUIConstants.DARK_THEME_PATH);
-        }
+        returnToStartItem.setOnAction
+        (
+            new EventHandler<ActionEvent>()
+            {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    GUIController.setCenterPane(CenterPaneType.START);
+                }
+            }
+        );
     }
 
-    public MenuBar getMenu()
+    public static void updateSettings ()
     {
-        return menuBar;
+        returnToStartItem.setVisible(GUIController.getCurrentMenuSettings().getReturnToStartItem());
+        returnMenu.setVisible(GUIController.getCurrentMenuSettings().getReturnMenu());
     }
 }
