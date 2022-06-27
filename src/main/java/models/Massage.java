@@ -17,11 +17,11 @@ public class Massage
 
     public Massage (String massageText, Boolean massageIsIncomming)
     {
-        this.massageBox.getChildren().add(massageFlow);
-        this.massageText.setText(massageText);
-        this.massageText.setWrappingWidth(GUIConstants.MASSAGE_MAX_WIDTH);
-        this.massageFlow.getChildren().add(this.massageText);
         this.massageIsIncomming = massageIsIncomming;
+        this.massageText.setText(massageText);
+        massageFlow.setMaxWidth(GUIConstants.MASSAGE_MAX_WIDTH);
+        massageBox.getChildren().add(massageFlow);
+        massageFlow.getChildren().add(this.massageText);
     }
 
     public Text getMassageText()

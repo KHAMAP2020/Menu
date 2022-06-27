@@ -1,9 +1,6 @@
 package models.interfaces;
 
-import views.MenuCreator;
-import views.StartMenuCreator;
-
-import java.net.URL;
+import views.StartMenu;
 
 /**
  * Hier sind alle GUI Konsanten des Programmns
@@ -18,11 +15,15 @@ public interface GUIConstants
      */
     public final String STAGE_NAME = "Name der Stage";
 
-    public final int SCENE_WIDTH = 600;
+    public final int START_SCENE_WIDTH = 600;
 
-    public final int SCENE_HEIGHT = 400;
+    public final int START_SCENE_HEIGHT = 400;
 
-    public final int V_BOX_SPACING = 10;
+    public final int CHAT_SCENE_WIDTH = 600;
+
+    public final int CHAT_SCENE_HEIGHT = 400;
+
+    public final int START_V_BOX_SPACING = 10;
 //---------------------------------------------------------
 //Menu Konstanten
 
@@ -37,8 +38,8 @@ public interface GUIConstants
 
     public final String BRIGHT_THEME_FILE = "BrightTheme.css";
     public final String DARK_THEME_FILE ="DarkTheme.css";
-    public final String BRIGHT_THEME_PATH = StartMenuCreator.class.getResource(GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
-    public final String DARK_THEME_PATH = StartMenuCreator.class.getResource(GUIConstants.DARK_THEME_FILE).toExternalForm();;
+    public final String BRIGHT_THEME_PATH = StartMenu.class.getResource(GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
+    public final String DARK_THEME_PATH = StartMenu.class.getResource(GUIConstants.DARK_THEME_FILE).toExternalForm();;
 
     public final Boolean SET_BRIGHT = true;
 
@@ -93,7 +94,9 @@ public interface GUIConstants
 
     public final String PORT_RANGE_ERROR_TEXT = "Sie müssen einen Wert zwischen " + portMinValue + " und " + portMaxValue + " angeben.";
 
+    public final String EMPTY_TEXT_FIELD_ERROR_TITLE = "Leeres TextFeld";
 
+    public final String EMPTY_TEXT_FIELD_ERROR_TEXT = "Sie müssen alle Felder Ausfüllen.";
 //---------------------------------------------------------
 // ListCell Konstanten
 

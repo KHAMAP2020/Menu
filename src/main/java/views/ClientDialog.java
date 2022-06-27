@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.Client;
 import models.interfaces.GUIConstants;
+import org.controlsfx.control.action.Action;
 
 public class ClientDialog
 {
@@ -82,10 +83,23 @@ public class ClientDialog
                         name = nameTextField.getText();
                         server = serverTextField.getText();
                         port = Integer.valueOf(portTextField.getText());
-                        nameTextField.clear();
-                        serverTextField.clear();
-                        portTextField.clear();
+                        clearAllFields();
                     }
+                }
+            }
+        );
+
+
+        Button cancelButton = (Button)dialog.getDialogPane().lookupButton(buttonTypeCancel);
+        cancelButton.addEventFilter
+        (
+            ActionEvent.ACTION,
+            new EventHandler<ActionEvent>()
+            {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    clearAllFields();
                 }
             }
         );
@@ -136,31 +150,42 @@ public class ClientDialog
         boolean portIsEmpty = portTextField.getText().isEmpty();
         boolean serverIsEmpty = serverTextField.getText().isEmpty();
 
-        if (portIsEmpty)
+        if (portIsEmpty==false)
         {
-            return false;
-        }
+            String portString = portTextField.getText();
 
-        String portString = portTextField.getText();
-
-        try
-        {
-            int portNumber = Integer.parseInt(portString);
-            if (portNumber > GUIConstants.portMaxValue||portNumber < GUIConstants.portMinValue)
+            try
             {
-                ErrorAlertType.PORT_RANGE_ERROR.getAlert().showAndWait();
+                int portNumber = Integer.parseInt(portString);
+                if (portNumber > GUIConstants.portMaxValue||portNumber < GUIConstants.portMinValue)
+                {
+                    ErrorAlertType.PORT_RANGE.getAlert().showAndWait();
+                    return false;
+                }
+            }
+            catch (NumberFormatException exception)
+            {
+                ErrorAlertType.PORT_RANGE.getAlert().showAndWait();
                 return false;
             }
         }
-        catch (NumberFormatException exception)
+        else
         {
-            ErrorAlertType.PORT_RANGE_ERROR.getAlert().showAndWait();
+            ErrorAlertType.EMPTY_TEXTFIELD.getAlert().showAndWait();
             return false;
         }
         if (nameIsEmpty||serverIsEmpty)
         {
+            ErrorAlertType.EMPTY_TEXTFIELD.getAlert().showAndWait();
             return false;
         }
         return true;
+    }
+
+    private static void clearAllFields()
+    {
+        nameTextField.clear();
+        serverTextField.clear();
+        portTextField.clear();
     }
 }

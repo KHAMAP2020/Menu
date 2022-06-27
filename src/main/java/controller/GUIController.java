@@ -1,58 +1,58 @@
 package controller;
 
-import javafx.geometry.Pos;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import models.interfaces.GUIConstants;
 import views.*;
 
 public class GUIController
 {
-    private static BorderPane borderPane = new BorderPane();
-    private static BorderPane chatPane = null;
-    private static BorderPane startPane = null;
-    private static Scene scene = null;
+    private static Stage stage = null;
+    private static Scene startScene = null;
+    private static Scene chatScene = null;
 
+    private static Scene currentScene = null;
+    private static String currentStylePath = null;
 
-    private static MenuBar chatMenuBar = null;
-
-    private static MenuBar menuBar = null;
-
-    private static Pane centerPane = null;
-
-    public static void createGUI(Stage stage)
+    public static void createGUI(Stage mainStage)
     {
+        stage =mainStage;
         stage.setTitle(GUIConstants.STAGE_NAME);
 
-        //chatPane = ChatPane.createChatPane();
-
-        scene = StartPane.createStartPane();
-        setStartPane();
-
-        stage.setScene(scene);
+        startScene = StartSceneCreator.createStartScene();
+        chatScene = ChatSceneCreator.createChatScene();
+        setInitialScene();
+       // setScene(chatScene);
+        //stage.setScene(startScene);
         stage.show();
     }
 
-    public static Scene getScene()
+
+    private static void setInitialScene()
     {
-        return scene;
+        currentScene = startScene;
+        stage.setScene(currentScene);
     }
 
-    public static void setStartPane ()
+    public static void setScene (Scene scene)
     {
-        borderPane.setCenter(startPane);
+        scene.getStylesheets().remove(GUIConstants.BRIGHT_THEME_PATH);
+        scene.getStylesheets().remove(GUIConstants.BRIGHT_THEME_PATH);
+        scene.getStylesheets().add(currentStylePath);
+        currentScene = scene;
+        stage.setScene(currentScene);
     }
 
-
-    public static void setBorderPane (BorderPane pane)
+    public static void setStyle(String path)
     {
-        borderPane.setCenter(pane);
+        currentScene.getStylesheets().remove(GUIConstants.BRIGHT_THEME_PATH);
+        currentScene.getStylesheets().remove(GUIConstants.BRIGHT_THEME_PATH);
+        currentStylePath = path;
+        currentScene.getStylesheets().add(path);
     }
 
+    public static Scene getStartScene()
+    {
+        return startScene;
+    }
 }

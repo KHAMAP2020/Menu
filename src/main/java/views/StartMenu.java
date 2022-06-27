@@ -1,7 +1,6 @@
 package views;
 
 import controller.GUIController;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -11,36 +10,36 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import models.interfaces.GUIConstants;
 
-public class StartMenuCreator
+public class StartMenu
 {
-    private static RadioMenuItem schemeBright = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
-    private static RadioMenuItem schemeDark = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
+    private RadioMenuItem schemeBright = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
+    private RadioMenuItem schemeDark = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
 
-    private static MenuBar menuBar = new MenuBar();
+    private MenuBar menuBar = new MenuBar();
 
-    private static Menu scheme =new Menu(GUIConstants.SCHEME_NAME);
+    private Menu schemeMenu =new Menu(GUIConstants.SCHEME_NAME);
 
-    private static ToggleGroup schemeToggleGroup = new ToggleGroup();
-
-    public static MenuBar createMenu()
+    private ToggleGroup schemeToggleGroup = new ToggleGroup();
+    private Scene scene = null;
+    public StartMenu(Scene scene)
     {
+        this.scene = scene;
         schemeBright.setToggleGroup(schemeToggleGroup);
         schemeDark.setToggleGroup(schemeToggleGroup);
 
-        scheme.getItems().setAll(schemeBright,schemeDark);
+        schemeMenu.getItems().setAll(schemeBright,schemeDark);
 
-        radioSchemeEvents();
-
+        setRadioSchemeEvents();
 
         //Initiale RadioEinstellung
         schemeBright.setSelected(true);
-        setScheme(GUIConstants.SET_BRIGHT);
 
-        menuBar.getMenus().setAll(scheme);
-        return menuBar;
+        setStylesheet(GUIConstants.SET_BRIGHT);
+
+        menuBar.getMenus().setAll(schemeMenu);
     }
 
-    private static void radioSchemeEvents()
+    private void setRadioSchemeEvents()
     {
         schemeBright.setOnAction
         (
@@ -48,7 +47,7 @@ public class StartMenuCreator
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    setScheme(GUIConstants.SET_BRIGHT);
+                    setStylesheet(GUIConstants.SET_BRIGHT);
                 }
             }
         );
@@ -59,15 +58,15 @@ public class StartMenuCreator
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    setScheme(GUIConstants.SET_DARK);
+                    setStylesheet(GUIConstants.SET_DARK);
                 }
             }
         );
     }
 
-    private static void setScheme (Boolean isBright)
+    private void setStylesheet(Boolean isBright)
     {
-        Scene scene = StartPane.getScene();
+        scene = StartSceneCreator.getScene();
 
         String brightThemePath = GUIConstants.BRIGHT_THEME_PATH;
         String darkThemePath = GUIConstants.DARK_THEME_PATH;
@@ -77,11 +76,18 @@ public class StartMenuCreator
 
         if (isBright == true)
         {
+            //GUIController.setStyle(GUIConstants.BRIGHT_THEME_PATH);
             scene.getStylesheets().add(brightThemePath);
         }
         else
         {
             scene.getStylesheets().add(darkThemePath);
+            //GUIController.setStyle(GUIConstants.DARK_THEME_PATH);
         }
+    }
+
+    public MenuBar getMenu()
+    {
+        return menuBar;
     }
 }

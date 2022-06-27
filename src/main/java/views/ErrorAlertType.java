@@ -6,11 +6,17 @@ import models.interfaces.GUIConstants;
 
 public enum ErrorAlertType
 {
-    PORT_RANGE_ERROR
+    PORT_RANGE
     (
         GUIConstants.PORT_RANGE_ERROR_TITLE,
         GUIConstants.PORT_RANGE_ERROR_TEXT
+    ),
+    EMPTY_TEXTFIELD
+    (
+        GUIConstants.EMPTY_TEXT_FIELD_ERROR_TITLE,
+        GUIConstants.EMPTY_TEXT_FIELD_ERROR_TEXT
     );
+
 
 
     private Alert alert = new Alert(AlertType.ERROR);

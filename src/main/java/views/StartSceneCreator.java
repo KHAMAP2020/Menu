@@ -13,28 +13,25 @@ import models.interfaces.GUIConstants;
 import java.util.Optional;
 import models.Client;
 
-public class StartPane
+public class StartSceneCreator
 {
-    private static BorderPane startPane = new BorderPane();
+    private static BorderPane borderPane = new BorderPane();
 
-    private static Scene scene = new Scene(startPane,GUIConstants.SCENE_WIDTH,GUIConstants.SCENE_HEIGHT);
-    private static VBox vBox = new VBox(GUIConstants.V_BOX_SPACING);
+    private static Scene scene = new Scene(borderPane,GUIConstants.START_SCENE_WIDTH,GUIConstants.START_SCENE_HEIGHT);
+    private static VBox vBox = new VBox(GUIConstants.START_V_BOX_SPACING);
     private static MenuBar startMenu = null;
     private static Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
     private static Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
     private static Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
 
 
-    ClientDialogCreator clientDialogCreator = new ClientDialogCreator();
-
-    public static Scene createStartPane()
+    public static Scene createStartScene()
     {
-
-        startMenu = StartMenuCreator.createMenu();
-        startPane.setTop(startMenu);
+        startMenu = new StartMenu(scene).getMenu();
+        borderPane.setTop(startMenu);
         //startPane.setCenter(new ChatPaneCreator().createChatPane());
 
-        startPane.setCenter(vBox);
+        borderPane.setCenter(vBox);
 
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(welcomeLabel,joinButton,hostButton);
