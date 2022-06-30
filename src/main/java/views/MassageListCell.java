@@ -2,9 +2,9 @@ package views;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
-import models.Massage;
+import models.Message;
 
-public class MassageListCell extends ListCell<Massage>
+public class MassageListCell extends ListCell<Message>
 {
 
     public MassageListCell()
@@ -13,7 +13,7 @@ public class MassageListCell extends ListCell<Massage>
     }
 
     @Override
-    protected void updateItem(Massage item, boolean empty)
+    protected void updateItem(Message item, boolean empty)
     {
         // calling super here is very important - don't skip this!
         super.updateItem(item, empty);

@@ -1,14 +1,21 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import models.Message;
 import models.interfaces.GUIConstants;
 import views.*;
 import views.CenterPaneType;
 import views.MenuSettings;
 import views.Style;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 public class GUIController
 {
@@ -35,7 +42,25 @@ public class GUIController
         setCenterPane(currentCenterPane);
         setCenterPane(CenterPaneType.CHAT);
         stage.show();
+
+
+        try
+        {
+            String line;
+            Socket client = new Socket("localhost",3333);
+            DataOutputStream out;
+            out = new DataOutputStream(client.getOutputStream());
+            DataInputStream in;
+            in = new DataInputStream(client.getInputStream());
+            out.writeUTF(ChatPane.massageTextfield.getText());
+            System.out.println(ChatPane.massageTextfield.getText());
+            System.out.println(in.readUTF());
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
+
 
     public static void setCenterPane(CenterPaneType centerPane)
     {

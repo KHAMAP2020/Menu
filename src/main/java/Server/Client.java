@@ -21,6 +21,7 @@ public class Client
         System.out.println("Client startet");
         DataOutputStream out = new DataOutputStream(client.getOutputStream());
         DataInputStream in = new DataInputStream(client.getInputStream());
+        out.writeUTF("Hallo");
         System.out.println(in.readUTF());
         System.out.println("Naricht gelesen");
         }catch (IOException e)

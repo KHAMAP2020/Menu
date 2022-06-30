@@ -9,20 +9,20 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import models.Massage;
+import models.Message;
 import models.interfaces.GUIConstants;
 
 public class ChatPane
 {
     private static VBox chatBox = new VBox();
 
-    private static ObservableList<Massage> massages = FXCollections.observableArrayList();
+    private static ObservableList<Message> messages = FXCollections.observableArrayList();
 
-    private static ListView<Massage> massageView = new ListView<Massage>();
+    private static ListView<Message> massageView = new ListView<Message>();
 
     private static HBox sendBar = new HBox();
 
-    private static TextArea massageTextfield = new TextArea();
+    public static TextArea massageTextfield = new TextArea();
 
     private static Button sendButton = new Button(GUIConstants.SEND_BUTTON_NAME);
 
@@ -35,7 +35,7 @@ public class ChatPane
     {
         massageTextfield.setWrapText(true);
         massageTextfield.setPromptText(GUIConstants.MASSAGE_PROMT_TEXT);
-        massageView.setItems(massages);
+        massageView.setItems(messages);
 
         setMassageViewCells();
         setButtenEvents();
@@ -58,11 +58,11 @@ public class ChatPane
                     {
                         String massageText = massageTextfield.getText();
 
-                        Massage massage = new Massage(massageText,GUIConstants.MASSAGE_GOES_OUT);
+                        Message message = new Message(massageText,GUIConstants.MASSAGE_GOES_OUT);
 
-                        massages.add(massage);
+                        messages.add(message);
 
-                        massageView.scrollTo(massage);
+                        massageView.scrollTo(message);
                         massageTextfield.clear();
                     }
                     else
@@ -78,10 +78,10 @@ public class ChatPane
     {
         massageView.setCellFactory
         (
-            new Callback<ListView<Massage>, ListCell<Massage>>()
+            new Callback<ListView<Message>, ListCell<Message>>()
             {
                 @Override
-                public ListCell<Massage> call(ListView<Massage> listView)
+                public ListCell<Message> call(ListView<Message> listView)
                 {
                     return new MassageListCell();
                 }

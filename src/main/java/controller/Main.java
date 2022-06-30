@@ -1,14 +1,34 @@
 package controller;
 
+import Server.Server;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import models.Message;
+
+import java.io.IOException;
 
 public class Main extends Application
 {
 
+    public Main() throws IOException
+    {
+    }
+
     public static void main(String[] args)
     {
-        launch(args);
+        try
+        { Server server = new Server(3333);
+            server.start();
+
+
+            launch(args);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @Override

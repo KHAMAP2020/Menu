@@ -5,7 +5,11 @@ import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 import models.interfaces.GUIConstants;
 
-public class Massage
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.*;
+
+public class Message
 {
     private Boolean massageIsIncomming = null;
 
@@ -15,7 +19,7 @@ public class Massage
 
     private HBox massageBox = new HBox();
 
-    public Massage (String massageText, Boolean massageIsIncomming)
+    public Message(String massageText, Boolean massageIsIncomming)
     {
         this.massageIsIncomming = massageIsIncomming;
         this.massageText.setText(massageText);
@@ -24,7 +28,12 @@ public class Massage
         massageFlow.getChildren().add(this.massageText);
     }
 
-    public Text getMassageText()
+    public Message()
+    {
+
+    }
+
+    public  Text getMassageText()
     {
         return this.massageText;
     }
@@ -42,5 +51,12 @@ public class Massage
     public HBox getMassageBox()
     {
         return this.massageBox;
+    }
+
+    public void sendMessage() throws IOException
+    {
+
+
+
     }
 }
