@@ -1,11 +1,13 @@
 package controller;
 
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import models.Message;
+import javafx.stage.WindowEvent;
 import models.interfaces.GUIConstants;
 import views.*;
 import views.CenterPaneType;
@@ -30,20 +32,30 @@ public class GUIController
     private static CenterPaneType currentCenterPane = GUIConstants.INITIAL_CENTER_PANE;
 
     private static Style currentStyle = Style.BRIGHT;
-    private static MenuBar menuBar = StartMenu.createMenu();
+    private static MenuBar menuBar = null;//StartMenu.createMenu();
     public static void createGUI(Stage mainStage)
     {
         stage = mainStage;
+        menuBar = StartMenu.createMenu(stage);
         stage.setScene(scene);
         stage.setResizable(GUIConstants.RESIZABLE);
         stage.setTitle(GUIConstants.STAGE_NAME);
         borderPane.setTop(menuBar);
-        borderPane.setCenter(currentCenterPane.getPane());
         setCenterPane(currentCenterPane);
-        setCenterPane(CenterPaneType.CHAT);
         stage.show();
-
-
+        scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent windowEvent)
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Lückenfüller");
+                alert.setHeaderText("Wichtig");
+                String s ="Server muss jetzt geschlosssen werden";
+                alert.setContentText(s);
+                alert.show();
+            }
+        });
         try
         {
             String line;
@@ -52,8 +64,8 @@ public class GUIController
             out = new DataOutputStream(client.getOutputStream());
             DataInputStream in;
             in = new DataInputStream(client.getInputStream());
-            out.writeUTF(ChatPane.massageTextfield.getText());
-            System.out.println(ChatPane.massageTextfield.getText());
+            out.writeUTF(ChatPane.textArea.getText());
+            System.out.println(ChatPane.textArea.getText());
             System.out.println(in.readUTF());
         }catch (IOException e)
         {

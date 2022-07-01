@@ -4,10 +4,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import models.Message;
 
-public class MassageListCell extends ListCell<Message>
+public class MessageListCell extends ListCell<Message>
 {
 
-    public MassageListCell()
+    public MessageListCell()
     {
 
     }
@@ -23,15 +23,18 @@ public class MassageListCell extends ListCell<Message>
             setText(null);
         } else
         {
-            if(item.getMassageIsIncomming()==true)
+
+            if(item.getIsIncomming()==true)
             {
-                item.getMassageBox().setAlignment(Pos.CENTER_LEFT);
+
+                item.getHBox().setAlignment(Pos.CENTER_LEFT);
             }
             else
             {
-                item.getMassageBox().setAlignment(Pos.CENTER_RIGHT);
+
+                item.getHBox().setAlignment(Pos.CENTER_RIGHT);
             }
-            setGraphic(item.getMassageBox());
+            setGraphic(item.getHBox());
         }
     }
 }

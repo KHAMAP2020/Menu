@@ -5,27 +5,25 @@ import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 import models.interfaces.GUIConstants;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.*;
 
 public class Message
 {
-    private Boolean massageIsIncomming = null;
+    private Boolean isIncomming = null;
 
-    private TextFlow massageFlow = new TextFlow();
+    private TextFlow textFlow = new TextFlow();
 
-    private Text massageText = new Text();
+    private Text text = new Text();
 
-    private HBox massageBox = new HBox();
+    private HBox hBox = new HBox();
 
-    public Message(String massageText, Boolean massageIsIncomming)
+    public Message(String text, Boolean isIncomming)
     {
-        this.massageIsIncomming = massageIsIncomming;
-        this.massageText.setText(massageText);
-        massageFlow.setMaxWidth(GUIConstants.MASSAGE_MAX_WIDTH);
-        massageBox.getChildren().add(massageFlow);
-        massageFlow.getChildren().add(this.massageText);
+        this.isIncomming = isIncomming;
+        this.text.setText(text);
+        textFlow.setMaxWidth(GUIConstants.MASSAGE_MAX_WIDTH);
+        hBox.getChildren().add(textFlow);
+        textFlow.getChildren().add(this.text);
     }
 
     public Message()
@@ -33,24 +31,24 @@ public class Message
 
     }
 
-    public  Text getMassageText()
+    public  Text getText()
     {
-        return this.massageText;
+        return this.text;
     }
 
-    public Boolean getMassageIsIncomming()
+    public Boolean getIsIncomming()
     {
-        return this.massageIsIncomming;
+        return this.isIncomming;
     }
 
-    public TextFlow getMassageFlow()
+    public TextFlow getTextFlow()
     {
-        return this.massageFlow;
+        return this.textFlow;
     }
 
-    public HBox getMassageBox()
+    public HBox getHBox()
     {
-        return this.massageBox;
+        return this.hBox;
     }
 
     public void sendMessage() throws IOException

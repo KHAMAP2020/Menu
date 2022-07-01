@@ -14,15 +14,15 @@ import models.interfaces.GUIConstants;
 
 public class ChatPane
 {
-    private static VBox chatBox = new VBox();
+    private static VBox vBox = new VBox();
 
     private static ObservableList<Message> messages = FXCollections.observableArrayList();
 
-    private static ListView<Message> massageView = new ListView<Message>();
+    private static ListView<Message> listView = new ListView<Message>();
 
     private static HBox sendBar = new HBox();
 
-    public static TextArea massageTextfield = new TextArea();
+    public static TextArea textArea = new TextArea();
 
     private static Button sendButton = new Button(GUIConstants.SEND_BUTTON_NAME);
 
@@ -33,16 +33,15 @@ public class ChatPane
     }
     public static void createChatBox()
     {
-        massageTextfield.setWrapText(true);
-        massageTextfield.setPromptText(GUIConstants.MASSAGE_PROMT_TEXT);
-        massageView.setItems(messages);
-
+        textArea.setWrapText(true);
+        textArea.setPromptText(GUIConstants.MESSAGE_PROMT_TEXT);
+        listView.setItems(messages);
         setMassageViewCells();
         setButtenEvents();
 
-        sendBar.getChildren().addAll(massageTextfield,sendButton);
+        sendBar.getChildren().addAll(textArea,sendButton);
         sendBar.setAlignment(Pos.CENTER_LEFT);
-        chatBox.getChildren().addAll(massageView,sendBar);
+        vBox.getChildren().addAll(listView,sendBar);
     }
 
     private static void setButtenEvents()
@@ -56,14 +55,14 @@ public class ChatPane
                 {
                     if (validEntries()==true)
                     {
-                        String massageText = massageTextfield.getText();
+                        String massageText = textArea.getText();
 
                         Message message = new Message(massageText,GUIConstants.MASSAGE_GOES_OUT);
 
                         messages.add(message);
 
-                        massageView.scrollTo(message);
-                        massageTextfield.clear();
+                        listView.scrollTo(message);
+                        textArea.clear();
                     }
                     else
                     {
@@ -76,14 +75,14 @@ public class ChatPane
 
     private static void setMassageViewCells()
     {
-        massageView.setCellFactory
+        listView.setCellFactory
         (
             new Callback<ListView<Message>, ListCell<Message>>()
             {
                 @Override
                 public ListCell<Message> call(ListView<Message> listView)
                 {
-                    return new MassageListCell();
+                    return new MessageListCell();
                 }
             }
         );
@@ -91,7 +90,7 @@ public class ChatPane
 
     private static boolean validEntries ()
     {
-        if(massageTextfield.getText().isEmpty())
+        if(textArea.getText().isEmpty())
         {
             return false;
         }
@@ -103,6 +102,6 @@ public class ChatPane
 
     public VBox getPane()
     {
-        return chatBox;
+        return vBox;
     }
 }

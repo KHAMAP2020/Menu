@@ -1,5 +1,6 @@
 package views;
 
+import controller.GUIController;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,6 +52,8 @@ public class StartPane
                         String s ="Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
                         alert.setContentText(s);
                         alert.show();
+
+                        GUIController.setCenterPane(CenterPaneType.CHAT);
                     }
                 }
             }
@@ -74,6 +77,8 @@ public class StartPane
                         String s ="Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
                         alert.setContentText(s);
                         alert.show();
+
+                        GUIController.setCenterPane(CenterPaneType.CHAT);
                     }
                 }
             }

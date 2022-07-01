@@ -65,7 +65,7 @@ public interface GUIConstants
 
     public final String SEND_BUTTON_NAME = "senden";
 
-    public final String MASSAGE_PROMT_TEXT = "Gib eine Nachricht ein. ";
+    public final String MESSAGE_PROMT_TEXT = "Gib eine Nachricht ein. ";
 
     public final Boolean MASSAGE_COMES_IN = true;
 
@@ -111,7 +111,8 @@ public interface GUIConstants
 //---------------------------------------------------------
 // Chatmenü Konstanten
 
-    public final String RETURN_BUTTEN_STRING = "Zurück zum Menü";
+    public final String RETURN_TO_START_BUTTEN_STRING = "Zurück zum Menü";
 
-    public final String END_CHAT_MENU = "Chat beenden";
+    public final String END_STAGE_BUTTON_STRING = "Programm beenden";
+    public final String END_CHAT_MENU = "Verlassen";
 }
