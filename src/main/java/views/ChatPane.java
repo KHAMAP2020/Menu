@@ -4,47 +4,97 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import models.Message;
 import models.interfaces.GUIConstants;
+import models.interfaces.GUIConstantss.ChatPaneConstants;
 
+/**
+ * stellt das Chatlayout dar
+ *
+ * @author A.Hoffmann 5137817
+ */
 public class ChatPane
 {
+//---------------------------------------------------------
+//Datenfeld
+
+    /**
+     * Layout des Chats
+     */
     private static VBox vBox = new VBox();
 
-    private static ObservableList<Message> messages = FXCollections.observableArrayList();
+    /**
+     * NachrichtenListe
+     */
+    private static ObservableList<Message> messages
+    = FXCollections.observableArrayList();
 
-    private static ListView<Message> listView = new ListView<Message>();
+    /**
+     * Listenansicht
+     */
+    private static ListView<Message> listView
+    = new ListView<Message>();
 
+    /**
+     * Layout des Nachrichtensendebereichs
+     */
     private static HBox sendBar = new HBox();
 
+    /**
+     * Textfeld in dem Nachrichten reingeschrieben werden
+     */
     public static TextArea textArea = new TextArea();
 
-    private static Button sendButton = new Button(GUIConstants.SEND_BUTTON_NAME);
+    /**
+     * Sendeschaltfläche
+     */
+    private static Button sendButton
+    = new Button(ChatPaneConstants.SEND_BUTTON_NAME);
 
+//---------------------------------------------------------
+//Methoden
 
+    /**
+     * Konstruktor des Chatlayouts
+     */
     public ChatPane()
     {
-        createChatBox();
+        init();
     }
-    public static void createChatBox()
+
+    /**
+     * Initiale Einstellungen für das Chatlayout
+     */
+    public static void init()
     {
         textArea.setWrapText(true);
-        textArea.setPromptText(GUIConstants.MESSAGE_PROMT_TEXT);
-        listView.setItems(messages);
-        setMassageViewCells();
-        setButtenEvents();
+        textArea.setPromptText
+        (
+            ChatPaneConstants.MESSAGE_PROMT_TEXT
+        );
 
         sendBar.getChildren().addAll(textArea,sendButton);
         sendBar.setAlignment(Pos.CENTER_LEFT);
+
+        listView.setItems(messages);
+
         vBox.getChildren().addAll(listView,sendBar);
+
+        messageViewCellSettings();
+        buttenEventsSettings();
     }
 
-    private static void setButtenEvents()
+    private static void buttenEventsSettings()
     {
         sendButton.setOnAction
         (
@@ -57,7 +107,7 @@ public class ChatPane
                     {
                         String massageText = textArea.getText();
 
-                        Message message = new Message(massageText,GUIConstants.MASSAGE_GOES_OUT);
+                        Message message = new Message(massageText,GUIConstants.MASSAGE_GOES_OUT,listView.widthProperty());
 
                         messages.add(message);
 
@@ -73,7 +123,7 @@ public class ChatPane
         );
     }
 
-    private static void setMassageViewCells()
+    private static void messageViewCellSettings()
     {
         listView.setCellFactory
         (

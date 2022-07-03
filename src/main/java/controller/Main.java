@@ -3,7 +3,6 @@ package controller;
 import Server.Server;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import models.Message;
 
 import java.io.IOException;
 
@@ -34,6 +33,7 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-       GUIController.createGUI(stage);
+        //System.out.println();
+       GUIController.initGUI(stage);
     }
 }
