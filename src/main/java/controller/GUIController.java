@@ -64,7 +64,8 @@ public class GUIController
             out = new DataOutputStream(client.getOutputStream());
             DataInputStream in;
             in = new DataInputStream(client.getInputStream());
-            out.writeUTF(ChatPane.textArea.getText());
+            out.writeUTF();
+            out.flush();
             System.out.println(ChatPane.textArea.getText());
             System.out.println(in.readUTF());
         }catch (IOException e)
