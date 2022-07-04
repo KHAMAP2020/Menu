@@ -15,18 +15,6 @@ public class Client
 
     public static void main(String[] args)
     {
-        try
-        {
-        Socket client = new Socket("localhost",3333);
-        System.out.println("Client startet");
-        DataOutputStream out = new DataOutputStream(client.getOutputStream());
-        DataInputStream in = new DataInputStream(client.getInputStream());
-        out.writeUTF("Hallo");
-        System.out.println(in.readUTF());
-        System.out.println("Naricht gelesen");
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
     }
 }

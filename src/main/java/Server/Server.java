@@ -1,21 +1,26 @@
 package Server;
 
-import controller.GUIController;
-import models.Client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+
+import models.LoginData;
+
 import java.io.IOException;
 import java.net.*;
 
 public class Server extends Thread
 {
-   private ServerSocket server;
+   public static ServerSocket server;
    public static boolean loop = true;
+
+    public static Socket client;
     public Server(int port) throws IOException
     {
-        Client client = new Client(null,null, port);
-         server = new ServerSocket(3333);
+        String name = "";
+        String servername = "";
+        int port2 = 0;
+        LoginData data = new LoginData(null,null,0);
+
+         server = new ServerSocket(data.getPort());
         System.out.println(port);
      //    server.setSoTimeout(10000);
     }
@@ -27,14 +32,16 @@ public class Server extends Thread
         while(loop){
             try
             {
-                String line;
-                System.out.println("waiting for client");
-                Socket client = server.accept();
-                System.out.println("Server akzeptiert");
-                DataInputStream input = new DataInputStream(client.getInputStream());
-                DataOutputStream output = new DataOutputStream(client.getOutputStream());
-                System.out.println("gelesen:" + input.readUTF());
-                output.writeUTF("Naricht angekommen");
+                if(!client.isConnected()){
+                    System.out.println("waiting for client");
+                }
+
+
+
+                ConnectionListener connectionListener;
+                connectionListener = new ConnectionListener();
+                connectionListener.start();
+
 
 
             }catch (IOException e){
@@ -51,7 +58,7 @@ public class Server extends Thread
         try
         {
             Server s = new Server(3333);
-            s.run();
+            s.start();
         }catch (IOException e){
             e.printStackTrace();
         }

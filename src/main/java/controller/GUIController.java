@@ -77,13 +77,13 @@ public class GUIController
 
         try
         {
-            String line;
+
             Socket client = new Socket("localhost",3333);
             DataOutputStream out;
             out = new DataOutputStream(client.getOutputStream());
             DataInputStream in;
             in = new DataInputStream(client.getInputStream());
-            out.writeUTF();
+            out.writeUTF(ChatPane.textArea.getText());
             out.flush();
             System.out.println(ChatPane.textArea.getText());
             System.out.println(in.readUTF());

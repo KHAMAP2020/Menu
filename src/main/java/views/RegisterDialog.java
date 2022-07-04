@@ -1,5 +1,6 @@
 package views;
 
+import Server.Server;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -7,8 +8,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.LoginData;
-import models.interfaces.GUIConstants;
+
 import models.interfaces.GUIConstantss.RegisterConstants;
+
+import java.io.IOException;
 
 /**
  * Dialog in dem der Anwender Daten zum aufbau eines Servers
@@ -127,6 +130,14 @@ public class RegisterDialog
      */
     public static Dialog<LoginData> createDialog()
     {
+        try
+        {
+            Server server = new Server(3333);
+            server.start();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
         dialog = new Dialog();
         grid = new GridPane();
         dialog.setTitle
@@ -214,8 +225,20 @@ public class RegisterDialog
                         port
                         = Integer.valueOf
                         (
-                            portTextField.getText()
-                        );
+                            portTextField.getText());
+
+
+                        try
+                        {
+                            Server s = null;
+                            s = new Server(1111);
+                            s.start();
+                        } catch (IOException e)
+                        {
+                            throw new RuntimeException(e);
+                        }
+
+
                         clearAllFields();
                     }
                 }

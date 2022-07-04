@@ -15,19 +15,7 @@ public class Main extends Application
 
     public static void main(String[] args)
     {
-        try
-        { Server server = new Server(3333);
-            server.start();
-
-
             launch(args);
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-
-
     }
 
     @Override
