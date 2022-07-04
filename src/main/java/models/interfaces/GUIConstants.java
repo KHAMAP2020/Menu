@@ -50,45 +50,6 @@ public interface GUIConstants
     public String WELCOME_LABEL_STRING = "Herzlich willkommen!";
 
 //---------------------------------------------------------
-//ChatPane Konstanten
-
-    public final boolean MASSAGE_COMES_IN = true;
-
-    public final boolean MASSAGE_GOES_OUT = !MASSAGE_COMES_IN;
-
-//---------------------------------------------------------
-//Dialog Konstanten
-
-    public final String NUMBER_DEFINITION = "0123456789";
-    public final String CLIENT_DIALOG_TITLE = "Chat Beitreten";
-
-    public final String NAME_LABEL_STRING = "Dein Name: ";
-
-    public final String PORT_LABEL_STRING = "Port Nummer: ";
-
-    public final String SERVER_LABEL_STRING = "Name des Servers: ";
-
-    public final String NAME_PROMT_TEXT = "Gib deinen Namen ein.";
-
-    public final String PORT_PROMT_TEXT = "Gib die Portnummer ein.";
-
-    public final String SERVER_PROMT_TEXT = "Gib den Servernamen ein.";
-
-    public final String CONTINUE_BUTTON_STRING = "Weiter";
-
-    public final String CANCEL_BUTTON_STRING = "Zurück";
-
-    public final int portMinValue =0;
-
-    public final int portMaxValue = Integer.MAX_VALUE;
-    public final String PORT_RANGE_ERROR_TITLE = "Ungültige Portnummer";
-
-    public final String PORT_RANGE_ERROR_TEXT = "Sie müssen einen Wert zwischen " + portMinValue + " und " + portMaxValue + " angeben.";
-
-    public final String EMPTY_TEXT_FIELD_ERROR_TITLE = "Leeres TextFeld";
-
-    public final String EMPTY_TEXT_FIELD_ERROR_TEXT = "Sie müssen alle Felder Ausfüllen.";
-//---------------------------------------------------------
 // ListCell Konstanten
 
     public final double MASSAGE_MAX_WIDTH = 200;

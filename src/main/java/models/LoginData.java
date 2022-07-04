@@ -1,11 +1,11 @@
 package models;
 
-public class Client
+public class LoginData
 {
     private String name = null;
     private int port = 0;
     private String serverName = null;
-    public Client(String name, String serverName, int port)
+    public LoginData(String name, String serverName, int port)
     {
        this.name = name;
        this.serverName = serverName;
