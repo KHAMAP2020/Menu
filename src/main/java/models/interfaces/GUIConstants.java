@@ -1,7 +1,6 @@
 package models.interfaces;
 
 import views.CenterPaneType;
-import views.StartMenu;
 
 /**
  * Hier sind alle GUI Konsanten des Programmns
@@ -11,20 +10,7 @@ import views.StartMenu;
  */
 public interface GUIConstants
 {
-    /**
-     * Name der Stage
-     */
-    public final String STAGE_NAME = "Name der Stage";
-
-    public final int SCENE_WIDTH = 600;
-
-    public final int SCENE_HEIGHT = 400;
-
-    public final Boolean RESIZABLE = false;
-
     public final int START_V_BOX_SPACING = 10;
-
-    public final CenterPaneType INITIAL_CENTER_PANE = CenterPaneType.START;
 //---------------------------------------------------------
 //Menu Konstanten
 
@@ -39,18 +25,21 @@ public interface GUIConstants
 
     public final String BRIGHT_THEME_FILE = "BrightTheme.css";
     public final String DARK_THEME_FILE ="DarkTheme.css";
-    public final String BRIGHT_THEME_PATH = StartMenu.class.getResource(GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
-    public final String DARK_THEME_PATH = StartMenu.class.getResource(GUIConstants.DARK_THEME_FILE).toExternalForm();;
 
-    public final Boolean START_RETURN_TO_START_ITEM = false;
 
-    public final Boolean CHAT_RETURN_TO_START_ITEM = true;
+    //public final String BRIGHT_THEME_PATH = StartMenu.class.getResource(GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
+    public final String BRIGHT_THEME_PATH = "file:target/classes/views/BrightTheme.css";
+    public final String DARK_THEME_PATH = "file:target/classes/views/DarkTheme.css";
 
-    public final Boolean SCHEME_BRIGHT_INITIAL_STATUS = true;
+    public final boolean START_RETURN_TO_START_ITEM = false;
 
-    public final Boolean SCHEME_DARK_INITIAL_STATUS = false;
+    public final boolean CHAT_RETURN_TO_START_ITEM = true;
 
-    public final Boolean RETURN_TO_START_INITIAL_STATUS = false;
+    public final boolean SCHEME_BRIGHT_INITIAL_STATUS = true;
+
+    public final boolean SCHEME_DARK_INITIAL_STATUS = false;
+
+    public final boolean RETURN_TO_START_INITIAL_STATUS = false;
 //---------------------------------------------------------
 //StartPane Konstanten
 
@@ -63,13 +52,9 @@ public interface GUIConstants
 //---------------------------------------------------------
 //ChatPane Konstanten
 
-    public final String SEND_BUTTON_NAME = "senden";
+    public final boolean MASSAGE_COMES_IN = true;
 
-    public final String MESSAGE_PROMT_TEXT = "Gib eine Nachricht ein. ";
-
-    public final Boolean MASSAGE_COMES_IN = true;
-
-    public final Boolean MASSAGE_GOES_OUT = !MASSAGE_COMES_IN;
+    public final boolean MASSAGE_GOES_OUT = !MASSAGE_COMES_IN;
 
 //---------------------------------------------------------
 //Dialog Konstanten
@@ -115,4 +100,9 @@ public interface GUIConstants
 
     public final String END_STAGE_BUTTON_STRING = "Programm beenden";
     public final String END_CHAT_MENU = "Verlassen";
+
+//---------------------------------------------------------
+//Message Konstanten
+
+    public final double MESSAGE_WIDTH_SCALE = 0.8;
 }

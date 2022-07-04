@@ -1,5 +1,7 @@
 package views;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import models.Message;
@@ -9,7 +11,6 @@ public class MessageListCell extends ListCell<Message>
 
     public MessageListCell()
     {
-
     }
 
     @Override
@@ -17,21 +18,17 @@ public class MessageListCell extends ListCell<Message>
     {
         // calling super here is very important - don't skip this!
         super.updateItem(item, empty);
-
         if (item == null)
         {
             setText(null);
         } else
         {
-
             if(item.getIsIncomming()==true)
             {
-
                 item.getHBox().setAlignment(Pos.CENTER_LEFT);
             }
             else
             {
-
                 item.getHBox().setAlignment(Pos.CENTER_RIGHT);
             }
             setGraphic(item.getHBox());

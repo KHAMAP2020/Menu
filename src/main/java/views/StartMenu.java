@@ -85,6 +85,7 @@ public class StartMenu
                 @Override
                 public void handle(ActionEvent event)
                 {
+
                     GUIController.setCenterPane(CenterPaneType.START);
                 }
             }
