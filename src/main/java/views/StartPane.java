@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import models.interfaces.GUIConstants;
 
 import java.util.Optional;
-import models.Client;
+import models.LoginData;
 
 public class StartPane
 {
@@ -41,11 +41,11 @@ public class StartPane
                 @Override
                 public void handle(ActionEvent actionEvent)
                 {
-                    Dialog<Client> clientDialog = ClientDialog.createDialog();
-                    Optional<Client> result = clientDialog.showAndWait();
+                    Dialog<LoginData> clientDialog = RegisterDialog.createDialog();
+                    Optional<LoginData> result = clientDialog.showAndWait();
                     if(result.isPresent())
                     {
-                        Client client = result.get();
+                        LoginData loginData = result.get();
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Lückenfüller");
                         alert.setHeaderText("Geschafft!");
@@ -66,11 +66,11 @@ public class StartPane
                 @Override
                 public void handle(ActionEvent actionEvent)
                 {
-                    Dialog<Client> clientDialog = ClientDialog.createDialog();
-                    Optional<Client> result = clientDialog.showAndWait();
+                    Dialog<LoginData> serverDialog = RegisterDialog.createDialog();
+                    Optional<LoginData> result = serverDialog.showAndWait();
                     if(result.isPresent())
                     {
-                        Client client = result.get();
+                        LoginData loginData = result.get();
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Lückenfüller");
                         alert.setHeaderText("Geschafft!");

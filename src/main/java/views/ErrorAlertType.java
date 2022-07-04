@@ -3,18 +3,21 @@ package views;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import models.interfaces.GUIConstants;
+import models.interfaces.GUIConstantss.ErrorAlertTypeConstants;
+import models.interfaces.GUIConstantss.RegisterConstants;
 
 public enum ErrorAlertType
 {
     PORT_RANGE
     (
-        GUIConstants.PORT_RANGE_ERROR_TITLE,
-        GUIConstants.PORT_RANGE_ERROR_TEXT
+        ErrorAlertTypeConstants.PORT_RANGE_ERROR_TITLE,
+        ErrorAlertTypeConstants.PORT_RANGE_ERROR_TEXT
     ),
     EMPTY_TEXTFIELD
     (
-        GUIConstants.EMPTY_TEXT_FIELD_ERROR_TITLE,
-        GUIConstants.EMPTY_TEXT_FIELD_ERROR_TEXT
+        ErrorAlertTypeConstants.
+        EMPTY_TEXT_FIELD_ERROR_TITLE,
+        ErrorAlertTypeConstants.EMPTY_TEXT_FIELD_ERROR_TEXT
     );
 
 
