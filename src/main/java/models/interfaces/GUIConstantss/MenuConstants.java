@@ -1,21 +1,12 @@
-package models.interfaces;
-
-import views.CenterPaneType;
+package models.interfaces.GUIConstantss;
 
 /**
- * Hier sind alle GUI Konsanten des Programmns
- * hinterlegt
+ * Konstanten für die Menüleiste
  *
  * @author A.Hoffmann 5137817
  */
-public interface GUIConstants
+public interface MenuConstants
 {
-    public final int START_V_BOX_SPACING = 10;
-//---------------------------------------------------------
-//Menu Konstanten
-
-    //-----------------------------------------------------
-    //Schema Konstanten
     public final String SCHEME_NAME = "Schema";
 
 
@@ -41,24 +32,31 @@ public interface GUIConstants
 
     public final boolean RETURN_TO_START_INITIAL_STATUS = false;
 //---------------------------------------------------------
-//StartPane Konstanten
-
-    public final String JOIN_BUTTON_NAME = "Chat beitreten";
-
-    public final String HOST_BUTTON_NAME = "Chat erstellen";
-
-    public String WELCOME_LABEL_STRING = "Herzlich willkommen!";
+//Stil Menüoptionen
 
 //---------------------------------------------------------
-// Chatmenü Konstanten
+//Verlassen Menüoptionen
 
-    public final String RETURN_TO_START_BUTTEN_STRING = "Zurück zum Menü";
+    /**
+     * Beschriftung von dem Menüpunkt mit den verschiedenen
+     * verlassen Optionen
+     */
+    public final String END_CHAT_MENU
+    = "Verlassen";
 
-    public final String END_STAGE_BUTTON_STRING = "Programm beenden";
-    public final String END_CHAT_MENU = "Verlassen";
+    /**
+     * Beschriftung von der Schaltfläche, die zurück zum
+     * start führt.
+     */
+    public final String RETURN_TO_START_BUTTON_STRING
+    = "Zurück zum Menü";
 
-//---------------------------------------------------------
-//Message Konstanten
+    /**
+     * Beschriftung von der Schaltfläche, die das Programm
+     * beenden soll
+     */
+    public final String END_STAGE_BUTTON_STRING 
+    = "Programm beenden";
 
-    public final double MESSAGE_WIDTH_SCALE = 0.8;
+
 }
