@@ -1,37 +1,66 @@
 package views;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
+
 import models.Message;
 
+/**
+ * Listenzelle für Nachrichten
+ *
+ * @author A.Hoffmann 5137817
+ */
 public class MessageListCell extends ListCell<Message>
 {
+//---------------------------------------------------------
+//Methoden
 
+    /**
+     * Konstruktor der Listenzelle
+     */
     public MessageListCell()
     {
     }
 
+    /**
+     * überschreibt was geschieht, wenn etwas zur Liste
+     * hinzugefügt wird
+     *
+     * @param message neue Nachricht
+     *
+     * @param empty ob die neue Nachricht leer ist
+     */
     @Override
-    protected void updateItem(Message item, boolean empty)
+    protected void updateItem
+    (
+        Message message,
+        boolean empty
+    )
     {
-        // calling super here is very important - don't skip this!
-        super.updateItem(item, empty);
-        if (item == null)
+        super.updateItem(message, empty);
+
+        //wenn die Nachricht keinen wert hat, soll nichts
+        //Angezeigt werden
+        if (message == null)
         {
             setText(null);
         } else
         {
-            if(item.getIsIncomming()==true)
+            //wenn die Nachricht eingehend isr soll sie
+            //links ausgerichtet werden. Ansonsten wird sie
+            //rechts ausgerichtet
+            if(message.getIsIncomming()==true)
             {
-                item.getHBox().setAlignment(Pos.CENTER_LEFT);
+                message.getHBox()
+                .setAlignment(Pos.CENTER_LEFT);
             }
             else
             {
-                item.getHBox().setAlignment(Pos.CENTER_RIGHT);
+                message.getHBox()
+                .setAlignment(Pos.CENTER_RIGHT);
             }
-            setGraphic(item.getHBox());
+            //Zeigt die Nachricht als Grafik an
+            setGraphic(message.getHBox());
         }
     }
 }

@@ -1,15 +1,36 @@
 package models.interfaces.GUIConstantss;
 
+/**
+ * Konstanten für die Fehler-Alarmierungsaufzählung
+ * "ErrorAlertType"
+ *
+ * @author A.Hoffmann 5137817
+ */
 public interface ErrorAlertTypeConstants
 {
     /**
-     *
+     * Titel von der Fehler Alarmierung "PORT_RANGE"
      */
-    public final String PORT_RANGE_ERROR_TITLE = "Ungültige Portnummer";
+    public final String PORT_RANGE_TITLE
+    = "Ungültige Portnummer";
 
-    public final String PORT_RANGE_ERROR_TEXT = "Sie müssen einen Wert zwischen " + RegisterConstants.portMinValue + " und " + RegisterConstants.portMaxValue + " angeben.";
+    /**
+     * Text von der Fehler Alarmierung "PORT_RANGE"
+     */
+    public final String PORT_RANGE_TEXT
+    = "Sie müssen einen Wert zwischen "
+    + RegisterConstants.portMinValue + " und "
+    + RegisterConstants.portMaxValue + " angeben.";
 
-    public final String EMPTY_TEXT_FIELD_ERROR_TITLE = "Leeres TextFeld";
+    /**
+     * Titel von der Fehler Alarmierung "EMPTY_TEXTFIELD"
+     */
+    public final String EMPTY_TEXT_FIELD_TITLE
+    = "Leeres TextFeld";
 
-    public final String EMPTY_TEXT_FIELD_ERROR_TEXT = "Sie müssen alle Felder Ausfüllen.";
+    /**
+     * Text von der Fehler Alarmierung "EMPTY_TEXTFIELD"
+     */
+    public final String EMPTY_TEXT_FIELD_TEXT
+    = "Sie müssen alle Felder Ausfüllen.";
 }
