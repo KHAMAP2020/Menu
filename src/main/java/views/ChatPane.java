@@ -1,5 +1,6 @@
 package views;
 
+import Server.Server;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,8 +18,12 @@ import javafx.scene.layout.VBox;
 
 import javafx.util.Callback;
 
+import models.LoginData;
 import models.Message;
 import models.interfaces.GUIConstantss.ChatConstants;
+
+import java.io.*;
+import java.net.Socket;
 
 /**
  * stellt das Chatlayout dar
@@ -186,4 +191,6 @@ public class ChatPane
     {
         return vBox;
     }
+
+
 }

@@ -1,4 +1,5 @@
 package controller;
+import Server.Server;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
@@ -75,22 +76,7 @@ public class GUIController
         stage.show();
 
 
-        try
-        {
 
-            Socket client = new Socket("localhost",3333);
-            DataOutputStream out;
-            out = new DataOutputStream(client.getOutputStream());
-            DataInputStream in;
-            in = new DataInputStream(client.getInputStream());
-            out.writeUTF(ChatPane.textArea.getText());
-            out.flush();
-            System.out.println(ChatPane.textArea.getText());
-            System.out.println(in.readUTF());
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -139,6 +125,14 @@ public class GUIController
                     "Server muss jetzt geschlosssen werden";
                     alert.setContentText(s);
                     alert.show();
+                    try
+                    {
+                        Server.server.close();
+                        System.out.println("Server geschlossen");
+                    } catch (IOException e)
+                    {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         );

@@ -10,17 +10,16 @@ import java.net.*;
 public class Server extends Thread
 {
    public static ServerSocket server;
-   public static boolean loop = true;
+
 
     public static Socket client;
+    static int port;
     public Server(int port) throws IOException
     {
-        String name = "";
-        String servername = "";
-        int port2 = 0;
-        LoginData data = new LoginData(null,null,0);
+        this.port = port;
 
-         server = new ServerSocket(data.getPort());
+
+
         System.out.println(port);
      //    server.setSoTimeout(10000);
     }
@@ -29,14 +28,16 @@ public class Server extends Thread
     @Override
     public void run()
     {
-        while(loop){
+      System.out.println("server run");
+        while(true){
+
             try
             {
                 if(!client.isConnected()){
                     System.out.println("waiting for client");
+                }else{
+                    System.out.println("connected");
                 }
-
-
 
                 ConnectionListener connectionListener;
                 connectionListener = new ConnectionListener();
@@ -52,16 +53,9 @@ public class Server extends Thread
 
     }
 
-    public static void main(String[] args)
-
-    {
-        try
-        {
-            Server s = new Server(3333);
-            s.start();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
+    public static void main(String[] args) throws IOException {
+     server = new ServerSocket(Server.port);
+     Server server= new Server(Server.port);
+     server.start();
     }
 }

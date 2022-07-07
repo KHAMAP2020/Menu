@@ -130,13 +130,7 @@ public class RegisterDialog
      */
     public static Dialog<LoginData> createDialog()
     {
-        try
-        {
-            Server server = new Server(3333);
-            server.start();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+
 
         dialog = new Dialog();
         grid = new GridPane();
@@ -226,17 +220,6 @@ public class RegisterDialog
                         = Integer.valueOf
                         (
                             portTextField.getText());
-
-
-                        try
-                        {
-                            Server s = null;
-                            s = new Server(1111);
-                            s.start();
-                        } catch (IOException e)
-                        {
-                            throw new RuntimeException(e);
-                        }
 
 
                         clearAllFields();

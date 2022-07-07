@@ -1,5 +1,6 @@
 package views;
 
+import Server.Server;
 import controller.GUIController;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import models.interfaces.GUIConstants;
 
+import java.io.IOException;
 import java.util.Optional;
 import models.LoginData;
 
@@ -53,7 +55,8 @@ public class StartPane
                         alert.setContentText(s);
                         alert.show();
 
-                        GUIController.setCenterPane(CenterPaneType.CHAT);
+                        //GUIController.setCenterPane(CenterPaneType.CHAT);
+
                     }
                 }
             }
@@ -78,7 +81,20 @@ public class StartPane
                         alert.setContentText(s);
                         alert.show();
 
-                        GUIController.setCenterPane(CenterPaneType.CHAT);
+                        //GUIController.setCenterPane(CenterPaneType.CHAT);
+                        System.out.println();
+
+                        try
+                        {
+                            int port = loginData.getPort();
+                            System.out.println("Starpane:Z.90:" + port);
+                            Server server = new Server(port);
+                            server.start();
+                            System.out.println("Server gestartet");
+                        } catch (IOException e)
+                        {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
