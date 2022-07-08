@@ -10,59 +10,53 @@ import javafx.scene.layout.VBox;
  */
 public enum CenterPaneType
 {
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Aufzählungskonstanten
+  
+  /**
+   * Startzentruminhalte
+   */
+  START(new StartPane().getPane(), MenuSettings.Start),
+  /**
+   * Chatzentruminhalt
+   */
+  CHAT(new ChatPane().getPane(), MenuSettings.Chat);
 
-    /**
-     * Startzentruminhalte
-     */
-    START
-    (
-        new StartPane().getPane(),
-        MenuSettings.Start
-    ),
-    /**
-     * Chatzentruminhalt
-     */
-   CHAT
-    (
-       new ChatPane().getPane(),
-       MenuSettings.Chat
-    );
-
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Datenfeld
+  
+  private VBox pane = null;
+  private MenuSettings menuSettings = null;
 
-    private VBox pane= null;
-    private MenuSettings menuSettings = null;
-
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Methoden
-
-    CenterPaneType(VBox pane, MenuSettings menuSettings)
-    {
-        this.pane = pane;
-        this.menuSettings = menuSettings;
-    }
-
-    //-----------------------------------------------------
-    //Getter
-
-    /**
-     * Gibt das Zentrumlayout zurück
-     * @return das Zentrumlayout
-     */
-    public VBox getPane()
-    {
-        return this.pane;
-    }
-
-    /**
-     * Gibt die Menüinstellungen zurück
-     * @return die Menüeinstellungen
-     */
-    public MenuSettings getMenuSettings()
-    {
-        return this.menuSettings;
-    }
+  
+  CenterPaneType(VBox pane, MenuSettings menuSettings)
+  {
+    this.pane = pane;
+    this.menuSettings = menuSettings;
+  }
+  
+  //-----------------------------------------------------------
+  //Getter
+  
+  /**
+   * Gibt das Zentrumlayout zurück
+   *
+   * @return das Zentrumlayout
+   */
+  public VBox getPane()
+  {
+    return this.pane;
+  }
+  
+  /**
+   * Gibt die Menüinstellungen zurück
+   *
+   * @return die Menüeinstellungen
+   */
+  public MenuSettings getMenuSettings()
+  {
+    return this.menuSettings;
+  }
 }
