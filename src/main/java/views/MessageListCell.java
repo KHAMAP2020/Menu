@@ -12,55 +12,49 @@ import models.Message;
  */
 public class MessageListCell extends ListCell<Message>
 {
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Methoden
-
-    /**
-     * Konstruktor der Listenzelle
-     */
-    public MessageListCell()
+  
+  /**
+   * Konstruktor der Listenzelle
+   */
+  public MessageListCell()
+  {
+  }
+  
+  /**
+   * überschreibt was geschieht, wenn etwas zur Liste
+   * hinzugefügt wird
+   *
+   * @param message neue Nachricht
+   * @param empty   ob die neue Nachricht leer ist
+   */
+  @Override
+  protected void updateItem(Message message, boolean empty)
+  {
+    super.updateItem(message, empty);
+    
+    //wenn die Nachricht keinen wert hat, soll nichts
+    //Angezeigt werden
+    if (message == null)
     {
+      setText(null);
     }
-
-    /**
-     * überschreibt was geschieht, wenn etwas zur Liste
-     * hinzugefügt wird
-     *
-     * @param message neue Nachricht
-     *
-     * @param empty ob die neue Nachricht leer ist
-     */
-    @Override
-    protected void updateItem
-    (
-        Message message,
-        boolean empty
-    )
+    else
     {
-        super.updateItem(message, empty);
-
-        //wenn die Nachricht keinen wert hat, soll nichts
-        //Angezeigt werden
-        if (message == null)
-        {
-            setText(null);
-        } else
-        {
-            //wenn die Nachricht eingehend isr soll sie
-            //links ausgerichtet werden. Ansonsten wird sie
-            //rechts ausgerichtet
-            if(message.getIsIncomming()==true)
-            {
-                message.getHBox()
-                .setAlignment(Pos.CENTER_LEFT);
-            }
-            else
-            {
-                message.getHBox()
-                .setAlignment(Pos.CENTER_RIGHT);
-            }
-            //Zeigt die Nachricht als Grafik an
-            setGraphic(message.getHBox());
-        }
+      //wenn die Nachricht eingehend isr soll sie
+      //links ausgerichtet werden. Ansonsten wird sie
+      //rechts ausgerichtet
+      if (message.getIsIncomming() == true)
+      {
+        message.getHBox().setAlignment(Pos.CENTER_LEFT);
+      }
+      else
+      {
+        message.getHBox().setAlignment(Pos.CENTER_RIGHT);
+      }
+      //Zeigt die Nachricht als Grafik an
+      setGraphic(message.getHBox());
     }
+  }
 }

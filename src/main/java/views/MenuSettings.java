@@ -9,57 +9,51 @@ import models.interfaces.GUIConstants;
  */
 public enum MenuSettings
 {
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Aufzählungskonstanten
+  
+  /**
+   * Menüeinstellungen für die Startumgebung
+   */
+  Start(GUIConstants.START_RETURN_TO_START_ITEM),
+  
+  /**
+   * Menüeinstellungen für die Chatumgebung
+   */
+  Chat(GUIConstants.CHAT_RETURN_TO_START_ITEM);
 
-    /**
-     * Menüeinstellungen für die Startumgebung
-     */
-    Start
-    (
-        GUIConstants.START_RETURN_TO_START_ITEM
-    ),
-
-    /**
-     * Menüeinstellungen für die Chatumgebung
-     */
-    Chat
-    (
-        GUIConstants.CHAT_RETURN_TO_START_ITEM
-    );
-
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Datenfeld
+  
+  /**
+   * Ob die Menüoption "returnToStartItem"
+   * angezeigt werden soll oder nicht
+   */
+  private Boolean returnToStartItem = null;
 
-    /**
-     * Ob die Menüoption "returnToStartItem"
-     * angezeigt werden soll oder nicht
-     */
-    private Boolean returnToStartItem = null;
-
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Methoden
-
-    /**
-     * Konstruktor der Aufzählung
-     *
-     * @param returnToStartItem ob die Menüoption
-     * "returnToStartItem" angezeigt werden soll
-     */
-    MenuSettings(Boolean returnToStartItem)
-    {
-        this.returnToStartItem = returnToStartItem;
-    }
-
-    /**
-     * Gibt zurück, ob die Menüoption "returnToStartItem"
-     * angezeigt werden soll
-     *
-     * @return ob die Menüoption "returnToStartItem"
-     * angezeigt werden soll
-     */
-    public boolean getReturnToStartItem ()
-    {
-        return this.returnToStartItem;
-    }
+  
+  /**
+   * Konstruktor der Aufzählung
+   *
+   * @param returnToStartItem ob die Menüoption
+   * "returnToStartItem" angezeigt werden soll
+   */
+  MenuSettings(Boolean returnToStartItem)
+  {
+    this.returnToStartItem = returnToStartItem;
+  }
+  
+  /**
+   * Gibt zurück, ob die Menüoption "returnToStartItem"
+   * angezeigt werden soll
+   *
+   * @return ob die Menüoption "returnToStartItem"
+   * angezeigt werden soll
+   */
+  public boolean getReturnToStartItem()
+  {
+    return this.returnToStartItem;
+  }
 }
