@@ -78,10 +78,10 @@ public interface RegisterConstants
     /**
      * Kleinste mögliche Portnummer
      */
-    public final int portMinValue =0;
+    public final int portMinValue =1000;
 
     /**
      * Größte mögliche Portnummer
      */
-    public final int portMaxValue = Integer.MAX_VALUE;
+    public final int portMaxValue = 9999;
 }

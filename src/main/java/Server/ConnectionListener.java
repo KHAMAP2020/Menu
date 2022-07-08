@@ -22,6 +22,7 @@ public class ConnectionListener extends Thread
                 Server.client = Server.server.accept();
                 System.out.println("Server akzeptiert");
             }
+
         } catch (IOException e)
         {
             throw new RuntimeException(e);

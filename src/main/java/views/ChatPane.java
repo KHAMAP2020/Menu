@@ -67,6 +67,13 @@ public class ChatPane
      */
     private static Button sendButton
     = new Button(ChatConstants.SEND_BUTTON_NAME);
+    private BufferedReader input ;
+    private static BufferedWriter output;
+
+
+
+
+
 
 //---------------------------------------------------------
 //Methoden
@@ -116,13 +123,13 @@ public class ChatPane
                 {
                     if (validEntries()==true)
                     {
-                        String massageText
+                        String messageText
                         = textArea.getText();
 
                         Message message
                         = new Message
                         (
-                            massageText,
+                            messageText,
                             ChatConstants.MASSAGE_GOES_OUT,
                             listView.widthProperty()
                         );
@@ -131,6 +138,19 @@ public class ChatPane
 
                         listView.scrollTo(message);
                         textArea.clear();
+                        try {
+
+                            sendMessage();
+                            System.out.println("Naricht wird gesendet");
+                            System.out.println("ChatPane: " + messageText);
+                            output.write(messageText);
+                            output.newLine();
+                            output.flush();
+                            System.out.println("Naricht wurde gesendet");
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     else
                     {
@@ -193,4 +213,16 @@ public class ChatPane
     }
 
 
+    public static void sendMessage() throws IOException {
+        try {
+            output = new BufferedWriter(new OutputStreamWriter(StartPane.socket.getOutputStream()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void readMessage() throws IOException {
+        input = new BufferedReader((new InputStreamReader(StartPane.socket.getInputStream())));
+    }
 }

@@ -3,6 +3,7 @@ package Server;
 
 
 import models.LoginData;
+import models.Message;
 
 import java.io.IOException;
 import java.net.*;
@@ -12,16 +13,14 @@ public class Server extends Thread
 
     public static ServerSocket server;
 
-    static int port;
     public static Socket client;
-
+    int port;
 
     public Server(int port) throws IOException
     {
-        this.port = port;
-        client = new Socket("localhost",port);
+       this.port = port;
         server = new ServerSocket(port);
-
+        client = new Socket("localhost",port);
 
         System.out.println(port);
      //    server.setSoTimeout(10000);
@@ -29,31 +28,28 @@ public class Server extends Thread
 
 
     @Override
-    public void run()
-    {
-      System.out.println("server run");
-        while(true){
+    public void run() {
 
-            try
-            {
-                ConnectionListener connectionListener;
-                connectionListener = new ConnectionListener();
-                connectionListener.start();
-                if(!client.isConnected()){
-                    System.out.println("waiting for client");
-                }
-
+      try {
+        ConnectionListener connectionListener;
+        connectionListener = new ConnectionListener();
+        connectionListener.start();
+        MessageController messageController;
+        messageController = new MessageController();
+        messageController.start();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
 
 
+      while (!server.isClosed()) {
 
-
-            }catch (IOException e){
-                e.printStackTrace();
-                break;
-            }
+        if (!client.isConnected()) {
+          System.out.println("waiting for client");
         }
 
-    }
+      }
 
+    }
 
 }

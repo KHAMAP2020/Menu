@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import models.interfaces.GUIConstants;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Optional;
 import models.LoginData;
 
@@ -20,6 +21,7 @@ public class StartPane
     private static Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
     private static Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
     private static Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
+    static Socket socket;
 
     StartPane()
     {
@@ -79,17 +81,19 @@ public class StartPane
                         alert.setHeaderText("Geschafft!");
                         String s ="Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
                         alert.setContentText(s);
-                        alert.show();
+                        //alert.show();
 
-                        //GUIController.setCenterPane(CenterPaneType.CHAT);
+                        GUIController.setCenterPane(CenterPaneType.CHAT);
                         System.out.println();
 
                         try
                         {
                             int port = loginData.getPort();
-                            System.out.println("Starpane:Z.90:" + port);
+
+                            System.out.println("StartPane:Z.90:" + port);
                             Server server = new Server(port);
                             server.start();
+                            socket = new Socket("localhost",port);
                             System.out.println("Server gestartet");
                         } catch (IOException e)
                         {
