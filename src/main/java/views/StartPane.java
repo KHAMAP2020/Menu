@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import models.interfaces.GUIConstants;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Optional;
 
 import models.LoginData;
@@ -21,7 +22,8 @@ public class StartPane
   private static Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
   private static Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
   private static Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
-  
+   static Socket clientSocket;
+
   StartPane()
   {
     createStartBox();
@@ -77,20 +79,18 @@ public class StartPane
           alert.setContentText(s);
           alert.show();
           
-          //GUIController.setCenterPane(CenterPaneType.CHAT);
+          GUIController.setCenterPane(CenterPaneType.CHAT);
           System.out.println();
-          
-          try
-          {
-            int port = loginData.getPort();
-            System.out.println("Starpane:Z.90:" + port);
-            Server server = new Server(port);
+          Server server = new Server(loginData.getPort());
+
+          System.out.println("StartPane Z.82 : " + loginData.getPort());
+          try {
             server.start();
-            System.out.println("Server gestartet");
-          } catch (IOException e)
-          {
+            clientSocket = new Socket("localhost",LoginData.port);
+          } catch (IOException e) {
             throw new RuntimeException(e);
           }
+
         }
       }
     });

@@ -1,6 +1,5 @@
 package views;
 
-import Server.Server;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -67,6 +66,8 @@ public class ChatPane
    */
   private static Button sendButton
     = new Button(ChatConstants.SEND_BUTTON_NAME);
+static Socket socket;
+
 
 //-------------------------------------------------------------
 //Methoden
@@ -76,7 +77,10 @@ public class ChatPane
    */
   public ChatPane()
   {
+    this.socket = socket;
+    this.socket = new Socket();
     init();
+
   }
   
   /**
@@ -96,6 +100,7 @@ public class ChatPane
     
     messageViewCellSettings();
     buttenEventsSettings();
+
   }
   
   
@@ -104,6 +109,12 @@ public class ChatPane
    */
   private static void buttenEventsSettings()
   {
+    try {
+      receiveMessage();
+    }catch (IOException e){
+      e.printStackTrace();
+    }
+
     sendButton.setOnAction
     (new EventHandler<ActionEvent>()
       {
@@ -125,6 +136,12 @@ public class ChatPane
             messages.add(message);
           
             listView.scrollTo(message);
+            try {
+              sendMessage();
+
+            } catch (IOException e) {
+              throw new RuntimeException(e);
+            }
             textArea.clear();
           }
           else
@@ -187,5 +204,27 @@ public class ChatPane
     return vBox;
   }
   
-  
+  public static void sendMessage() throws IOException {
+    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(StartPane.clientSocket.getOutputStream()));
+    out.write(textArea.getText());
+    out.newLine();
+    out.flush();
+    System.out.println("Message gesendet");
+  }
+
+  public static void receiveMessage() throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(StartPane.clientSocket.getInputStream()));
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          System.out.println("Client message wird gelesen");
+          System.out.println("Client Naricht erhalten: " + in.readLine());
+          System.out.println("message erhalten client");
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
+  }
 }

@@ -6,7 +6,7 @@ public class LoginData
 //Datenfeld
   
   private String name = null;
-  private int port = 0;
+  public static int port = 0;
   private String serverName = null;
  
 //-------------------------------------------------------------

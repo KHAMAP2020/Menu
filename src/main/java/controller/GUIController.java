@@ -1,6 +1,5 @@
 package controller;
 
-import Server.Server;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
@@ -119,14 +118,7 @@ public class GUIController
           String s = "Server muss jetzt geschlosssen werden";
           alert.setContentText(s);
           alert.show();
-          try
-          {
-            Server.server.close();
-            System.out.println("Server geschlossen");
-          } catch (IOException e)
-          {
-            throw new RuntimeException(e);
-          }
+
         }
       }
     );
