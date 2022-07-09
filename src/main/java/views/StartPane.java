@@ -1,6 +1,7 @@
 package views;
 
 import Server.Server;
+import controller.ClientController;
 import controller.GUIController;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -8,6 +9,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import models.AClient;
+import models.AServer;
 import models.interfaces.GUIConstants;
 
 import java.io.IOException;
@@ -54,9 +57,10 @@ public class StartPane
           alert.setHeaderText("Geschafft!");
           String s = "Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
           alert.setContentText(s);
-          alert.show();
-          
-          //GUIController.setCenterPane(CenterPaneType.CHAT);
+         // alert.ashow();
+          AClient aClient = new AClient(loginData.getServerName(),loginData.getPort(), loginData.getName());
+          ClientController.setAClient(aClient);
+          GUIController.setCenterPane(CenterPaneType.CHAT);
           
         }
       }
@@ -77,10 +81,12 @@ public class StartPane
           alert.setHeaderText("Geschafft!");
           String s = "Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
           alert.setContentText(s);
-          alert.show();
-          
-          GUIController.setCenterPane(CenterPaneType.CHAT);
+          //alert.show();
+          AServer server = new AServer(loginData.getPort());
+          server.startAServer();
+          //GUIController.setCenterPane(CenterPaneType.CHAT);
           System.out.println();
+          /*
           Server server = new Server(loginData.getPort());
 
           System.out.println("StartPane Z.82 : " + loginData.getPort());
@@ -90,6 +96,8 @@ public class StartPane
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
+           */
+          
 
         }
       }

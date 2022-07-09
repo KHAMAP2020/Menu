@@ -1,5 +1,6 @@
 package views;
 
+import controller.AMessageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -94,7 +95,9 @@ static Socket socket;
     sendBar.getChildren().addAll(textArea, sendButton);
     sendBar.setAlignment(Pos.CENTER_LEFT);
     
-    listView.setItems(messages);
+    //listView.setItems(messages);
+    AMessageController.setMaxWidth(listView.widthProperty());
+    listView.setItems(AMessageController.getMessages());
     
     vBox.getChildren().addAll(listView, sendBar);
     
@@ -125,6 +128,7 @@ static Socket socket;
           {
             String massageText = textArea.getText();
           
+            /*
             Message message
               = new Message
                 (
@@ -136,6 +140,9 @@ static Socket socket;
             messages.add(message);
           
             listView.scrollTo(message);
+            
+             */
+            AMessageController.sendMessage(massageText);
             try {
               sendMessage();
 
