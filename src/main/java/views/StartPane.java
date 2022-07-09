@@ -14,7 +14,9 @@ import models.AServer;
 import models.interfaces.GUIConstants;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Optional;
 
 import models.LoginData;
@@ -87,8 +89,8 @@ public class StartPane
           GUIController.setCenterPane(CenterPaneType.CHAT);
           AClient aClient = new AClient(loginData.getServerName(),loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
-          System.out.println("chat startet");
 
+          System.out.println("chat startet");
 
         }
       }
