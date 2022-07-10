@@ -8,9 +8,18 @@ import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
 import models.interfaces.GUIConstants;
 
-public class StartMenu
+/**
+ * Menüleiste für das Chatlayout und das Startlayout
+ *
+ * @author A.Hoffmann 5137817
+ */
+public class Menu
 {
+  /**
+   * Ebene für einstellung des Stils
+   */
   private static Stage stage = null;
+  
   private static final RadioMenuItem schemeBrightItem
     = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
   private static final RadioMenuItem schemeDarkItem
@@ -18,14 +27,14 @@ public class StartMenu
   
   private static final MenuBar menuBar = new MenuBar();
   
-  private static final Menu schemeMenu
-    = new Menu(GUIConstants.SCHEME_NAME);
+  private static final javafx.scene.control.Menu schemeMenu
+    = new javafx.scene.control.Menu(GUIConstants.SCHEME_NAME);
   private static final MenuItem returnToStartItem
     = new MenuItem(GUIConstants.RETURN_TO_START_BUTTEN_STRING);
   private static final MenuItem endStageItem
     = new MenuItem(GUIConstants.END_STAGE_BUTTON_STRING);
-  private static final Menu returnMenu
-    = new Menu(GUIConstants.END_CHAT_MENU);
+  private static final javafx.scene.control.Menu returnMenu
+    = new javafx.scene.control.Menu(GUIConstants.END_CHAT_MENU);
   private static final ToggleGroup schemeToggleGroup
     = new ToggleGroup();
   

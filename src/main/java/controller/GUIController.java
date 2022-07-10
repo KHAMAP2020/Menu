@@ -10,7 +10,7 @@ import javafx.stage.WindowEvent;
 import models.interfaces.GUIConstantss.GUIControllerConstants;
 import views.CenterPaneType;
 import views.MenuSettings;
-import views.StartMenu;
+import views.Menu;
 import views.Style;
 
 /**
@@ -67,7 +67,7 @@ public class GUIController
    */
   public static void initGUI(Stage stage)
   {
-    menuBar = StartMenu.createMenu(stage);
+    menuBar = Menu.createMenu(stage);
     stageSettings(stage);
     addWindowCloseEvent();
     layoutSettings();
@@ -150,7 +150,7 @@ public class GUIController
   {
     borderPane.setCenter(centerPane.getPane());
     currentCenterPane = centerPane;
-    StartMenu.updateSettings();
+    Menu.updateSettings();
   }
   
   /**
