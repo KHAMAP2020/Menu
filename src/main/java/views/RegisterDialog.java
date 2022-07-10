@@ -15,7 +15,7 @@ import models.interfaces.GUIConstantss.RegisterConstants;
  * eingibt oder sich mit einem verbindet.
  *
  * Dafür sind Name des Anwenders, Portnummer und der
- * Severname notwendig
+ * Host-Adresse notwendig
  *
  * @author A.Hoffmann 5137817
  */
@@ -36,17 +36,20 @@ public class RegisterDialog
    * Textfeld in dem der Name des Anwenders angegeben
    * werden soll
    */
-  private static final TextField nameTextField = new TextField();
+  private static final TextField nameTextField
+    = new TextField();
   
   /**
    * Textfeld in dem die Portnummer angegeben werden soll
    */
-  private static final TextField portTextField = new TextField();
+  private static final TextField portTextField
+    = new TextField();
   
   /**
-   * Textfeld in dem der Servername angegeben wird
+   * Textfeld in dem der Host-Adresse angegeben wird
    */
-  private static final TextField serverTextField = new TextField();
+  private static final TextField HostAddressTextField
+    = new TextField();
   
   //-----------------------------------------------------------
   //Beschriftungen
@@ -64,12 +67,12 @@ public class RegisterDialog
     = new Label(RegisterConstants.PORT_LABEL_STRING);
   
   /**
-   * Schriftzug neben dem
+   * Schriftzug neben dem Hostaddressentextfeld
    */
-  private static final Label serverLabel
-    = new Label(RegisterConstants.SERVER_LABEL_STRING);
+  private static final Label HostAddressLabel
+    = new Label(RegisterConstants.HOST_ADDRESS_LABEL_STRING);
   
-  //-----------------------------------------------------
+  //-----------------------------------------------------------
   //Schaltflächen
   
   /**
@@ -129,155 +132,32 @@ public class RegisterDialog
 
     nameTextField.setPromptText
       (RegisterConstants.NAME_PROMT_TEXT);
-    serverTextField.setPromptText
-      (RegisterConstants.SERVER_PROMT_TEXT);
+    
+    HostAddressTextField.setPromptText
+      (RegisterConstants.HOST_ADDRESS_PROMT_TEXT);
+    
     portTextField.setPromptText
       (RegisterConstants.PORT_PROMT_TEXT);
+    
     
     grid.add(nameLabel, 1, 1);
     grid.add(nameTextField, 2, 1);
     grid.add(portLabel, 1, 2);
     grid.add(portTextField, 2, 2);
-    grid.add(serverLabel, 1, 3);
-    grid.add(serverTextField, 2, 3);
+    grid.add(HostAddressLabel, 1, 3);
+    grid.add(HostAddressTextField, 2, 3);
+    
     
     dialog.getDialogPane().setContent(grid);
     dialog.getDialogPane().getButtonTypes()
       .addAll(buttonTypeContinue, buttonTypeCancel);
+    
+    
     eventSettings();
     dialogResultSettings();
     
+    
     return dialog;
-  }
-  
-  /**
-   * Stellt alle Ereignisse ein
-   */
-  private static void eventSettings()
-  {
-    buttonEventSettings();
-    textFieldEventSettings();
-  }
-  
-  /**
-   * Stellt alle Schaltflächen-Ereignisse ein
-   */
-  private static void buttonEventSettings()
-  {
-    continueButtenEventSettings();
-    cancelButtenEventSettings();
-  }
-  
-  /**
-   * Stellt das Schaltflächen-Ereignis für die
-   * Schaltfläche zum Fortsetzen ein
-   */
-  private static void continueButtenEventSettings()
-  {
-    Button continueButton = (Button) dialog.getDialogPane()
-      .lookupButton(buttonTypeContinue);
-    
-    continueButton.addEventFilter
-    (
-      ActionEvent.ACTION,
-            new EventHandler<>()
-            {
-              @Override
-              public void handle(ActionEvent event)
-              {
-                if (!validEntries())
-                {
-                  event.consume();
-                } else
-                {
-                  name = nameTextField.getText();
-                  server = serverTextField.getText();
-                  port = Integer.parseInt(portTextField.getText());
-
-                  clearAllFields();
-                }
-              }
-            }
-    );
-  }
-  
-  /**
-   * Stellt das Schaltflächen-Ereignis für die
-   * Schaltfläche zum Abbrechen ein
-   */
-  private static void cancelButtenEventSettings()
-  {
-    Button cancelButton = (Button) dialog.getDialogPane()
-      .lookupButton(buttonTypeCancel);
-    
-    cancelButton.addEventFilter
-    (
-      ActionEvent.ACTION,
-      new EventHandler<ActionEvent>()
-      {
-        @Override
-        public void handle(ActionEvent event)
-        {
-          clearAllFields();
-        }
-      }
-    );
-  }
-  
-  /**
-   * stellt alle Textflächen-Ereignisse ein
-   */
-  private static void textFieldEventSettings()
-  {
-    portTextfieldEventSettings();
-  }
-  
-  /**
-   * Stellt Ereignisse für das Portnummer-Textfeld ein
-   */
-  private static void portTextfieldEventSettings()
-  {
-    portTextField.addEventFilter
-    (
-      KeyEvent.KEY_TYPED,
-      new EventHandler<KeyEvent>()
-      {
-        @Override
-        public void handle(KeyEvent event)
-        {
-          if
-          (
-                  !RegisterConstants.NUMBER_DEFINITION
-                          .contains(event.getCharacter())
-          )
-          {
-            event.consume();
-          }
-        }
-      }
-    );
-  }
-  
-  /**
-   * Stellt das Ergebnis bei einem Erfolgreichen durchlauf
-   * des Dialogs ein
-   */
-  private static void dialogResultSettings()
-  {
-    dialog.setResultConverter
-    (new Callback<ButtonType, LoginData>()
-      {
-        @Override
-        public LoginData call(ButtonType button)
-        {
-          if (button == buttonTypeContinue)
-          {
-            return new LoginData(name, server, port);
-          }
-          return null;
-        }
-      }
-    );
   }
   
   /**
@@ -304,7 +184,8 @@ public class RegisterDialog
      * gibt an, ob ein servername im
      * serverNamenstextfeld eingetragen wurde
      */
-    boolean serverIsEmpty = serverTextField.getText().isEmpty();
+    boolean serverIsEmpty
+      = HostAddressTextField.getText().isEmpty();
     
     if (!portIsEmpty)
     {
@@ -316,8 +197,8 @@ public class RegisterDialog
         if
         (
           portNumber > RegisterConstants.portMaxValue
-          ||
-          portNumber < RegisterConstants.portMinValue
+            ||
+            portNumber < RegisterConstants.portMinValue
         )
         {
           ErrorAlertType.PORT_RANGE.getAlert().showAndWait();
@@ -348,7 +229,144 @@ public class RegisterDialog
   private static void clearAllFields()
   {
     nameTextField.clear();
-    serverTextField.clear();
+    HostAddressTextField.clear();
     portTextField.clear();
+  }
+  
+  //-----------------------------------------------------------
+  //Settings
+  
+  /**
+   * Stellt alle Ereignisse ein
+   */
+  private static void eventSettings()
+  {
+    buttonEventSettings();
+    textFieldEventSettings();
+  }
+  
+  /**
+   * Stellt alle Schaltflächen-Ereignisse ein
+   */
+  private static void buttonEventSettings()
+  {
+    continueButtonEventSettings();
+    cancelButtonEventSettings();
+  }
+  
+  /**
+   * Stellt das Schaltflächen-Ereignis für die
+   * Schaltfläche zum Fortsetzen ein
+   */
+  private static void continueButtonEventSettings()
+  {
+    Button continueButton = (Button) dialog.getDialogPane()
+      .lookupButton(buttonTypeContinue);
+    
+    continueButton.addEventFilter
+    (
+      ActionEvent.ACTION,
+      new EventHandler<>()
+      {
+        @Override
+        public void handle(ActionEvent event)
+        {
+          /*
+            Wenn die Einträge nicht Valide sind, soll das
+            fortsetzende Schaltflächenevent konsumiert werden
+           */
+          if (!validEntries())
+          {
+            event.consume();
+          } else
+          {
+            name = nameTextField.getText();
+            server = HostAddressTextField.getText();
+            port = Integer.parseInt(portTextField.getText());
+
+            clearAllFields();
+          }
+        }
+      }
+    );
+  }
+  
+  /**
+   * Stellt das Schaltflächen-Ereignis für die
+   * Schaltfläche zum Abbrechen ein
+   */
+  private static void cancelButtonEventSettings()
+  {
+    Button cancelButton = (Button) dialog.getDialogPane()
+      .lookupButton(buttonTypeCancel);
+    
+    cancelButton.addEventFilter
+    (
+      ActionEvent.ACTION,
+      new EventHandler<ActionEvent>()
+      {
+        @Override
+        public void handle(ActionEvent event)
+        {
+          clearAllFields();
+        }
+      }
+    );
+  }
+  
+  /**
+   * stellt alle Textflächen-Ereignisse ein
+   */
+  private static void textFieldEventSettings()
+  {
+    portTextFieldEventSettings();
+  }
+  
+  /**
+   * Stellt Ereignisse für das Portnummer-Textfeld ein
+   */
+  private static void portTextFieldEventSettings()
+  {
+    portTextField.addEventFilter
+    (
+      KeyEvent.KEY_TYPED,
+      new EventHandler<KeyEvent>()
+      {
+        @Override
+        public void handle(KeyEvent event)
+        {
+          if
+          (
+            !RegisterConstants.NUMBER_DEFINITION
+                    .contains(event.getCharacter())
+          )
+          {
+            event.consume();
+          }
+        }
+      }
+    );
+  }
+  
+  /**
+   * Stellt das Ergebnis bei einem Erfolgreichen durchlauf
+   * des Dialogs ein
+   */
+  private static void dialogResultSettings()
+  {
+    dialog.setResultConverter
+    (new Callback<ButtonType, LoginData>()
+      {
+        @Override
+        public LoginData call(ButtonType button)
+        {
+          if (button == buttonTypeContinue)
+          {
+            return new LoginData(name, server, port);
+          }
+          return null;
+        }
+      }
+    );
   }
 }

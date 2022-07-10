@@ -39,10 +39,10 @@ public interface RegisterConstants
   public final String PORT_LABEL_STRING = "Port Nummer: ";
   
   /**
-   * Schriftzug neben dem Server-Textfeld
+   * Schriftzug neben dem Host-Adressen-Textfeld
    */
-  public final String SERVER_LABEL_STRING
-    = "Host-Adresse des Servers: ";
+  public final String HOST_ADDRESS_LABEL_STRING
+    = "Host-Adresse: ";
 
 
 //---------------------------------------------------------
@@ -60,10 +60,10 @@ public interface RegisterConstants
     = "Gib die Portnummer ein.";
   
   /**
-   * Promttext für das Server-Textfeld
+   * Promttext für das Host-Adressen-Textfeld
    */
-  public final String SERVER_PROMT_TEXT
-    = "Gib den Servernamen ein.";
+  public final String HOST_ADDRESS_PROMT_TEXT
+    = "Gib die Adresse des Hosts ein.";
 
 //---------------------------------------------------------
 //Filter-Konstanten
