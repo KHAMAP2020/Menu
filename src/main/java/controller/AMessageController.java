@@ -31,12 +31,17 @@ public class AMessageController
   
   public static void sendMessage(String messageToSend)
   {
+    /*
+    Hier werden ausgehende Narichten an den Chat übergeben
+    und auf der rechten Seite hinzugefügt
+     */
     Message message = new Message(messageToSend, ChatConstants.MASSAGE_GOES_OUT,maxWidth);
     Platform.runLater(new Runnable()
     {
       @Override
       public void run()
       {
+
         messages.add(message);
         ClientController.getAClient().sendMessage(messageToSend);
       }
@@ -51,7 +56,12 @@ public class AMessageController
       @Override
       public void run()
       {
-        Message message = new Message(incomingMessage, ChatConstants.MASSAGE_COMES_IN,maxWidth);
+        /*
+        Hier werden eingehende Narichten an den Chat übergeben
+        und auf der linken Seite angezeigt
+         */
+        Message message = new Message(incomingMessage,
+                       ChatConstants.MASSAGE_COMES_IN,maxWidth);
         messages.add(message);
 
       }

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public class ClientController
 {
   private static AClient aClient = null;
-  
+  /*
+  getter-/setter-Methoden
+   */
   public static void createAClient(String serverName, int port, String userName)
   {
     aClient = new AClient(serverName,port,userName);

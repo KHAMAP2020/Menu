@@ -57,6 +57,10 @@ public class AServer extends Thread
   
   public void closeServerSocket()
   {
+    /*
+    zur sicheren Schließung des Serversockets bei
+    möglichen Fehlermledungen.
+     */
     try
     {
       if(serverSocket != null)
