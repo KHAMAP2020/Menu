@@ -76,7 +76,7 @@ public class Menu
       @Override
       public void handle(ActionEvent e)
       {
-        GUIController.setStyle(Style.BRIGHT);
+        GUIController.setStyle(StyleTypes.BRIGHT);
       }
     });
     
@@ -89,22 +89,24 @@ public class Menu
       @Override
       public void handle(ActionEvent e)
       {
-        GUIController.setStyle(Style.DARK);
+        GUIController.setStyle(StyleTypes.DARK);
       }
     });
   }
   
   private static void setReturnToStartEvent()
   {
-    returnToStartItem.setOnAction(new EventHandler<ActionEvent>()
-    {
-      @Override
-      public void handle(ActionEvent event)
+    returnToStartItem.setOnAction
+    (new EventHandler<ActionEvent>()
       {
-        
-        GUIController.setCenterPane(CenterPaneType.START);
+        @Override
+        public void handle(ActionEvent event)
+        {
+          
+          GUIController.setCenterPane(CenterPaneType.START);
+        }
       }
-    });
+    );
   }
   
   private static void setEndStageEvent()

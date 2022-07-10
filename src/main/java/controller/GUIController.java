@@ -11,7 +11,7 @@ import models.interfaces.GUIConstantss.GUIControllerConstants;
 import views.CenterPaneType;
 import views.MenuSettings;
 import views.Menu;
-import views.Style;
+import views.StyleTypes;
 
 /**
  * erstellt und kontrolliert die Grafische
@@ -49,7 +49,7 @@ public class GUIController
   /**
    * Aktueller Stil der Grafischen Benutzeroberfläche
    */
-  private static Style currentStyle = Style.BRIGHT;
+  private static StyleTypes currentStyleTypes = StyleTypes.BRIGHT;
   
   /**
    * Menüleiste der Szene
@@ -156,12 +156,12 @@ public class GUIController
   /**
    * Ändert den Stil der Szene auf den gegebenen Stil
    *
-   * @param style der einzustellende Stil
+   * @param styleTypes der einzustellende Stil
    */
-  public static void setStyle(Style style)
+  public static void setStyle(StyleTypes styleTypes)
   {
-    scene.getStylesheets().remove(currentStyle.getPath());
-    scene.getStylesheets().add(style.getPath());
-    currentStyle = style;
+    scene.getStylesheets().remove(currentStyleTypes.getPath());
+    scene.getStylesheets().add(styleTypes.getPath());
+    currentStyleTypes = styleTypes;
   }
 }
