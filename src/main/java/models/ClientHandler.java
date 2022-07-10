@@ -17,6 +17,9 @@ public class ClientHandler implements Runnable
   
   public ClientHandler(Socket socket)
   {
+    /*
+    Initialisierung der Streams
+     */
     try
     {
       this.socket = socket;
