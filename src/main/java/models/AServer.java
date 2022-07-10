@@ -3,6 +3,9 @@ package models;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+/*
+@author Philipp Gohlke 5157842
+ */
 
 public class AServer extends Thread
 {

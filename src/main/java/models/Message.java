@@ -8,7 +8,9 @@ import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 
 import models.interfaces.GUIConstants;
-
+/*
+@author Philipp Gohlke 5157842
+ */
 public class Message
 {
   private Boolean isIncomming = null;

@@ -7,6 +7,9 @@ import javafx.collections.ObservableList;
 import models.Message;
 import models.interfaces.GUIConstantss.ChatConstants;
 
+/*
+@author Philipp Gohlke 5157842
+ */
 public class AMessageController
 {
   /**

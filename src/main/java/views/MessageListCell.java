@@ -8,7 +8,7 @@ import models.Message;
 /**
  * Listenzelle für Nachrichten
  *
- * @author A.Hoffmann 5137817
+ * @author A.Hoffmann 5137817, Philipp Gohlke 5157842
  */
 public class MessageListCell extends ListCell<Message>
 {
@@ -42,7 +42,7 @@ public class MessageListCell extends ListCell<Message>
     }
     else
     {
-      //wenn die Nachricht eingehend isr soll sie
+      //wenn die Nachricht eingehend ist soll sie
       //links ausgerichtet werden. Ansonsten wird sie
       //rechts ausgerichtet
       if (message.getIsIncomming() == true)

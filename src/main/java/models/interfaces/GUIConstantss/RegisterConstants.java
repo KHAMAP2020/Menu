@@ -42,7 +42,7 @@ public interface RegisterConstants
    * Schriftzug neben dem Server-Textfeld
    */
   public final String SERVER_LABEL_STRING
-    = "Name des Servers: ";
+    = "Host-Adresse des Servers: ";
 
 
 //---------------------------------------------------------

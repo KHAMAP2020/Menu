@@ -5,17 +5,17 @@ public class LoginData
 //-------------------------------------------------------------
 //Datenfeld
   
-  private String name = null;
+  public static String name = null;
   public static int port = 0;
-  private String serverName = null;
+  public static String HostAdress = null;
  
 //-------------------------------------------------------------
 //Methoden
   
-  public LoginData(String name, String serverName, int port)
+  public LoginData(String name, String HostAdress, int port)
   {
     this.name = name;
-    this.serverName = serverName;
+    this.HostAdress = HostAdress;
     this.port = port;
   }
   
@@ -27,9 +27,9 @@ public class LoginData
     return this.name;
   }
   
-  public String getServerName()
+  public String getHostAdress()
   {
-    return this.serverName;
+    return this.HostAdress;
   }
   
   public int getPort()
@@ -45,9 +45,9 @@ public class LoginData
     this.name = name;
   }
   
-  public void setServerName(String serverName)
+  public void setHostAdress(String hostAdress)
   {
-    this.serverName = serverName;
+    this.HostAdress = hostAdress;
   }
   
   public void setPort(int port)

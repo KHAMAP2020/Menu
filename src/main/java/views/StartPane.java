@@ -13,14 +13,13 @@ import models.AClient;
 import models.AServer;
 import models.interfaces.GUIConstants;
 
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Optional;
 
 import models.LoginData;
-
+/*
+@author Philipp Gohlke 5157842
+ */
 public class StartPane
 {
   private static VBox startBox = new VBox(GUIConstants.START_V_BOX_SPACING);
@@ -60,7 +59,7 @@ public class StartPane
           String s = "Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
           alert.setContentText(s);
          // alert.ashow();
-          AClient aClient = new AClient(loginData.getServerName(),loginData.getPort(), loginData.getName());
+          AClient aClient = new AClient(loginData.getHostAdress(),loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
           GUIController.setCenterPane(CenterPaneType.CHAT);
           
@@ -87,7 +86,7 @@ public class StartPane
           AServer server = new AServer(loginData.getPort());
           server.start();
           GUIController.setCenterPane(CenterPaneType.CHAT);
-          AClient aClient = new AClient(loginData.getServerName(),loginData.getPort(), loginData.getName());
+          AClient aClient = new AClient(loginData.getHostAdress(),loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
 
           System.out.println("chat startet");

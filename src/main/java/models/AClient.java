@@ -8,7 +8,9 @@ import views.ChatPane;
 
 import java.io.*;
 import java.net.Socket;
-
+/*
+@author Philipp Gohlke 5157842
+ */
 public class AClient
 {
   private Socket socket = null;
@@ -24,6 +26,7 @@ public class AClient
   {
     try
     {
+      // Die Initialisierung des Sockets und Streams
       this.socket = new Socket(serverName,port);
       
       this.outputStreamWriter
@@ -37,7 +40,11 @@ public class AClient
         = new BufferedReader(inputStreamReader);
       
       this.userName = userName;
-  
+      /*
+      Name der Person, die beitritt wird an den Server
+      übergeben um den anderen Teilnehmern zu zeigen
+      wer beigetreten ist.
+       */
       bufferedWriter.write(userName);
       bufferedWriter.newLine();
       bufferedWriter.flush();

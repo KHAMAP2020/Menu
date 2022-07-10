@@ -1,7 +1,7 @@
 package models.interfaces;
 
 /**
- * Hier sind alle allgemeinen Konsanten des Programmns
+ * Hier sind alle allgemeinen Kontsanten des Programmns
  * hinterlegt
  *
  * @author A.Hoffmann 5137817

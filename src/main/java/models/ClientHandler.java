@@ -3,7 +3,9 @@ package models;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-
+/*
+@author Philipp Gohlke 5157842
+ */
 public class ClientHandler implements Runnable
 {
   private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();

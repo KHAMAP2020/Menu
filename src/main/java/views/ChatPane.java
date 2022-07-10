@@ -28,7 +28,7 @@ import java.net.Socket;
 /**
  * stellt das Chatlayout dar
  *
- * @author A.Hoffmann 5137817
+ * @author A.Hoffmann 5137817 Philipp Gohlke 5157842
  */
 public class ChatPane
 {
@@ -67,7 +67,6 @@ public class ChatPane
    */
   private static Button sendButton
     = new Button(ChatConstants.SEND_BUTTON_NAME);
-static Socket socket;
 
 
 //-------------------------------------------------------------
@@ -78,8 +77,7 @@ static Socket socket;
    */
   public ChatPane()
   {
-    this.socket = socket;
-    this.socket = new Socket();
+
     init();
 
   }
