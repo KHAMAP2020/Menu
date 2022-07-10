@@ -13,7 +13,7 @@ import models.AClient;
 import models.AServer;
 import models.interfaces.GUIConstants;
 
-import java.net.Socket;
+
 import java.util.Optional;
 
 import models.LoginData;
@@ -22,11 +22,10 @@ import models.LoginData;
  */
 public class StartPane
 {
-  private static VBox startBox = new VBox(GUIConstants.START_V_BOX_SPACING);
-  private static Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
-  private static Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
-  private static Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
-   static Socket clientSocket;
+  private static final VBox startBox = new VBox(GUIConstants.START_V_BOX_SPACING);
+  private static final Button joinButton = new Button(GUIConstants.JOIN_BUTTON_NAME);
+  private static final Button hostButton = new Button(GUIConstants.HOST_BUTTON_NAME);
+  private static final Label welcomeLabel = new Label(GUIConstants.WELCOME_LABEL_STRING);
 
   StartPane()
   {
@@ -43,7 +42,7 @@ public class StartPane
   
   private static void setButtonEvents()
   {
-    joinButton.setOnAction(new EventHandler<ActionEvent>()
+    joinButton.setOnAction(new EventHandler<>()
     {
       @Override
       public void handle(ActionEvent actionEvent)
@@ -58,16 +57,16 @@ public class StartPane
           alert.setHeaderText("Geschafft!");
           String s = "Jetzt müssen die eben angegebenen Infos noch verarbeitet werden. ";
           alert.setContentText(s);
-         // alert.ashow();
-          AClient aClient = new AClient(loginData.getHostAdress(),loginData.getPort(), loginData.getName());
+          // alert.ashow();
+          AClient aClient = new AClient(loginData.getHostAdress(), loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
           GUIController.setCenterPane(CenterPaneType.CHAT);
-          
+
         }
       }
     });
     
-    hostButton.setOnAction(new EventHandler<ActionEvent>()
+    hostButton.setOnAction(new EventHandler<>()
     {
       @Override
       public void handle(ActionEvent actionEvent)
@@ -86,7 +85,7 @@ public class StartPane
           AServer server = new AServer(loginData.getPort());
           server.start();
           GUIController.setCenterPane(CenterPaneType.CHAT);
-          AClient aClient = new AClient(loginData.getHostAdress(),loginData.getPort(), loginData.getName());
+          AClient aClient = new AClient(loginData.getHostAdress(), loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
 
           System.out.println("chat startet");

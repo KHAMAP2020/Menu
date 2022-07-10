@@ -11,22 +11,22 @@ import models.interfaces.GUIConstants;
 public class StartMenu
 {
   private static Stage stage = null;
-  private static RadioMenuItem schemeBrightItem
+  private static final RadioMenuItem schemeBrightItem
     = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
-  private static RadioMenuItem schemeDarkItem
+  private static final RadioMenuItem schemeDarkItem
     = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
   
-  private static MenuBar menuBar = new MenuBar();
+  private static final MenuBar menuBar = new MenuBar();
   
-  private static Menu schemeMenu
+  private static final Menu schemeMenu
     = new Menu(GUIConstants.SCHEME_NAME);
-  private static MenuItem returnToStartItem
+  private static final MenuItem returnToStartItem
     = new MenuItem(GUIConstants.RETURN_TO_START_BUTTEN_STRING);
-  private static MenuItem endStageItem
+  private static final MenuItem endStageItem
     = new MenuItem(GUIConstants.END_STAGE_BUTTON_STRING);
-  private static Menu returnMenu
+  private static final Menu returnMenu
     = new Menu(GUIConstants.END_CHAT_MENU);
-  private static ToggleGroup schemeToggleGroup
+  private static final ToggleGroup schemeToggleGroup
     = new ToggleGroup();
   
   public static MenuBar createMenu(Stage newStage)
@@ -62,7 +62,7 @@ public class StartMenu
   
   private static void setSchemeBrightEvent()
   {
-    schemeBrightItem.setOnAction(new EventHandler<ActionEvent>()
+    schemeBrightItem.setOnAction(new EventHandler<>()
     {
       @Override
       public void handle(ActionEvent e)
@@ -75,7 +75,7 @@ public class StartMenu
   
   private static void setSchemeDarkEvents()
   {
-    schemeDarkItem.setOnAction(new EventHandler<ActionEvent>()
+    schemeDarkItem.setOnAction(new EventHandler<>()
     {
       @Override
       public void handle(ActionEvent e)
@@ -100,14 +100,7 @@ public class StartMenu
   
   private static void setEndStageEvent()
   {
-    endStageItem.setOnAction(new EventHandler<ActionEvent>()
-    {
-      @Override
-      public void handle(ActionEvent event)
-      {
-        stage.getScene().getWindow().fireEvent(new WindowEvent(stage.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
-      }
-    });
+    endStageItem.setOnAction(event -> stage.getScene().getWindow().fireEvent(new WindowEvent(stage.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST)));
   }
   
   public static void updateSettings()

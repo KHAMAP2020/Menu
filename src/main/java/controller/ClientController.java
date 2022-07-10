@@ -4,6 +4,9 @@ import models.AClient;
 
 import java.util.ArrayList;
 
+/**
+ * @author Philipp Gohlke 5157842
+ */
 public class ClientController
 {
   private static AClient aClient = null;

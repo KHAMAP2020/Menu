@@ -1,18 +1,17 @@
 package controller;
 
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.stage.WindowEvent;
-
-import java.io.IOException;
-
-import models.ClientHandler;
 import models.interfaces.GUIConstantss.GUIControllerConstants;
-import views.*;
+import views.CenterPaneType;
+import views.MenuSettings;
+import views.StartMenu;
+import views.Style;
 
 /**
  * erstellt und kontrolliert die Grafische
@@ -28,12 +27,12 @@ public class GUIController
   /**
    * Layout der primären Ebene
    */
-  private static BorderPane borderPane = new BorderPane();
+  private static final BorderPane borderPane = new BorderPane();
   
   /**
    * Szene der primären Ebene
    */
-  private static Scene scene
+  private static final Scene scene
     = new Scene
     (
       borderPane,

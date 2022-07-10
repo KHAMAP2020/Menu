@@ -25,8 +25,8 @@ public enum CenterPaneType
 //-------------------------------------------------------------
 //Datenfeld
   
-  private VBox pane = null;
-  private MenuSettings menuSettings = null;
+  private final VBox pane;
+  private final MenuSettings menuSettings;
 
 //-------------------------------------------------------------
 //Methoden

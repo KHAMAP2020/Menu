@@ -1,5 +1,8 @@
 package models;
 
+/**
+ * @author A.Hoffmann 5137817
+ */
 public class LoginData
 {
 //-------------------------------------------------------------
@@ -14,9 +17,9 @@ public class LoginData
   
   public LoginData(String name, String HostAdress, int port)
   {
-    this.name = name;
-    this.HostAdress = HostAdress;
-    this.port = port;
+    LoginData.name = name;
+    LoginData.HostAdress = HostAdress;
+    LoginData.port = port;
   }
   
   //-----------------------------------------------------------
@@ -24,34 +27,20 @@ public class LoginData
   
   public String getName()
   {
-    return this.name;
+    return name;
   }
   
   public String getHostAdress()
   {
-    return this.HostAdress;
+    return HostAdress;
   }
   
   public int getPort()
   {
-    return this.port;
+    return port;
   }
   
   //-----------------------------------------------------------
   //Setter
-  
-  public void setName(String name)
-  {
-    this.name = name;
-  }
-  
-  public void setHostAdress(String hostAdress)
-  {
-    this.HostAdress = hostAdress;
-  }
-  
-  public void setPort(int port)
-  {
-    this.port = port;
-  }
+
 }

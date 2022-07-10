@@ -29,7 +29,7 @@ public enum MenuSettings
    * Ob die Menüoption "returnToStartItem"
    * angezeigt werden soll oder nicht
    */
-  private Boolean returnToStartItem = null;
+  private Boolean returnToStartItem;
 
 //-------------------------------------------------------------
 //Methoden

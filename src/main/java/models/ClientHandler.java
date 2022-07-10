@@ -3,39 +3,37 @@ package models;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-/*
+/**
 @author Philipp Gohlke 5157842
  */
 public class ClientHandler implements Runnable
 {
-  private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
-  private Socket socket = null;
-  private BufferedReader bufferedReader = null;
-  private BufferedWriter bufferedWriter = null;
-  private OutputStreamWriter outputStreamWriter = null;
-  private InputStreamReader inputStreamReader = null;
-  private String clientUsername;
+  private static final ArrayList<ClientHandler> clientHandlers
+                                            = new ArrayList<>();
+  private final Socket socket;
+  private final BufferedReader bufferedReader;
+  private final BufferedWriter bufferedWriter;
+  private final String clientUsername;
   
   public ClientHandler(Socket socket)
   {
     try
     {
       this.socket = socket;
-      
-      this.outputStreamWriter
-        = new OutputStreamWriter(socket.getOutputStream());
+
+      OutputStreamWriter outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
       
       this.bufferedWriter
-        = new BufferedWriter(this.outputStreamWriter);
-      
-      this.inputStreamReader
-        = new InputStreamReader(socket.getInputStream());
+        = new BufferedWriter(outputStreamWriter);
+
+      InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
       
       this.bufferedReader
         = new BufferedReader(inputStreamReader);
       this.clientUsername = this.bufferedReader.readLine();
       clientHandlers.add(this);
-      broadcastMessage(clientUsername + " hat den Chat betreten");
+      broadcastMessage(clientUsername + " " +
+                       "hat den Chat betreten");
     }
     catch (IOException e)
     {
@@ -47,14 +45,18 @@ public class ClientHandler implements Runnable
   @Override
   public void run()
   {
-    String incommingMessage = "";
+    String receivingMessage;
      while (this.socket.isConnected())
      {
-
+        /*
+        Solange der Socket eine Verbindung zum Server hat,
+        werden ankommende Narichten gelesen und
+        der BroadcastMessage-Methode übergeben.
+         */
        try
        {
-         incommingMessage = this.bufferedReader.readLine();
-         broadcastMessage(incommingMessage);
+         receivingMessage = this.bufferedReader.readLine();
+         broadcastMessage(receivingMessage);
          
        } catch (IOException e)
        {
@@ -66,6 +68,10 @@ public class ClientHandler implements Runnable
   
   private void broadcastMessage(String messageToSend)
   {
+    /*
+    Hier werden Narichten an alle Chatteilnehmer gesendet,
+    außer an den, der die Naricht verschickt hat.
+     */
     for (ClientHandler clientHandler:clientHandlers)
     {
       try
@@ -88,8 +94,13 @@ public class ClientHandler implements Runnable
   
   public void removeClientHandler()
   {
+    /*
+    Wenn ein Client den Chat verlässt, werden alle informiert
+    und der Client wird aus der ArrayList gelöscht
+     */
     clientHandlers.remove(this);
-    broadcastMessage(this.clientUsername + " hat den Chat verlassen");
+    broadcastMessage(this.clientUsername +
+                     " hat den Chat verlassen");
   }
   public void closeEverything()
   {

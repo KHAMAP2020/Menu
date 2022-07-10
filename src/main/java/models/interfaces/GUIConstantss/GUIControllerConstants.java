@@ -17,7 +17,7 @@ public interface GUIControllerConstants
   /**
    * Initiale Breite der Szene
    */
-  public final int SCENE_WIDTH = 600;
+  public final int SCENE_WIDTH = 615;
   
   /**
    * Initiale Höhe der Szene

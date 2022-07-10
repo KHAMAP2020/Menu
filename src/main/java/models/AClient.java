@@ -1,41 +1,34 @@
 package models;
 
 import controller.AMessageController;
-import controller.GUIController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import views.ChatPane;
 
 import java.io.*;
 import java.net.Socket;
-/*
+/**
 @author Philipp Gohlke 5157842
  */
 public class AClient
 {
-  private Socket socket = null;
-  private BufferedReader bufferedReader = null;
-  private BufferedWriter bufferedWriter = null;
-  
-  private OutputStreamWriter outputStreamWriter = null;
-  
-  private InputStreamReader inputStreamReader = null;
-  private String userName = null;
+  private final Socket socket;
+  private final BufferedReader bufferedReader;
+  private final BufferedWriter bufferedWriter;
+
+  private final String userName;
   
   public AClient(String serverName, int port, String userName)
   {
     try
     {
-      // Die Initialisierung des Sockets und Streams
+      // Die Initialisierung des Sockets und der Streams
       this.socket = new Socket(serverName,port);
-      
-      this.outputStreamWriter
-        = new OutputStreamWriter(socket.getOutputStream());
+
+      OutputStreamWriter outputStreamWriter =
+              new OutputStreamWriter(socket.getOutputStream());
       this.bufferedWriter
-        = new BufferedWriter(this.outputStreamWriter);
-  
-      this.inputStreamReader
-        = new InputStreamReader(socket.getInputStream());
+        = new BufferedWriter(outputStreamWriter);
+
+      InputStreamReader inputStreamReader =
+              new InputStreamReader(socket.getInputStream());
       this.bufferedReader
         = new BufferedReader(inputStreamReader);
       
@@ -60,9 +53,10 @@ public class AClient
   {
     try
     {
-      bufferedWriter.write(userName);
-      bufferedWriter.newLine();
-      bufferedWriter.write(messageToSend);
+      /*
+      Führt das senden von Narichten, vom Client aus, aus
+       */
+      bufferedWriter.write(userName + ": " + messageToSend);
       bufferedWriter.newLine();
       bufferedWriter.flush();
     } catch (IOException e)
@@ -79,15 +73,19 @@ public class AClient
       @Override
       public void run()
       {
-        String incommingMessage = null;
+        String receivingMessage;
         
         while (socket.isConnected())
         {
           try
           {
-            incommingMessage = bufferedReader.readLine();
-            AMessageController.incommingMessage(incommingMessage);
-            System.out.println(incommingMessage);
+            /*
+            wartet auf eingehende Narichten, solange der
+            Socket eine Verbindung zum Server hat
+             */
+            receivingMessage = bufferedReader.readLine();
+            AMessageController.incommingMessage(receivingMessage);
+            System.out.println(receivingMessage);
           } catch (IOException e)
           {
             closeEverthing();
@@ -100,6 +98,11 @@ public class AClient
   
   private void closeEverthing()
   {
+    /*
+    für den Fall das ein Catch ausgelöst wurde, soll diese
+    Methode für ein sicheres schließen der
+    Sockets etc. sorgen
+     */
     try
     {
       if (this.socket != null)

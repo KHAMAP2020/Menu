@@ -8,23 +8,21 @@ import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 
 import models.interfaces.GUIConstants;
-/*
-@author Philipp Gohlke 5157842
+/**
+@author A.Hoffmann 5137817
  */
 public class Message
 {
-  private Boolean isIncomming = null;
+  private final Boolean receivingMessage;
   
-  private TextFlow textFlow = new TextFlow();
-  
-  private Text text = new Text();
-  
-  private HBox hBox = new HBox();
+  private final TextFlow textFlow = new TextFlow();
+
+  private final HBox hBox = new HBox();
   
   public Message
   (
     String text,
-    Boolean isIncomming,
+    Boolean receivingMessage,
     ReadOnlyDoubleProperty maxWidth
   )
   {
@@ -54,27 +52,18 @@ public class Message
       }
     );
     
-    this.isIncomming = isIncomming;
-    this.text.setText(text);
+    this.receivingMessage = receivingMessage;
+    Text text1 = new Text();
+    text1.setText(text);
     hBox.getChildren().add(textFlow);
-    textFlow.getChildren().add(this.text);
+    textFlow.getChildren().add(text1);
   }
-  
-  public Text getText()
+
+  public Boolean getReceivingMessage()
   {
-    return this.text;
+    return this.receivingMessage;
   }
-  
-  public Boolean getIsIncomming()
-  {
-    return this.isIncomming;
-  }
-  
-  public TextFlow getTextFlow()
-  {
-    return this.textFlow;
-  }
-  
+
   public HBox getHBox()
   {
     return this.hBox;

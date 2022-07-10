@@ -3,13 +3,13 @@ package models;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-/*
+/**
 @author Philipp Gohlke 5157842
  */
 
 public class AServer extends Thread
 {
-  private ServerSocket serverSocket= null;
+  private final ServerSocket serverSocket;
   
   public AServer(int port)
   {
@@ -31,7 +31,13 @@ public class AServer extends Thread
     {
       while (!this.serverSocket.isClosed())
       {
-        Socket socket = null;
+        /*
+        Solange der Serversocket nicht geschlossen ist,
+        wird jeder eingehende Verbindungsversuch angenommen.
+        Daraufhin wird ein neuer Client erzeugt und in der
+        Client ArrayList hinzugefügt
+         */
+        Socket socket;
 
         socket = serverSocket.accept();
 

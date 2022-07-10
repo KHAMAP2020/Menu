@@ -41,19 +41,9 @@ public enum ErrorAlertType
   /**
    * Alarmierung, die die Aufzählung zurückgeben soll
    */
-  private Alert alert = new Alert(AlertType.ERROR);
-  
-  /**
-   * Titel der Alarmierungen
-   */
-  private String title = null;
-  
-  /**
-   * Text der Alarmierungen
-   */
-  private String contentText = null;
+  private final Alert alert = new Alert(AlertType.ERROR);
 
-//-------------------------------------------------------------
+  //-------------------------------------------------------------
 //Methoden
   
   /**
@@ -64,9 +54,13 @@ public enum ErrorAlertType
    */
   ErrorAlertType(String title, String contentText)
   {
-    this.title = title;
-    this.contentText = contentText;
-    
+    /**
+     * Titel der Alarmierungen
+     */
+    /**
+     * Text der Alarmierungen
+     */
+
     this.alert.setTitle(title);
     this.alert.setContentText(contentText);
   }

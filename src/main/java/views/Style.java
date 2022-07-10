@@ -8,7 +8,7 @@ public enum Style
   
   DARK(GUIConstants.DARK_THEME_PATH);
   
-  private String path = null;
+  private String path;
   
   Style(String path)
   {

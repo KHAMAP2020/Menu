@@ -28,12 +28,7 @@ public class RegisterDialog
    * Dialog das Anmeldedaten zurückgibt
    */
   private static Dialog<LoginData> dialog = null;
-  
-  /**
-   * Layouts des Dialogs
-   */
-  private static GridPane grid = null;
-  
+
   //-----------------------------------------------------------
   //Textfelder für Anwenderangaben
   
@@ -41,17 +36,17 @@ public class RegisterDialog
    * Textfeld in dem der Name des Anwenders angegeben
    * werden soll
    */
-  private static TextField nameTextField = new TextField();
+  private static final TextField nameTextField = new TextField();
   
   /**
    * Textfeld in dem die Portnummer angegeben werden soll
    */
-  private static TextField portTextField = new TextField();
+  private static final TextField portTextField = new TextField();
   
   /**
    * Textfeld in dem der Servername angegeben wird
    */
-  private static TextField serverTextField = new TextField();
+  private static final TextField serverTextField = new TextField();
   
   //-----------------------------------------------------------
   //Beschriftungen
@@ -59,19 +54,19 @@ public class RegisterDialog
   /**
    * Schriftzug neben dem Namenstextfeld
    */
-  private static Label nameLabel
+  private static final Label nameLabel
     = new Label(RegisterConstants.NAME_LABEL_STRING);
   
   /**
    * Schriftzug neben dem Portnummertextfeld
    */
-  private static Label portLabel
+  private static final Label portLabel
     = new Label(RegisterConstants.PORT_LABEL_STRING);
   
   /**
    * Schriftzug neben dem
    */
-  private static Label serverLabel
+  private static final Label serverLabel
     = new Label(RegisterConstants.SERVER_LABEL_STRING);
   
   //-----------------------------------------------------
@@ -80,7 +75,7 @@ public class RegisterDialog
   /**
    * Schaltfläche zur bestätigung der Anwenderangaben
    */
-  private static ButtonType buttonTypeContinue
+  private static final ButtonType buttonTypeContinue
     = new ButtonType
       (
         RegisterConstants.CONTINUE_BUTTON_STRING,
@@ -90,7 +85,7 @@ public class RegisterDialog
   /**
    * Schaltfläche zum Abbrechen des Dialogs
    */
-  private static ButtonType buttonTypeCancel
+  private static final ButtonType buttonTypeCancel
     = new ButtonType
       (
         RegisterConstants.CANCEL_BUTTON_STRING,
@@ -126,9 +121,12 @@ public class RegisterDialog
   public static Dialog<LoginData> createDialog()
   {
     dialog = new Dialog();
-    grid = new GridPane();
+    /**
+     * Layouts des Dialogs
+     */
+    GridPane grid = new GridPane();
     dialog.setTitle(RegisterConstants.CLIENT_DIALOG_TITLE);
-    
+
     nameTextField.setPromptText
       (RegisterConstants.NAME_PROMT_TEXT);
     serverTextField.setPromptText
@@ -182,25 +180,24 @@ public class RegisterDialog
     continueButton.addEventFilter
     (
       ActionEvent.ACTION,
-      new EventHandler<ActionEvent>()
-      {
-        @Override
-        public void handle(ActionEvent event)
-        {
-          if (validEntries() == false)
-          {
-            event.consume();
-          }
-          else
-          {
-            name = nameTextField.getText();
-            server = serverTextField.getText();
-            port = Integer.valueOf(portTextField.getText());
-            
-            clearAllFields();
-          }
-        }
-      }
+            new EventHandler<>()
+            {
+              @Override
+              public void handle(ActionEvent event)
+              {
+                if (!validEntries())
+                {
+                  event.consume();
+                } else
+                {
+                  name = nameTextField.getText();
+                  server = serverTextField.getText();
+                  port = Integer.parseInt(portTextField.getText());
+
+                  clearAllFields();
+                }
+              }
+            }
     );
   }
   
@@ -250,9 +247,8 @@ public class RegisterDialog
         {
           if
           (
-            RegisterConstants.NUMBER_DEFINITION
-              .contains(event.getCharacter())
-              == false
+                  !RegisterConstants.NUMBER_DEFINITION
+                          .contains(event.getCharacter())
           )
           {
             event.consume();
@@ -310,7 +306,7 @@ public class RegisterDialog
      */
     boolean serverIsEmpty = serverTextField.getText().isEmpty();
     
-    if (portIsEmpty == false)
+    if (!portIsEmpty)
     {
       String portString = portTextField.getText();
       

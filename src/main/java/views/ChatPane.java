@@ -1,29 +1,18 @@
 package views;
 
 import controller.AMessageController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import javafx.geometry.Pos;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import javafx.util.Callback;
-
-import models.LoginData;
 import models.Message;
 import models.interfaces.GUIConstantss.ChatConstants;
-
-import java.io.*;
-import java.net.Socket;
 
 /**
  * stellt das Chatlayout dar
@@ -38,24 +27,18 @@ public class ChatPane
   /**
    * Layout des Chats
    */
-  private static VBox vBox = new VBox();
-  
-  /**
-   * NachrichtenListe
-   */
-  private static ObservableList<Message> messages
-    = FXCollections.observableArrayList();
-  
+  private static final VBox vBox = new VBox();
+
   /**
    * Listenansicht
    */
-  private static ListView<Message> listView
-    = new ListView<Message>();
+  private static final ListView<Message> listView
+    = new ListView<>();
   
   /**
    * Layout des Nachrichtensendebereichs
    */
-  private static HBox sendBar = new HBox();
+  private static final HBox sendBar = new HBox();
   
   /**
    * Textfeld in dem Nachrichten reingeschrieben werden
@@ -65,7 +48,7 @@ public class ChatPane
   /**
    * Sendeschaltfläche
    */
-  private static Button sendButton
+  private static final Button sendButton
     = new Button(ChatConstants.SEND_BUTTON_NAME);
 
 
@@ -118,7 +101,7 @@ public class ChatPane
         @Override
         public void handle(ActionEvent event)
         {
-          if (validEntries() == true)
+          if (validEntries())
           {
             String massageText = textArea.getText();
           
@@ -177,14 +160,7 @@ public class ChatPane
    */
   private static boolean validEntries()
   {
-    if (textArea.getText().isEmpty())
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
+    return !textArea.getText().isEmpty();
   }
   
   //-----------------------------------------------------------
