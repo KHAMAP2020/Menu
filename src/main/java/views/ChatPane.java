@@ -17,7 +17,7 @@ import models.interfaces.GUIConstantss.ChatConstants;
 /**
  * stellt das Chatlayout dar
  *
- * @author A.Hoffmann 5137817 Philipp Gohlke 5157842
+ * @author A.Hoffmann 5137817 und Philipp Gohlke 5157842
  */
 public class ChatPane
 {
@@ -60,10 +60,22 @@ public class ChatPane
    */
   public ChatPane()
   {
-
     init();
-
   }
+  
+  /**
+   * Prüft ob im Textfeld eine abzuschickende Nachricht
+   * beinhaltet
+   *
+   * @return ob der Text im Textfeld Valide ist
+   */
+  private static boolean validEntries()
+  {
+    return !textArea.getText().isEmpty();
+  }
+  
+  //-----------------------------------------------------------
+  //Settings
   
   /**
    * Initiale Einstellungen für das Chatlayout
@@ -76,7 +88,6 @@ public class ChatPane
     sendBar.getChildren().addAll(textArea, sendButton);
     sendBar.setAlignment(Pos.CENTER_LEFT);
     
-    //listView.setItems(messages);
     AMessageController.setMaxWidth(listView.widthProperty());
     listView.setItems(AMessageController.getMessages());
     
@@ -84,17 +95,14 @@ public class ChatPane
     
     messageViewCellSettings();
     buttenEventsSettings();
-
+    
   }
-  
   
   /**
    * Stellt Schaltflächenereignisse ein
    */
   private static void buttenEventsSettings()
   {
-
-
     sendButton.setOnAction
     (new EventHandler<ActionEvent>()
       {
@@ -104,21 +112,7 @@ public class ChatPane
           if (validEntries())
           {
             String massageText = textArea.getText();
-          
-            /*
-            Message message
-              = new Message
-                (
-                  massageText,
-                  ChatConstants.MASSAGE_GOES_OUT,
-                  listView.widthProperty()
-                );
-          
-            messages.add(message);
-          
-            listView.scrollTo(message);
             
-             */
             AMessageController.sendMessage(massageText);
 
             textArea.clear();
@@ -152,17 +146,6 @@ public class ChatPane
     );
   }
   
-  /**
-   * Prüft ob im Textfeld eine abzuschickende Nachricht
-   * beinhaltet
-   *
-   * @return ob der Text im Textfeld Valide ist
-   */
-  private static boolean validEntries()
-  {
-    return !textArea.getText().isEmpty();
-  }
-  
   //-----------------------------------------------------------
   //Getter
   
@@ -176,7 +159,4 @@ public class ChatPane
     return vBox;
   }
   
-
-
-
   }
