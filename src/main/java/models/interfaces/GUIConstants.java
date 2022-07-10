@@ -56,9 +56,5 @@ public interface GUIConstants
 
     public final String END_STAGE_BUTTON_STRING = "Programm beenden";
     public final String END_CHAT_MENU = "Verlassen";
-
-//---------------------------------------------------------
-//Message Konstanten
-
-    public final double MESSAGE_WIDTH_SCALE = 0.8;
+    
 }

@@ -7,18 +7,53 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 
-import models.interfaces.GUIConstants;
+import models.interfaces.GUIConstantss.MessageConstants;
+
 /**
-@author A.Hoffmann 5137817
+ * Nachricht, die in der Listview des Chats dargestellt
+ * werden soll
+ *
+ * @author A.Hoffmann 5137817
  */
 public class Message
 {
-  private final Boolean receivingMessage;
+//-------------------------------------------------------------
+//Datenfelder
   
-  private final TextFlow textFlow = new TextFlow();
-
-  private final HBox hBox = new HBox();
+  /**
+   * Ob die Nachricht eingehend oder ausgehen ist un ob
+   * somit die Nachricht Links oder Rechts eingerückt werden
+   * muss.
+   */
+  private Boolean receivingMessage = null;
   
+  /**
+   * Textlayout, der den Text beinhalten
+   */
+  private TextFlow textFlow = new TextFlow();
+  
+  /**
+   * Text der Nachricht
+   */
+  private Text text = new Text();
+  /**
+   * Horizontale Box, die das Textlayout beinhalten und
+   * ausrichten soll.
+   */
+  private HBox hBox = new HBox();
+ 
+//-------------------------------------------------------------
+//Methoden
+  
+  /**
+   * Konstruktor der Nachricht
+   *
+   * @param text Text der Nachricht
+   * @param receivingMessage Ob die Nachricht eingehen oder
+   *                         ausgehend ist
+   * @param maxWidth Maximale Breite der Nachricht in
+   *                 Abhängigkeit von der Umgebung der Nachricht
+   */
   public Message
   (
     String text,
@@ -26,44 +61,69 @@ public class Message
     ReadOnlyDoubleProperty maxWidth
   )
   {
+    this.receivingMessage = receivingMessage;
+    this.text.setText(text);
+    textFlow.getChildren().add(this.text);
+    hBox.getChildren().add(textFlow);
+    maxWidthSettings(maxWidth);
+  }
+  
+  //-----------------------------------------------------------
+  //Settings
+  
+  /**
+   * Stellt die maximale breite des Textes in Abhängigkeit
+   * des gegebenen nur auszulesenden Breiteneigenschaft ein
+   *
+   * @param maxWidth nur auszulesende Breiteneigenschaft
+   */
+  private void maxWidthSettings(ReadOnlyDoubleProperty maxWidth)
+  {
+    //Für die Initiale Maximale Breite des Textes
     textFlow.setMaxWidth
-    (
-      maxWidth.get() * GUIConstants.MESSAGE_WIDTH_SCALE
-    );
-    
+      (
+        maxWidth.get() * MessageConstants.MESSAGE_WIDTH_SCALE
+      );
+  
+    //Maximale Breite, wenn sich die Fensterbreite ändert
     maxWidth.addListener
     (
       new ChangeListener<Number>()
       {
         @Override
         public void changed
-        (
-          ObservableValue<? extends Number> observableValue,
-          Number oldNumber,
-          Number newNumber
-        )
+          (
+            ObservableValue<? extends Number> observableValue,
+            Number oldNumber,
+            Number newNumber
+          )
         {
           textFlow.setMaxWidth
-          (
-            (Double) newNumber
-            * GUIConstants.MESSAGE_WIDTH_SCALE
-          );
+            (
+              (Double) newNumber
+                * MessageConstants.MESSAGE_WIDTH_SCALE
+            );
         }
       }
     );
-    
-    this.receivingMessage = receivingMessage;
-    Text text1 = new Text();
-    text1.setText(text);
-    hBox.getChildren().add(textFlow);
-    textFlow.getChildren().add(text1);
   }
-
+  
+  //-----------------------------------------------------------
+  //Getter
+  
+  /**
+   * Gibt zurück, ob die Nachricht eingehen oder Ausgehen ist
+   * @return ob die Nachricht eingehen oder Ausgehen ist
+   */
   public Boolean getReceivingMessage()
   {
     return this.receivingMessage;
   }
-
+  
+  /**
+   * Gibt die horizontale Box zurück
+   * @return
+   */
   public HBox getHBox()
   {
     return this.hBox;
