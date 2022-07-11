@@ -9,8 +9,8 @@ import java.net.Socket;
 
 public class AServer extends Thread
 {
-  private final ServerSocket serverSocket;
-  
+  public static ServerSocket serverSocket;
+  static Socket socket;
   public AServer(int port)
   {
     try
@@ -29,7 +29,7 @@ public class AServer extends Thread
     System.out.println("Server gestartet");
     try
     {
-      while (!this.serverSocket.isClosed())
+      while (!serverSocket.isClosed())
       {
         /*
         Solange der Serversocket nicht geschlossen ist,
@@ -37,11 +37,12 @@ public class AServer extends Thread
         Daraufhin wird ein neuer Client erzeugt und in der
         Client ArrayList hinzugefügt
          */
-        Socket socket;
+
 
         socket = serverSocket.accept();
 
-        System.out.println("ein neuer Client hat sich verbunden");
+        System.out.println
+                        ("ein neuer Client hat sich verbunden");
 
         ClientHandler clientHandler = new ClientHandler(socket);
 
@@ -55,7 +56,7 @@ public class AServer extends Thread
     }
   }
   
-  public void closeServerSocket()
+  public static void closeServerSocket()
   {
     /*
     zur sicheren Schließung des Serversockets bei
@@ -63,6 +64,9 @@ public class AServer extends Thread
      */
     try
     {
+      if(AServer.socket != null){
+        socket.close();
+      }
       if(serverSocket != null)
       {
         serverSocket.close();

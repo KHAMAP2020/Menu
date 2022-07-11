@@ -9,7 +9,7 @@ import java.net.Socket;
  */
 public class AClient
 {
-  private final Socket socket;
+  public static Socket socket;
   private final BufferedReader bufferedReader;
   private final BufferedWriter bufferedWriter;
 
@@ -53,12 +53,16 @@ public class AClient
   {
     try
     {
-      /*
+      if(socket.isConnected()){
+         /*
       Führt das senden von Narichten, vom Client aus, aus
        */
-      bufferedWriter.write(userName + ": " + messageToSend);
-      bufferedWriter.newLine();
-      bufferedWriter.flush();
+        bufferedWriter.write
+                (userName + ": " + messageToSend);
+        bufferedWriter.newLine();
+        bufferedWriter.flush();
+      }
+
     } catch (IOException e)
     {
       closeEverthing();
@@ -84,8 +88,9 @@ public class AClient
             Socket eine Verbindung zum Server hat
              */
             receivingMessage = bufferedReader.readLine();
-            AMessageController.incommingMessage(receivingMessage);
-            System.out.println(receivingMessage);
+            AMessageController.incommingMessage
+                                             (receivingMessage);
+            //System.out.println(receivingMessage);
           } catch (IOException e)
           {
             closeEverthing();
@@ -96,7 +101,7 @@ public class AClient
     }).start();
   }
   
-  private void closeEverthing()
+  public void closeEverthing()
   {
     /*
     für den Fall das ein Catch ausgelöst wurde, soll diese
@@ -105,9 +110,9 @@ public class AClient
      */
     try
     {
-      if (this.socket != null)
+      if (socket != null)
       {
-        this.socket.close();
+        socket.close();
       }
     
       if (this.bufferedReader != null)
@@ -119,7 +124,9 @@ public class AClient
       {
         this.bufferedWriter.close();
       }
-    
+      if(AServer.serverSocket != null){
+        AServer.serverSocket.close();
+      }
     } catch (IOException e)
     {
       e.printStackTrace();

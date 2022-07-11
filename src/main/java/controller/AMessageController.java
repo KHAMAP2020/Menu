@@ -35,7 +35,8 @@ public class AMessageController
     Hier werden ausgehende Narichten an den Chat übergeben
     und auf der rechten Seite hinzugefügt
      */
-    Message message = new Message(messageToSend, ChatConstants.MASSAGE_GOES_OUT,maxWidth);
+    Message message = new Message(messageToSend,
+            ChatConstants.MASSAGE_GOES_OUT,maxWidth);
     Platform.runLater(new Runnable()
     {
       @Override
@@ -43,7 +44,8 @@ public class AMessageController
       {
 
         messages.add(message);
-        ClientController.getAClient().sendMessage(messageToSend);
+        ClientController.getAClient().sendMessage(messageToSend)
+        ;
       }
     });
 
