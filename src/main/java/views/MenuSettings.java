@@ -1,7 +1,6 @@
 package views;
 
-import models.interfaces.GUIConstants;
-import models.interfaces.GUIConstantss.MenuConstants;
+import models.interfaces.GUIConstants.MenuConstants;
 
 /**
  * Aufzählung von Menüeinstellungen

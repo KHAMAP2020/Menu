@@ -1,4 +1,4 @@
-package models.interfaces.GUIConstantss;
+package models.interfaces.GUIConstants;
 
 /**
  * Enthält konstanten für den Registrierungsdialog

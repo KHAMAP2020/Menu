@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import models.Message;
-import models.interfaces.GUIConstantss.ChatConstants;
+import models.interfaces.GUIConstants.ChatConstants;
 
 /**
  * stellt das Chatlayout dar

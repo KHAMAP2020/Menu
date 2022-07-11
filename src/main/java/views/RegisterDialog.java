@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.LoginData;
 
-import models.interfaces.GUIConstantss.RegisterConstants;
+import models.interfaces.GUIConstants.RegisterConstants;
 
 /**
  * Dialog in dem der Anwender Daten zum aufbau eines Servers

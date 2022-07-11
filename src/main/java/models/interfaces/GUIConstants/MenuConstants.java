@@ -1,4 +1,4 @@
-package models.interfaces.GUIConstantss;
+package models.interfaces.GUIConstants;
 
 /**
  * Konstanten für die Menüleiste

@@ -1,7 +1,6 @@
 package views;
 
-import models.interfaces.GUIConstants;
-import models.interfaces.GUIConstantss.StyleTypesConstants;
+import models.interfaces.GUIConstants.StyleTypesConstants;
 
 /**
  * Stilarten, die Eingestellt werden können

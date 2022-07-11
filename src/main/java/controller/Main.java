@@ -2,7 +2,6 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import models.interfaces.GUIConstants;
 
 public class Main extends Application
 {

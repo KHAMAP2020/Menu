@@ -5,7 +5,7 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Message;
-import models.interfaces.GUIConstantss.ChatConstants;
+import models.interfaces.GUIConstants.ChatConstants;
 
 /**
 @author Philipp Gohlke 5157842

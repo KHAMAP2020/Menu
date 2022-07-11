@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
-import models.interfaces.GUIConstantss.MenuConstants;
+import models.interfaces.GUIConstants.MenuConstants;
 
 /**
  * Menüleiste für das Chatlayout und das Startlayout

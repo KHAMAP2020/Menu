@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
 
-import models.interfaces.GUIConstantss.MessageConstants;
+import models.interfaces.GUIConstants.MessageConstants;
 
 /**
  * Nachricht, die in der Listview des Chats dargestellt

@@ -7,14 +7,11 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import models.AServer;
-import models.interfaces.GUIConstantss.GUIControllerConstants;
+import models.interfaces.GUIConstants.GUIControllerConstants;
 import views.CenterPaneType;
 import views.MenuSettings;
 import views.Menu;
 import views.StyleTypes;
-
-import java.io.IOException;
 
 /**
  * erstellt und kontrolliert die Grafische

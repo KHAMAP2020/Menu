@@ -3,7 +3,7 @@ package views;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-import models.interfaces.GUIConstantss.ErrorAlertTypeConstants;
+import models.interfaces.GUIConstants.ErrorAlertTypeConstants;
 
 /**
  * Aufzählung aller Alarmierungen von Fehlern
