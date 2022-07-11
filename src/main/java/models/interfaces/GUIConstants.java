@@ -12,13 +12,6 @@ public interface GUIConstants
 {
     public final int START_V_BOX_SPACING = 10;
 //---------------------------------------------------------
-//Menu Konstanten
-
-    public final boolean START_RETURN_TO_START_ITEM = false;
-
-    public final boolean CHAT_RETURN_TO_START_ITEM = true;
-    
-//---------------------------------------------------------
 //StartPane Konstanten
 
     public final String JOIN_BUTTON_NAME = "Chat beitreten";

@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
-import models.interfaces.GUIConstants;
 import models.interfaces.GUIConstantss.MenuConstants;
 
 /**
@@ -96,7 +95,7 @@ public class Menu
       .setAll(schemeBrightItem, schemeDarkItem);
     returnMenu.getItems()
       .addAll(endStageItem, returnToStartItem);
-    setItemEvents();
+    itemEventSettings();
     
     //Initiale RadioEinstellung
     schemeBrightItem
@@ -109,61 +108,110 @@ public class Menu
     return menuBar;
   }
   
-  private static void setItemEvents()
+  /**
+   * Aktualisiert die Menüeinstellungen
+   */
+  public static void updateSettings()
   {
-    setSchemeBrightEvent();
-    setSchemeDarkEvents();
-    setReturnToStartEvent();
+    returnToStartItem.setVisible
+      (
+        GUIController.getCurrentMenuSettings()
+          .getReturnToStartItem()
+      );
+  }
+  
+  //-----------------------------------------------------------
+  //Settings
+  /**
+   * Stellt alle Ereignisse für die einzelnen Menüelemente ein
+   */
+  private static void itemEventSettings()
+  {
+    schemeBrightEventSetting();
+    schemeDarkEventSetting();
+    returnToStartEventSetting();
     setEndStageEvent();
   }
   
-  private static void setSchemeBrightEvent()
+  /**
+   * Setzt das Ereignis für das helle-Stil-Menüelement fest
+   */
+  private static void schemeBrightEventSetting()
   {
-    schemeBrightItem.setOnAction(new EventHandler<>()
-    {
-      @Override
-      public void handle(ActionEvent e)
-      {
-        GUIController.setStyle(StyleTypes.BRIGHT);
-      }
-    });
-    
-  }
-  
-  private static void setSchemeDarkEvents()
-  {
-    schemeDarkItem.setOnAction(new EventHandler<>()
-    {
-      @Override
-      public void handle(ActionEvent e)
-      {
-        GUIController.setStyle(StyleTypes.DARK);
-      }
-    });
-  }
-  
-  private static void setReturnToStartEvent()
-  {
-    returnToStartItem.setOnAction
-    (new EventHandler<ActionEvent>()
+    schemeBrightItem.setOnAction
+    (
+      new EventHandler<>()
       {
         @Override
-        public void handle(ActionEvent event)
+        public void handle(ActionEvent e)
         {
-          
-          GUIController.setCenterPane(CenterPaneType.START);
+          GUIController.setStyle(StyleTypes.BRIGHT);
         }
       }
     );
   }
   
-  private static void setEndStageEvent()
+  /**
+   * Setzt das Ereignis für das dunkle-Stil-Menüelement fest
+   */
+  private static void schemeDarkEventSetting()
   {
-    endStageItem.setOnAction(event -> stage.getScene().getWindow().fireEvent(new WindowEvent(stage.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST)));
+    schemeDarkItem.setOnAction
+    (
+      new EventHandler<>()
+      {
+        @Override
+        public void handle(ActionEvent e)
+        {
+          GUIController.setStyle(StyleTypes.DARK);
+        }
+      }
+    );
   }
   
-  public static void updateSettings()
+  /**
+   * Setzt das Ereignis für das zurück-zum-Start-Menüelement
+   * fest
+   */
+  private static void returnToStartEventSetting()
   {
-    returnToStartItem.setVisible(GUIController.getCurrentMenuSettings().getReturnToStartItem());
+    returnToStartItem.setOnAction
+    (
+      new EventHandler<ActionEvent>()
+      {
+        @Override
+        public void handle(ActionEvent event)
+        {
+          GUIController.setCenterPane(CenterPaneType.START);
+          
+        }
+      }
+    );
+  }
+  
+  /**
+   * Setzt das Ereignis für das Ebene-Verlassen-Menüelement
+   * fest
+   */
+  private static void setEndStageEvent()
+  {
+    endStageItem.setOnAction
+    (
+      new EventHandler<ActionEvent>()
+      {
+        @Override
+        public void handle(ActionEvent event)
+        {
+          stage.getScene().getWindow().fireEvent
+          (
+            new WindowEvent
+            (
+              stage.getScene().getWindow(),
+              WindowEvent.WINDOW_CLOSE_REQUEST
+            )
+          );
+        }
+      }
+    );
   }
 }

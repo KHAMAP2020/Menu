@@ -1,6 +1,7 @@
 package views;
 
 
+import controller.AMessageController;
 import controller.ClientController;
 import controller.GUIController;
 import javafx.scene.control.*;
@@ -60,6 +61,7 @@ public class StartPane
           // alert.ashow();
           AClient aClient = new AClient(loginData.getHostAdress(), loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
+          AMessageController.resetMessages();
           GUIController.setCenterPane(CenterPaneType.CHAT);
 
         }
@@ -84,12 +86,13 @@ public class StartPane
           //alert.show();
           AServer server = new AServer(loginData.getPort());
           server.start();
-          GUIController.setCenterPane(CenterPaneType.CHAT);
+          
           AClient aClient = new AClient(loginData.getHostAdress(), loginData.getPort(), loginData.getName());
           ClientController.setAClient(aClient);
 
           System.out.println("chat startet");
-
+          AMessageController.resetMessages();
+          GUIController.setCenterPane(CenterPaneType.CHAT);
         }
       }
     });

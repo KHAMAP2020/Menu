@@ -1,6 +1,7 @@
 package views;
 
 import models.interfaces.GUIConstants;
+import models.interfaces.GUIConstantss.MenuConstants;
 
 /**
  * Aufzählung von Menüeinstellungen
@@ -15,12 +16,12 @@ public enum MenuSettings
   /**
    * Menüeinstellungen für die Startumgebung
    */
-  Start(GUIConstants.START_RETURN_TO_START_ITEM),
+  Start(MenuConstants.START_RETURN_TO_START_ITEM),
   
   /**
    * Menüeinstellungen für die Chatumgebung
    */
-  Chat(GUIConstants.CHAT_RETURN_TO_START_ITEM);
+  Chat(MenuConstants.CHAT_RETURN_TO_START_ITEM);
 
 //-------------------------------------------------------------
 //Datenfeld

@@ -70,4 +70,9 @@ public class AMessageController
     });
 
   }
+  
+  public static void resetMessages()
+  {
+    messages.clear();
+  }
 }
