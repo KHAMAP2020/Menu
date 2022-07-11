@@ -45,7 +45,7 @@ public interface RegisterConstants
     = "Host-Adresse: ";
 
 
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Textfeld-Konstanten
   
   /**
@@ -65,7 +65,7 @@ public interface RegisterConstants
   public final String HOST_ADDRESS_PROMT_TEXT
     = "Gib die Adresse des Hosts ein.";
 
-//---------------------------------------------------------
+//-------------------------------------------------------------
 //Filter-Konstanten
   
   /**

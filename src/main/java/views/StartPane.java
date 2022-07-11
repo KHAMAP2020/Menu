@@ -188,7 +188,7 @@ public class StartPane
             ClientController.setAClient(aClient);
           
             System.out.println
-              (StartPaneConstants.WELCOME_LABEL_STRING);
+              (StartPaneConstants.START_CHAT_STRING);
             
             AMessageController.resetMessages();
             
