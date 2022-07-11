@@ -24,12 +24,14 @@ public class ClientHandler implements Runnable
     {
       this.socket = socket;
 
-      OutputStreamWriter outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+      OutputStreamWriter outputStreamWriter =
+              new OutputStreamWriter(socket.getOutputStream());
       
       this.bufferedWriter
         = new BufferedWriter(outputStreamWriter);
 
-      InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
+      InputStreamReader inputStreamReader =
+              new InputStreamReader(socket.getInputStream());
       
       this.bufferedReader
         = new BufferedReader(inputStreamReader);
@@ -79,7 +81,8 @@ public class ClientHandler implements Runnable
     {
       try
       {
-        if(!clientHandler.clientUsername.equals(this.clientUsername))
+        if(!clientHandler.clientUsername.equals
+                                          (this.clientUsername))
         {
 
           clientHandler.bufferedWriter.write(messageToSend);
@@ -101,13 +104,17 @@ public class ClientHandler implements Runnable
     Wenn ein Client den Chat verlässt, werden alle informiert
     und der Client wird aus der ArrayList gelöscht
      */
-    clientHandlers.remove(this);
-    broadcastMessage(this.clientUsername +
-                     " hat den Chat verlassen");
+    if(!AServer.serverSocket.isClosed())
+    {
+      clientHandlers.remove(this);
+      broadcastMessage(this.clientUsername +
+              " hat den Chat verlassen");
+    }
+
   }
   public void closeEverything()
   {
-    removeClientHandler();
+    //removeClientHandler();
     try
     {
       if (this.socket != null)
@@ -124,7 +131,9 @@ public class ClientHandler implements Runnable
       {
         this.bufferedWriter.close();
       }
-      
+      if(AServer.serverSocket != null){
+        AServer.serverSocket.close();
+      }
     } catch (IOException e)
     {
       e.printStackTrace();

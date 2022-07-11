@@ -7,11 +7,14 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.AServer;
 import models.interfaces.GUIConstantss.GUIControllerConstants;
 import views.CenterPaneType;
 import views.MenuSettings;
 import views.StartMenu;
 import views.Style;
+
+import java.io.IOException;
 
 /**
  * erstellt und kontrolliert die Grafische
@@ -118,6 +121,8 @@ public class GUIController
           String s = "Server muss jetzt geschlosssen werden";
           alert.setContentText(s);
           alert.show();
+
+          ;
 
 
         }
