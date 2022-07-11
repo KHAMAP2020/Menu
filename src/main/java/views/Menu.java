@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
 import models.interfaces.GUIConstants;
+import models.interfaces.GUIConstantss.MenuConstants;
 
 /**
  * Menüleiste für das Chatlayout und das Startlayout
@@ -15,29 +16,76 @@ import models.interfaces.GUIConstants;
  */
 public class Menu
 {
+//-------------------------------------------------------------
+//Datenfeld
+  
   /**
    * Ebene für einstellung des Stils
    */
   private static Stage stage = null;
   
-  private static final RadioMenuItem schemeBrightItem
-    = new RadioMenuItem(GUIConstants.SCHEME_BRIGHT_NAME);
-  private static final RadioMenuItem schemeDarkItem
-    = new RadioMenuItem(GUIConstants.SCHEME_DARK_NAME);
-  
+  /**
+   * Die Menüleiste
+   */
   private static final MenuBar menuBar = new MenuBar();
   
+  //-----------------------------------------------------------
+  //Stil Menü
+  
+  /**
+   * Stil Menü in dem der Stil des Fensters ausgewählt wird
+   */
   private static final javafx.scene.control.Menu schemeMenu
-    = new javafx.scene.control.Menu(GUIConstants.SCHEME_NAME);
-  private static final MenuItem returnToStartItem
-    = new MenuItem(GUIConstants.RETURN_TO_START_BUTTEN_STRING);
-  private static final MenuItem endStageItem
-    = new MenuItem(GUIConstants.END_STAGE_BUTTON_STRING);
-  private static final javafx.scene.control.Menu returnMenu
-    = new javafx.scene.control.Menu(GUIConstants.END_CHAT_MENU);
+    = new javafx.scene.control.Menu(MenuConstants.SCHEME_NAME);
+  
+  /**
+   * Heller Stil Menü-Auswahlschaltfläche
+   */
+  private static final RadioMenuItem schemeBrightItem
+    = new RadioMenuItem(MenuConstants.SCHEME_BRIGHT_NAME);
+  
+  /**
+   * Dunkler Stil Menü-Auswahlschaltfläche
+   */
+  private static final RadioMenuItem schemeDarkItem
+    = new RadioMenuItem(MenuConstants.SCHEME_DARK_NAME);
+  
+  /**
+   * Auswahlgruppe für die Stil-Menüauswahlflächen
+   */
   private static final ToggleGroup schemeToggleGroup
     = new ToggleGroup();
   
+  //-----------------------------------------------------------
+  //Verlassen Menü
+  
+  /**
+   * Menü zum Verlassen der Ebene und des Chats
+   */
+  private static final javafx.scene.control.Menu returnMenu
+    = new javafx.scene.control.Menu(MenuConstants.END_CHAT_MENU);
+  
+  /**
+   * Menüschaltfläche zum Zurückkehren zum Start
+   */
+  private static final MenuItem returnToStartItem
+    = new MenuItem(MenuConstants.RETURN_TO_START_BUTTON_STRING);
+  
+  /**
+   * Menüschaltfläche zum Beenden der Ebene
+   */
+  private static final MenuItem endStageItem
+    = new MenuItem(MenuConstants.END_STAGE_BUTTON_STRING);
+  
+//-------------------------------------------------------------
+//Methoden
+  
+  /**
+   * Konstruktor des Menüs
+   *
+   * @param newStage Ebene, dessen Stil eingestellt werden soll
+   * @return die Menüleiste
+   */
   public static MenuBar createMenu(Stage newStage)
   {
     stage = newStage;
@@ -52,9 +100,9 @@ public class Menu
     
     //Initiale RadioEinstellung
     schemeBrightItem
-      .setSelected(GUIConstants.SCHEME_BRIGHT_INITIAL_STATUS);
+      .setSelected(MenuConstants.SCHEME_BRIGHT_INITIAL_STATUS);
     schemeDarkItem
-      .setSelected(GUIConstants.SCHEME_DARK_INITIAL_STATUS);
+      .setSelected(MenuConstants.SCHEME_DARK_INITIAL_STATUS);
     updateSettings();
     menuBar.getMenus().setAll(schemeMenu, returnMenu);
     

@@ -14,24 +14,10 @@ public interface GUIConstants
 //---------------------------------------------------------
 //Menu Konstanten
 
-    //-----------------------------------------------------
-    //Schema Konstanten
-    public final String SCHEME_NAME = "Schema";
-
-
-    public final String SCHEME_DARK_NAME = "Dunkel";
-
-    public final String SCHEME_BRIGHT_NAME = "Hell";
-
     public final boolean START_RETURN_TO_START_ITEM = false;
 
     public final boolean CHAT_RETURN_TO_START_ITEM = true;
-
-    public final boolean SCHEME_BRIGHT_INITIAL_STATUS = true;
-
-    public final boolean SCHEME_DARK_INITIAL_STATUS = false;
-
-    public final boolean RETURN_TO_START_INITIAL_STATUS = false;
+    
 //---------------------------------------------------------
 //StartPane Konstanten
 

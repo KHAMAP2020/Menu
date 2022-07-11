@@ -17,15 +17,6 @@ public interface MenuConstants
   public final String BRIGHT_THEME_FILE = "BrightTheme.css";
   public final String DARK_THEME_FILE = "DarkTheme.css";
   
-  
-  //public final String BRIGHT_THEME_PATH
-  // = StartMenu.class.getResource
-  // (GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
-  public final String BRIGHT_THEME_PATH
-    = "file:target/classes/views/BrightTheme.css";
-  public final String DARK_THEME_PATH
-    = "file:target/classes/views/DarkTheme.css";
-  
   public final boolean START_RETURN_TO_START_ITEM = false;
   
   public final boolean CHAT_RETURN_TO_START_ITEM = true;
@@ -35,6 +26,14 @@ public interface MenuConstants
   public final boolean SCHEME_DARK_INITIAL_STATUS = false;
   
   public final boolean RETURN_TO_START_INITIAL_STATUS = false;
+  //public final String BRIGHT_THEME_PATH
+  // = StartMenu.class.getResource
+  // (GUIConstants.BRIGHT_THEME_FILE).toExternalForm();
+  public final String BRIGHT_THEME_PATH
+    = "file:target/classes/views/BrightTheme.css";
+  public final String DARK_THEME_PATH
+    = "file:target/classes/views/DarkTheme.css";
+  
 //-------------------------------------------------------------
 //Stil Menüoptionen
 
