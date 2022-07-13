@@ -1,4 +1,4 @@
-.menu-bar {
--fx-background-color: white;
--fx-text-fill: black;
+.button{
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
