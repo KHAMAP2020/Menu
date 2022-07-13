@@ -212,4 +212,3 @@ public class StartPane
     return startBox;
   }
 }
-
