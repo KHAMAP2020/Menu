@@ -81,5 +81,5 @@ public interface RegisterConstants
   /**
    * Größte mögliche Portnummer
    */
-  public final int portMaxValue = Integer.MAX_VALUE;
+  public final int portMaxValue = 30000;
 }
