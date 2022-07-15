@@ -51,8 +51,9 @@ public class AServer extends Thread
       }
     } catch (IOException e)
     {
+      interrupt();
       closeServerSocket();
-      throw new RuntimeException(e);
+
     }
   }
   

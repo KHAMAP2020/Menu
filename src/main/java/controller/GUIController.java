@@ -7,7 +7,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.AClient;
 import models.AServer;
+import models.ClientHandler;
 import models.interfaces.GUIConstants.GUIControllerConstants;
 import views.CenterPaneType;
 import views.MenuSettings;
@@ -124,7 +126,10 @@ public class GUIController
           try
           {
             AMessageController.stopMessageController();
+            AClient.socket.close();
             AServer.serverSocket.close();
+
+            ClientHandler.closeEverything();
           }catch (IOException e){
 
           }

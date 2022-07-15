@@ -90,13 +90,10 @@ public class AClient
             AMessageController.incommingMessage
                                              (receivingMessage);
             //System.out.println(receivingMessage);
-            if(socket.isConnected()){
 
-            }
           } catch (IOException e)
           {
             closeEverything();
-            throw new RuntimeException(e);
           }
         }
       }
