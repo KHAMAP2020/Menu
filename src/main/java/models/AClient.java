@@ -1,6 +1,8 @@
 package models;
 
 import controller.AMessageController;
+import models.interfaces.GUIConstants.NetworkConstants;
+import views.ErrorAlertType;
 
 import java.io.*;
 import java.net.Socket;
@@ -10,25 +12,27 @@ import java.net.Socket;
 public class AClient
 {
   public static Socket socket;
-  private final BufferedReader bufferedReader;
-  private final BufferedWriter bufferedWriter;
+  private static BufferedReader bufferedReader;
+  private static BufferedWriter bufferedWriter;
   private final String userName;
+
+  private static boolean running = NetworkConstants.LOOP_START;
   
   public AClient(String serverName, int port, String userName)
   {
     try
     {
       // Die Initialisierung des Sockets und der Streams
-      this.socket = new Socket(serverName,port);
+      socket = new Socket(serverName,port);
 
       OutputStreamWriter outputStreamWriter =
               new OutputStreamWriter(socket.getOutputStream());
-      this.bufferedWriter
+      bufferedWriter
         = new BufferedWriter(outputStreamWriter);
 
       InputStreamReader inputStreamReader =
               new InputStreamReader(socket.getInputStream());
-      this.bufferedReader
+      bufferedReader
         = new BufferedReader(inputStreamReader);
       
       this.userName = userName;
@@ -52,19 +56,30 @@ public class AClient
   {
     try
     {
-      if(socket.isConnected()){
+      if(running){
+        System.out.println("senden");
          /*
       Führt das senden von Narichten, vom Client aus, aus
        */
         bufferedWriter.write
                 (userName + ": " + messageToSend);
+        //Naricht wird an den BufferedWriter übergeben
         bufferedWriter.newLine();
+        /*
+        Dem BufferedWriter wird signalisiert das kein weiterer
+        Input mehr kommt.
+         */
         bufferedWriter.flush();
+        /*
+        Wird bnötigt die Naricht abzuschicken. Sonst würde er
+        warten bis der Writer voll ist.
+         */
       }
 
     } catch (IOException e)
     {
-      closeEverything();
+      ErrorAlertType.SEND_MESSAGE_FAILED.
+              getAlert().showAndWait();
       throw new RuntimeException(e);
     }
   }
@@ -78,7 +93,7 @@ public class AClient
       {
         String receivingMessage;
         
-        while (socket.isConnected())
+        while (running)
         {
           try
           {
@@ -88,47 +103,56 @@ public class AClient
              */
             receivingMessage = bufferedReader.readLine();
             AMessageController.incommingMessage
-                                             (receivingMessage);
+                    (receivingMessage);
             //System.out.println(receivingMessage);
 
           } catch (IOException e)
           {
-            closeEverything();
+            ErrorAlertType.REICIVE_MESSAGE_FAILED.
+                    getAlert().showAndWait();
           }
         }
       }
     }).start();
   }
   
-  public void closeEverything()
+  public static void closeEverything()
   {
     /*
     für den Fall das ein Catch ausgelöst wurde, soll diese
     Methode für ein sicheres schließen der
-    Sockets etc. sorgen
+    Sockets etc. sorgen.
      */
     try
     {
+      /*
+      zum Deaktivieren der while-Schleife in den Threads.
+      Dadurch werden die Threads terminiert, sobald die
+      run()-Methode durchgelaufen ist.
+       */
+      running = NetworkConstants.LOOP_STOP;
+
+      /*
+      Solange, das jeweilige Objekt nicht null ist, wird es
+      geschlossen.
+       */
       if (socket != null)
       {
         socket.close();
       }
     
-      if (this.bufferedReader != null)
+      if (bufferedReader != null)
       {
-        this.bufferedReader.close();
+        bufferedReader.close();
       }
     
-      if (this.bufferedWriter != null)
+      if (bufferedWriter != null)
       {
-        this.bufferedWriter.close();
-      }
-      if(AServer.serverSocket != null){
-        AServer.serverSocket.close();
+        bufferedWriter.close();
       }
     } catch (IOException e)
     {
-      e.printStackTrace();
+      ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }
 }

@@ -8,7 +8,7 @@ import models.interfaces.GUIConstants.ErrorAlertTypeConstants;
 /**
  * Aufzählung aller Alarmierungen von Fehlern
  *
- * @author A.Hoffmann 5137817
+ * @author A.Hoffmann 5137817,P. Gohlke 5157842
  */
 public enum ErrorAlertType
 {
@@ -33,7 +33,31 @@ public enum ErrorAlertType
   (
     ErrorAlertTypeConstants.EMPTY_TEXT_FIELD_TITLE,
     ErrorAlertTypeConstants.EMPTY_TEXT_FIELD_TEXT
-  );
+  ),
+  PORT_ALREADY_IN_USE
+  (
+    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TEXT,
+    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TITLE
+  ),
+  SEND_MESSAGE_FAILED
+  (
+    ErrorAlertTypeConstants.SEND_MESSAGE_FAILED_TITLE,
+    ErrorAlertTypeConstants.SEND_MESSAGE_FAILED_TEXT
+
+  ),
+  REICIVE_MESSAGE_FAILED
+  (
+    ErrorAlertTypeConstants.REICIVE_MESSAGE_FAILED_TITLE,
+    ErrorAlertTypeConstants.REICIVE_MESSAGE_FAILED_TEXT
+  ),
+
+  CLOSING_FAILED
+          (
+                  ErrorAlertTypeConstants.CLOSING_FAILED_TITLE,
+                  ErrorAlertTypeConstants.CLOSING_FAILED_TEXT
+          )
+
+  ;
 
 //-------------------------------------------------------------
 //Datenfelder

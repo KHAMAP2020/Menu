@@ -14,6 +14,7 @@ public class ClientHandler implements Runnable
   public static  BufferedReader bufferedReader;
   public static BufferedWriter bufferedWriter;
   private final String clientUsername;
+  private static boolean running = true;
   
   public ClientHandler(Socket socket)
   {
@@ -51,7 +52,7 @@ public class ClientHandler implements Runnable
   public void run()
   {
     String receivingMessage;
-     while (this.socket.isConnected())
+     while (running)
      {
         /*
         Solange der Socket eine Verbindung zum Server hat,
@@ -119,6 +120,7 @@ public class ClientHandler implements Runnable
     //removeClientHandler();
     try
     {
+      running = false;
       if (socket != null)
       {
           socket.close();

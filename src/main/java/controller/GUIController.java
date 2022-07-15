@@ -123,16 +123,13 @@ public class GUIController
           String s = "Server muss jetzt geschlosssen werden";
           alert.setContentText(s);
           alert.show();
-          try
-          {
-            AMessageController.stopMessageController();
-            AClient.socket.close();
-            AServer.serverSocket.close();
+          AMessageController.stopMessageController();
+          AClient.closeEverything();
+          AServer.closeServerSocket();
 
-            ClientHandler.closeEverything();
-          }catch (IOException e){
-
-          }
+          ClientHandler.closeEverything();
+          AClient.closeEverything();
+          System.out.println("geschlossen");
           ;
 
 
