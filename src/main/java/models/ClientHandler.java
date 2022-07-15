@@ -76,6 +76,10 @@ public class ClientHandler implements Runnable
                  getAlert().showAndWait();
          closeEverything();
        }
+       catch (NullPointerException e)
+       {
+         closeEverything();
+       }
      }
   }
   
@@ -123,7 +127,7 @@ public class ClientHandler implements Runnable
   }
   public void closeEverything()
   {
-    //removeClientHandler();
+    removeClientHandler();
     try
     {
       running = false;

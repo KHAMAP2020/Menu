@@ -17,7 +17,6 @@ public class Server extends Thread
   static Socket socket;
   private static boolean running = NetworkConstants.LOOP_START;
   
-  private static ClientHandler clientHandler;
   public Server(int port)
   {
     try
@@ -56,18 +55,16 @@ public class Server extends Thread
 
         System.out.println
                         ("ein neuer Client hat sich verbunden");
-
-        clientHandler = new ClientHandler(socket);
+  
+        ClientHandler clientHandler = new ClientHandler(socket);
 
         Thread thread = new Thread(clientHandler);
         thread.start();
       }
     } catch (IOException e)
     {
-      ErrorAlertType.SERVER_CONNECT_FAILED.
-              getAlert().showAndWait();
+      //ErrorAlertType.SERVER_CONNECT_FAILED.getAlert().show();
       closeServerSocket();
-
     }
   }
   
@@ -79,10 +76,6 @@ public class Server extends Thread
      */
     try
     {
-      if (clientHandler != null)
-      {
-        clientHandler.closeEverything();
-      }
       running = NetworkConstants.LOOP_STOP;
       if(Server.socket != null){
         socket.close();

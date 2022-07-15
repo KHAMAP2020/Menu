@@ -122,10 +122,11 @@ public class GUIController
           String s = "Server muss jetzt geschlosssen werden";
           alert.setContentText(s);
           alert.show();
+          
+          Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();
           
-          Client.closeEverything();
           System.out.println("geschlossen");
         }
       }
