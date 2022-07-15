@@ -13,9 +13,9 @@ public class ClientHandler implements Runnable
 {
   private static final ArrayList<ClientHandler> clientHandlers
                                             = new ArrayList<>();
-  private static Socket socket;
-  public static  BufferedReader bufferedReader;
-  public static BufferedWriter bufferedWriter;
+  private Socket socket;
+  private   BufferedReader bufferedReader;
+  private BufferedWriter bufferedWriter;
   private final String clientUsername;
   private static boolean running = NetworkConstants.LOOP_START;
   
@@ -26,7 +26,7 @@ public class ClientHandler implements Runnable
      */
     try
     {
-      ClientHandler.socket = socket;
+      ClientHandler.this.socket = socket;
 
       OutputStreamWriter outputStreamWriter =
               new OutputStreamWriter(socket.getOutputStream());
@@ -39,6 +39,7 @@ public class ClientHandler implements Runnable
       
       bufferedReader
         = new BufferedReader(inputStreamReader);
+      
       this.clientUsername = bufferedReader.readLine();
       clientHandlers.add(this);
       broadcastMessage(clientUsername + " " +
@@ -74,8 +75,6 @@ public class ClientHandler implements Runnable
          ErrorAlertType.SEND_MESSAGE_FAILED.
                  getAlert().showAndWait();
          closeEverything();
-
-
        }
      }
   }
@@ -90,14 +89,13 @@ public class ClientHandler implements Runnable
     {
       try
       {
-        if(!clientHandler.clientUsername.equals
-                                          (this.clientUsername))
+        if
+        (!(clientHandler == this))
         {
-
-          bufferedWriter.write(messageToSend);
-          bufferedWriter.newLine();
-          bufferedWriter.flush();
-          System.out.println(messageToSend);
+          clientHandler.bufferedWriter.write(messageToSend);
+          clientHandler.bufferedWriter.newLine();
+          clientHandler.bufferedWriter.flush();
+          System.out.println(clientHandler.clientUsername +" bekommt von "+ messageToSend);
         }
       } catch (IOException e)
       {
@@ -123,25 +121,25 @@ public class ClientHandler implements Runnable
     }
 
   }
-  public static void closeEverything()
+  public void closeEverything()
   {
     //removeClientHandler();
     try
     {
       running = false;
-      if (socket != null)
+      if (this.socket != null)
       {
-          socket.close();
+        this.socket.close();
       }
     
-      if (bufferedReader != null)
+      if (this.bufferedReader != null)
       {
-        bufferedReader.close();
+        this.bufferedReader.close();
       }
     
-      if (bufferedWriter != null)
+      if (this.bufferedWriter != null)
       {
-        bufferedWriter.close();
+        this.bufferedWriter.close();
       }
       if(Server.serverSocket != null){
         Server.serverSocket.close();

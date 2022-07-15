@@ -37,40 +37,41 @@ public class AMessageController
      */
     Message message = new Message(messageToSend,
             ChatConstants.MASSAGE_GOES_OUT,maxWidth);
+    /*
     Platform.runLater(new Runnable()
     {
+      
       @Override
       public void run()
       {
-        while(running){
+        //In einer While schleife würde er unendlich lange versuchen was zu schocken
+        while(running)
+        {
           messages.add(message);
           ClientController.getAClient().sendMessage(messageToSend);
         }
-
-        ;
       }
     });
-
+    
+       */
+    messages.add(message);
+          ClientController.getAClient().sendMessage(messageToSend);
   }
   
-  public static void incommingMessage(String incomingMessage)
+  public static void incomingMessage(String incomingMessage)
   {
     Platform.runLater(new Runnable()
     {
       @Override
       public void run()
       {
-        while(running){
-          Message message = new Message(incomingMessage,
-                  ChatConstants.MASSAGE_COMES_IN,maxWidth);
-          messages.add(message);
-        }
+        Message message = new Message(incomingMessage,
+                ChatConstants.MASSAGE_COMES_IN,maxWidth);
+        messages.add(message);
         /*
         Hier werden eingehende Narichten an den Chat übergeben
         und auf der linken Seite angezeigt
          */
-
-
       }
     });
 

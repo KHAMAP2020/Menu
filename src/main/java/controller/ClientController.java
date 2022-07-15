@@ -8,14 +8,6 @@ import models.Client;
 public class ClientController
 {
   private static Client client = null;
-  /*
-  getter-/setter-Methoden
-  Client wird erzeugt
-   */
-  public static void createAClient(String hostAdress, int port, String userName)
-  {
-    client = new Client(hostAdress,port,userName);
-  }
   
   public static void setAClient(Client client)
   {

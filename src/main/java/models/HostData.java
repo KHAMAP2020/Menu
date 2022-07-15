@@ -1,12 +1,12 @@
 package models;
 
+import models.interfaces.GUIConstants.RegisterConstants;
+
 /**
- * Login Daten die der zum Beitreten eines Chats zurückgeben
- * soll
- *
- * @author A.Hoffmann 5137817
+ * Anmeldedaten die vom Host dialog zurückgegeben werden
+ * und alle Informationen enthalten um einen Chat zu hosten
  */
-public class LoginData
+public class HostData
 {
 //-------------------------------------------------------------
 //Datenfeld
@@ -26,7 +26,8 @@ public class LoginData
   /**
    * Adresse des Hosts
    */
-  public static String HostAdress = null;
+  public static String HostAddress
+    = RegisterConstants.HOST_ADRESS;
 
 //-------------------------------------------------------------
 //Methoden
@@ -35,13 +36,11 @@ public class LoginData
    * Konstruktor der Login-Daten
    *
    * @param name Name des Anwenders
-   * @param HostAddress Adresse des Hosts
    * @param port Portnummer
    */
-  public LoginData(String name, String HostAddress, int port)
+  public HostData(String name, int port)
   {
     this.name = name;
-    this.HostAdress = HostAddress;
     this.port = port;
   }
   
@@ -63,7 +62,7 @@ public class LoginData
    */
   public String getHostAdress()
   {
-    return this.HostAdress;
+    return this.HostAddress;
   }
   
   /**

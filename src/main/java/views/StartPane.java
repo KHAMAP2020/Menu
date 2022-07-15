@@ -10,9 +10,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import models.Client;
+import models.HostData;
 import models.Server;
 
 
+import java.io.IOException;
 import java.util.Optional;
 
 import models.LoginData;
@@ -104,7 +106,7 @@ public class StartPane
           Nötigen Informationen, um einen Chat zu starten
            */
           Dialog<LoginData> clientDialog
-            = RegisterDialog.createDialog();
+            = JoinDialog.createDialog();
           
           Optional<LoginData> result
             = clientDialog.showAndWait();
@@ -119,20 +121,25 @@ public class StartPane
           {
             LoginData loginData = result.get();
             
-            Client client
-              = new Client
+            try
+            {
+              Client client = new Client
                 (
                   loginData.getHostAdress(),
                   loginData.getPort(),
                   loginData.getName()
                 );
-            
-            ClientController.setAClient(client);
-            
-            AMessageController.resetMessages();
-            
-            GUIController.setCenterPane(CenterPaneType.CHAT);
-          
+                ClientController.setAClient(client);
+    
+                AMessageController.resetMessages();
+    
+                GUIController.setCenterPane(CenterPaneType.CHAT);
+            } catch (IOException e)
+            {
+              ErrorAlertType.SERVER_REACH_FAILED.getAlert().showAndWait();
+              e.printStackTrace();
+            }
+            System.out.println("huhu");
           }
         }
       }
@@ -156,10 +163,10 @@ public class StartPane
           Startet den Registrierdialog für den erhalt der
           Nötigen Informationen, um einen Chat zu erstellen
            */
-          Dialog<LoginData> serverDialog
-            = RegisterDialog.createDialog();
+          Dialog<HostData> serverDialog
+            = HostDialog.createDialog();
           
-          Optional<LoginData> result
+          Optional<HostData> result
             = serverDialog.showAndWait();
           
           /*
@@ -170,28 +177,33 @@ public class StartPane
            */
           if (result.isPresent())
           {
-            LoginData loginData = result.get();
+            HostData hostData = result.get();
             
-            Server server = new Server(loginData.getPort());
+            Server server = new Server(hostData.getPort());
             
             server.start();
-          
-            Client client
-              = new Client
-                (
-                  loginData.getHostAdress(),
-                  loginData.getPort(),
-                  loginData.getName()
-                );
-            
-            ClientController.setAClient(client);
-          
-            System.out.println
-              (StartPaneConstants.START_CHAT_STRING);
-            
-            AMessageController.resetMessages();
-            
-            GUIController.setCenterPane(CenterPaneType.CHAT);
+            try
+            {
+              Client client = new Client
+              (
+                hostData.getHostAdress(),
+                hostData.getPort(),
+                hostData.getName()
+              );
+              
+              ClientController.setAClient(client);
+  
+              System.out.println
+                (StartPaneConstants.START_CHAT_STRING);
+  
+              AMessageController.resetMessages();
+  
+              GUIController.setCenterPane(CenterPaneType.CHAT);
+            }
+            catch (IOException e)
+            {
+              e.printStackTrace();
+            }
           }
         }
       }

@@ -123,15 +123,10 @@ public class GUIController
           alert.setContentText(s);
           alert.show();
           AMessageController.stopMessageController();
-          Client.closeEverything();
           Server.closeServerSocket();
-
-          ClientHandler.closeEverything();
+          
           Client.closeEverything();
           System.out.println("geschlossen");
-          ;
-
-
         }
       }
     );

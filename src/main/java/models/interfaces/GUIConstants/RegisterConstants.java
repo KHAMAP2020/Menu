@@ -82,4 +82,6 @@ public interface RegisterConstants
    * Größte mögliche Portnummer
    */
   public final int portMaxValue = 30000;
+  
+  public final String HOST_ADRESS = "localhost";
 }

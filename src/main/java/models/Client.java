@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.net.Socket;
+
 /**
 @author Philipp Gohlke 5157842
  */
@@ -20,7 +21,7 @@ public class Client
 
   private static boolean running = NetworkConstants.LOOP_START;
   
-  public Client(String hostAdress, int port, String userName)
+  public Client(String hostAdress, int port, String userName) throws IOException
   {
     try
     {
@@ -60,7 +61,7 @@ public class Client
     } catch (IOException e)
     {
       closeEverything();
-
+      throw e;
     }
   }
   
@@ -90,6 +91,7 @@ public class Client
 
     } catch (IOException e)
     {
+      System.out.println("Fehler beim schicken");
       ErrorAlertType.SEND_MESSAGE_FAILED.
               getAlert().showAndWait();
       throw new RuntimeException(e);
@@ -104,7 +106,6 @@ public class Client
       public void run()
       {
         String receivingMessage;
-        
         while (running)
         {
           try
@@ -114,10 +115,11 @@ public class Client
             Socket eine Verbindung zum Server hat
              */
             receivingMessage = bufferedReader.readLine();
-            AMessageController.incommingMessage
-                    (receivingMessage);
-            //System.out.println(receivingMessage);
-
+            if(receivingMessage!= null)
+            {
+              AMessageController.incomingMessage
+                (receivingMessage);
+            }
           } catch (IOException e)
           {
             ErrorAlertType.REICIVE_MESSAGE_FAILED.

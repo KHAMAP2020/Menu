@@ -11,15 +11,15 @@ import models.LoginData;
 import models.interfaces.GUIConstants.RegisterConstants;
 
 /**
- * Dialog in dem der Anwender Daten zum aufbau eines Servers
- * eingibt oder sich mit einem verbindet.
+ * Dialog in dem der Anwender Daten zum Beitreten eines Chats
+ * eingibt
  *
  * Dafür sind Name des Anwenders, Portnummer und der
  * Host-Adresse notwendig
  *
  * @author A.Hoffmann 5137817
  */
-public class RegisterDialog
+public class JoinDialog
 {
 //-------------------------------------------------------------
 //Datenfelder

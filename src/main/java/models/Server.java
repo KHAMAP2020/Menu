@@ -16,6 +16,8 @@ public class Server extends Thread
   public static ServerSocket serverSocket;
   static Socket socket;
   private static boolean running = NetworkConstants.LOOP_START;
+  
+  private static ClientHandler clientHandler;
   public Server(int port)
   {
     try
@@ -55,7 +57,7 @@ public class Server extends Thread
         System.out.println
                         ("ein neuer Client hat sich verbunden");
 
-        ClientHandler clientHandler = new ClientHandler(socket);
+        clientHandler = new ClientHandler(socket);
 
         Thread thread = new Thread(clientHandler);
         thread.start();
@@ -76,8 +78,11 @@ public class Server extends Thread
     möglichen Fehlermledungen.
      */
     try
-
     {
+      if (clientHandler != null)
+      {
+        clientHandler.closeEverything();
+      }
       running = NetworkConstants.LOOP_STOP;
       if(Server.socket != null){
         socket.close();
