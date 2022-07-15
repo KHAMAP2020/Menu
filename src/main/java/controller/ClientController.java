@@ -1,29 +1,28 @@
 package controller;
 
-import models.AClient;
-
-import java.util.ArrayList;
+import models.Client;
 
 /**
  * @author Philipp Gohlke 5157842
  */
 public class ClientController
 {
-  private static AClient aClient = null;
+  private static Client client = null;
   /*
   getter-/setter-Methoden
+  Client wird erzeugt
    */
-  public static void createAClient(String serverName, int port, String userName)
+  public static void createAClient(String hostAdress, int port, String userName)
   {
-    aClient = new AClient(serverName,port,userName);
+    client = new Client(hostAdress,port,userName);
   }
   
-  public static void setAClient(AClient client)
+  public static void setAClient(Client client)
   {
-    aClient = client;
+    ClientController.client = client;
   }
-  public static AClient getAClient()
+  public static Client getAClient()
   {
-    return aClient;
+    return client;
   }
 }

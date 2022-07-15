@@ -52,11 +52,30 @@ public enum ErrorAlertType
   ),
 
   CLOSING_FAILED
+  (
+    ErrorAlertTypeConstants.CLOSING_FAILED_TITLE,
+    ErrorAlertTypeConstants.CLOSING_FAILED_TEXT
+  ),
+  INITIALIZATION_FAILED
+  (
+    ErrorAlertTypeConstants.INITIALIZATION_FAILED_TITLE,
+    ErrorAlertTypeConstants.INITIALIZATION_FAILED_TEXT
+  ),
+  HOSTING_FAILED
+  (
+    ErrorAlertTypeConstants.HOST_SERVER_FAILED_TITLE,
+    ErrorAlertTypeConstants.HOST_SERVER_FAILED_TEXT
+  ),
+  SERVER_CONNECT_FAILED
+  (
+    ErrorAlertTypeConstants.SERVER_CONNECT_FAILED_TITLE,
+    ErrorAlertTypeConstants.SERVER_CONNECT_FAILED_TEXT
+  ),
+  SERVER_REACH_FAILED
           (
-                  ErrorAlertTypeConstants.CLOSING_FAILED_TITLE,
-                  ErrorAlertTypeConstants.CLOSING_FAILED_TEXT
+            ErrorAlertTypeConstants.CANNOT_FIND_SEVER_TITLE,
+            ErrorAlertTypeConstants.CANNOT_FIND_SERVER_TEXT
           )
-
   ;
 
 //-------------------------------------------------------------

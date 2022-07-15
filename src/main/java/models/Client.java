@@ -5,11 +5,13 @@ import models.interfaces.GUIConstants.NetworkConstants;
 import views.ErrorAlertType;
 
 import java.io.*;
+import java.net.ConnectException;
+import java.net.NoRouteToHostException;
 import java.net.Socket;
 /**
 @author Philipp Gohlke 5157842
  */
-public class AClient
+public class Client
 {
   public static Socket socket;
   private static BufferedReader bufferedReader;
@@ -18,12 +20,22 @@ public class AClient
 
   private static boolean running = NetworkConstants.LOOP_START;
   
-  public AClient(String serverName, int port, String userName)
+  public Client(String hostAdress, int port, String userName)
   {
     try
     {
       // Die Initialisierung des Sockets und der Streams
-      socket = new Socket(serverName,port);
+      try
+      {
+        socket = new Socket(hostAdress,port);
+      }catch(NoRouteToHostException e){
+        ErrorAlertType.SERVER_REACH_FAILED.
+                getAlert().showAndWait();
+      }catch(ConnectException e){
+        ErrorAlertType.SERVER_CONNECT_FAILED.
+                getAlert().showAndWait();
+      }
+
 
       OutputStreamWriter outputStreamWriter =
               new OutputStreamWriter(socket.getOutputStream());

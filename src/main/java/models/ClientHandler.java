@@ -1,5 +1,8 @@
 package models;
 
+import models.interfaces.GUIConstants.NetworkConstants;
+import views.ErrorAlertType;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ public class ClientHandler implements Runnable
   public static  BufferedReader bufferedReader;
   public static BufferedWriter bufferedWriter;
   private final String clientUsername;
-  private static boolean running = true;
+  private static boolean running = NetworkConstants.LOOP_START;
   
   public ClientHandler(Socket socket)
   {
@@ -43,6 +46,8 @@ public class ClientHandler implements Runnable
     }
     catch (IOException e)
     {
+      ErrorAlertType.INITIALIZATION_FAILED.
+              getAlert().showAndWait();
       closeEverything();
       throw new RuntimeException(e);
     }
@@ -66,7 +71,8 @@ public class ClientHandler implements Runnable
          
        } catch (IOException e)
        {
-
+         ErrorAlertType.SEND_MESSAGE_FAILED.
+                 getAlert().showAndWait();
          closeEverything();
 
 
@@ -95,6 +101,8 @@ public class ClientHandler implements Runnable
         }
       } catch (IOException e)
       {
+        ErrorAlertType.REICIVE_MESSAGE_FAILED.
+                getAlert().showAndWait();
         closeEverything();
         throw new RuntimeException(e);
       }
@@ -107,7 +115,7 @@ public class ClientHandler implements Runnable
     Wenn ein Client den Chat verlässt, werden alle informiert
     und der Client wird aus der ArrayList gelöscht
      */
-    if(!AServer.serverSocket.isClosed())
+    if(Server.serverSocket != null)
     {
       clientHandlers.remove(this);
       broadcastMessage(this.clientUsername +
@@ -135,12 +143,12 @@ public class ClientHandler implements Runnable
       {
         bufferedWriter.close();
       }
-      if(AServer.serverSocket != null){
-        AServer.serverSocket.close();
+      if(Server.serverSocket != null){
+        Server.serverSocket.close();
       }
     } catch (IOException e)
     {
-      e.printStackTrace();
+      ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }
 }

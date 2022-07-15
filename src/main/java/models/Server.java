@@ -1,33 +1,31 @@
 package models;
 
-import javafx.scene.control.Alert;
-import models.interfaces.GUIConstants.ErrorAlertTypeConstants;
 import views.ErrorAlertType;
 
 import java.io.IOException;
 import java.net.BindException;
-import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 /**
 @author Philipp Gohlke 5157842
  */
 
-public class AServer extends Thread
+public class Server extends Thread
 {
   public static ServerSocket serverSocket;
   static Socket socket;
-  public AServer(int port)
+  public Server(int port)
   {
     try
     {
       serverSocket = new ServerSocket(port);
     } catch (BindException e){
-      ErrorAlertType.PORT_ALREADY_IN_USE.getAlert().showAndWait();
+      ErrorAlertType.PORT_ALREADY_IN_USE.
+              getAlert().showAndWait();
     }
     catch (IOException e)
     {
-      System.out.println("Fehler beim Serverkonstruktor");
+      ErrorAlertType.HOSTING_FAILED.getAlert().showAndWait();
       e.printStackTrace();
     }
   }
@@ -60,7 +58,8 @@ public class AServer extends Thread
       }
     } catch (IOException e)
     {
-      interrupt();
+      ErrorAlertType.SERVER_CONNECT_FAILED.
+              getAlert().showAndWait();
       closeServerSocket();
 
     }
@@ -74,7 +73,7 @@ public class AServer extends Thread
      */
     try
     {
-      if(AServer.socket != null){
+      if(Server.socket != null){
         socket.close();
       }
       if(serverSocket != null)

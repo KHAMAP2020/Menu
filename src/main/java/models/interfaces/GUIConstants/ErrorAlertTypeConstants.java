@@ -37,9 +37,11 @@ public interface ErrorAlertTypeConstants
 
   //Fehlermeldung für den Server--------------------------------
 
-  final String SERVER_CONNECT_FAILED =
+  final String SERVER_CONNECT_FAILED_TEXT =
           "Verbindung zum Server konnte nicht aufgebaut werden!";
 
+  final String SERVER_CONNECT_FAILED_TITLE =
+          "Server Error!";
   final String CONNECTION_LOST =
           "Verbindung zum Server wurde getrennt";
 
@@ -48,21 +50,11 @@ public interface ErrorAlertTypeConstants
 
   final String SEND_MESSAGE_FAILED_TITLE =
           "Message Error!";
-  final String HOST_SERVER_FAILED =
+  final String HOST_SERVER_FAILED_TEXT =
           "Server konnte nicht erstellt werden";
 
-  final String IP_IS_WRONG =
-          "IP-Adresse konnte nicht zugeordnet werden";
-
-  final String PORT_IS_WRONG_TEXT =
-          "Port konnte nicht zugeordnet werden.";
-
-  final String NAME_ALREADY_IN_USE =
-        "Name: " + LoginData.name + " ist bereits vergeben";
-
-
-  final String HOST_ADRESS_ALREADY_IN_USE =
-         "Host-Adresse: " + LoginData.HostAdress + " ist bereits vergeben";
+  final String HOST_SERVER_FAILED_TITLE =
+          "Host Error";
 
   final String PORT_ALREADY_IN_USE_TEXT =
          "Port:" + LoginData.port + " ist bereits vergeben";
@@ -77,4 +69,13 @@ public interface ErrorAlertTypeConstants
           "Fehler beim Schließen";
   final String CLOSING_FAILED_TITLE =
           "Closing Error";
+
+  final String INITIALIZATION_FAILED_TEXT =
+          "Initialisierung fehlgeschlagen";
+  final String INITIALIZATION_FAILED_TITLE =
+          "Initialisierung Error";
+  final String CANNOT_FIND_SERVER_TEXT =
+          "Server konnte nicht gefunden werden";
+  final String CANNOT_FIND_SEVER_TITLE =
+          "Connection Error!";
 }

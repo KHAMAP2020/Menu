@@ -8,10 +8,9 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
-import models.AClient;
-import models.AServer;
+import models.Client;
+import models.Server;
 
 
 import java.util.Optional;
@@ -120,15 +119,15 @@ public class StartPane
           {
             LoginData loginData = result.get();
             
-            AClient aClient
-              = new AClient
+            Client client
+              = new Client
                 (
                   loginData.getHostAdress(),
                   loginData.getPort(),
                   loginData.getName()
                 );
             
-            ClientController.setAClient(aClient);
+            ClientController.setAClient(client);
             
             AMessageController.resetMessages();
             
@@ -173,19 +172,19 @@ public class StartPane
           {
             LoginData loginData = result.get();
             
-            AServer server = new AServer(loginData.getPort());
+            Server server = new Server(loginData.getPort());
             
             server.start();
           
-            AClient aClient
-              = new AClient
+            Client client
+              = new Client
                 (
                   loginData.getHostAdress(),
                   loginData.getPort(),
                   loginData.getName()
                 );
             
-            ClientController.setAClient(aClient);
+            ClientController.setAClient(client);
           
             System.out.println
               (StartPaneConstants.START_CHAT_STRING);
