@@ -16,7 +16,7 @@ public class Client
   public static Socket socket;
   private static BufferedReader bufferedReader;
   private static BufferedWriter bufferedWriter;
-  private final String userName;
+  private String userName = null;
 
   private static boolean running = NetworkConstants.LOOP_START;
   
@@ -60,7 +60,7 @@ public class Client
     } catch (IOException e)
     {
       closeEverything();
-      throw new RuntimeException(e);
+
     }
   }
   
