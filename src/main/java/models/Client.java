@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
 @author Philipp Gohlke 5157842
@@ -120,10 +121,13 @@ public class Client
               AMessageController.incomingMessage
                 (receivingMessage);
             }
-          } catch (IOException e)
+          }
+          catch (IOException e)
           {
-            ErrorAlertType.REICIVE_MESSAGE_FAILED.
-                    getAlert().showAndWait();
+            closeEverything();
+            //Wirft Fehler
+            //ErrorAlertType.REICIVE_MESSAGE_FAILED.
+            //        getAlert().show();
           }
         }
       }

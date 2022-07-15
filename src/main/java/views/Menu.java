@@ -1,11 +1,14 @@
 package views;
 
+import controller.AMessageController;
 import javafx.stage.Stage;
 import controller.GUIController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.WindowEvent;
+import models.Client;
+import models.Server;
 import models.interfaces.GUIConstants.MenuConstants;
 
 /**
@@ -182,8 +185,10 @@ public class Menu
         @Override
         public void handle(ActionEvent event)
         {
+          Client.closeEverything();
+          AMessageController.stopMessageController();
+          Server.closeServerSocket();
           GUIController.setCenterPane(CenterPaneType.START);
-          
         }
       }
     );

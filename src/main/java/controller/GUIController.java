@@ -115,14 +115,6 @@ public class GUIController
         @Override
         public void handle(WindowEvent windowEvent)
         {
-          Alert alert = new Alert(Alert.AlertType.INFORMATION);
-          
-          alert.setTitle("Lückenfüller");
-          alert.setHeaderText("Wichtig");
-          String s = "Server muss jetzt geschlosssen werden";
-          alert.setContentText(s);
-          alert.show();
-          
           Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();

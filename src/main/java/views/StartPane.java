@@ -137,9 +137,7 @@ public class StartPane
             } catch (IOException e)
             {
               ErrorAlertType.SERVER_REACH_FAILED.getAlert().showAndWait();
-              e.printStackTrace();
             }
-            System.out.println("huhu");
           }
         }
       }
