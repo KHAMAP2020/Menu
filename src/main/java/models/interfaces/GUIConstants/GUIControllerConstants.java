@@ -1,6 +1,7 @@
 package models.interfaces.GUIConstants;
 
 import views.CenterPaneType;
+import views.StyleTypes;
 
 /**
  * Fenster-, Szenen- und Layout-Konstanten
@@ -12,7 +13,7 @@ public interface GUIControllerConstants
   /**
    * Name der Stage
    */
-  public final String STAGE_NAME = "Name der Stage";
+  public final String STAGE_NAME = "Der kleine Chat";
   
   /**
    * Initiale Breite der Szene
@@ -37,11 +38,17 @@ public interface GUIControllerConstants
   /**
    * Ob die größe des Fensters veränderbar ist
    */
-  public final boolean RESIZABLE = true;
+  public final boolean RESIZABLE = false;
   
   /**
    * Initialer Zentruminhalt des Layouts
    */
   public final CenterPaneType INITIAL_CENTER_PANE
     = CenterPaneType.START;
+  
+  /**
+   * Initialer Stil der Oberfläche
+   */
+  public final StyleTypes INITIAL_STYLE
+    = StyleTypes.BRIGHT;
 }
