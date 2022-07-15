@@ -19,7 +19,7 @@ public class AMessageController
     = FXCollections.observableArrayList();
   
   private static ReadOnlyDoubleProperty maxWidth = null;
-  
+  private static boolean running = true;
   public static void setMaxWidth(ReadOnlyDoubleProperty width)
   {
     maxWidth = width;
@@ -28,7 +28,7 @@ public class AMessageController
   {
     return messages;
   }
-  
+
   public static void sendMessage(String messageToSend)
   {
     /*
@@ -42,9 +42,11 @@ public class AMessageController
       @Override
       public void run()
       {
+        while(running){
+          messages.add(message);
+          ClientController.getAClient().sendMessage(messageToSend);
+        }
 
-        messages.add(message);
-        ClientController.getAClient().sendMessage(messageToSend)
         ;
       }
     });
@@ -58,19 +60,24 @@ public class AMessageController
       @Override
       public void run()
       {
+        while(running){
+          Message message = new Message(incomingMessage,
+                  ChatConstants.MASSAGE_COMES_IN,maxWidth);
+          messages.add(message);
+        }
         /*
         Hier werden eingehende Narichten an den Chat übergeben
         und auf der linken Seite angezeigt
          */
-        Message message = new Message(incomingMessage,
-                       ChatConstants.MASSAGE_COMES_IN,maxWidth);
-        messages.add(message);
+
 
       }
     });
 
   }
-  
+  public static void stopMessageController(){
+    running = false;
+  }
   public static void resetMessages()
   {
     messages.clear();

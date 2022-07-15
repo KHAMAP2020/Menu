@@ -12,7 +12,6 @@ public class AClient
   public static Socket socket;
   private final BufferedReader bufferedReader;
   private final BufferedWriter bufferedWriter;
-
   private final String userName;
   
   public AClient(String serverName, int port, String userName)
@@ -44,7 +43,7 @@ public class AClient
       listenForMessage();
     } catch (IOException e)
     {
-      closeEverthing();
+      closeEverything();
       throw new RuntimeException(e);
     }
   }
@@ -65,7 +64,7 @@ public class AClient
 
     } catch (IOException e)
     {
-      closeEverthing();
+      closeEverything();
       throw new RuntimeException(e);
     }
   }
@@ -91,9 +90,12 @@ public class AClient
             AMessageController.incommingMessage
                                              (receivingMessage);
             //System.out.println(receivingMessage);
+            if(socket.isConnected()){
+
+            }
           } catch (IOException e)
           {
-            closeEverthing();
+            closeEverything();
             throw new RuntimeException(e);
           }
         }
@@ -101,7 +103,7 @@ public class AClient
     }).start();
   }
   
-  public void closeEverthing()
+  public void closeEverything()
   {
     /*
     für den Fall das ein Catch ausgelöst wurde, soll diese
@@ -132,5 +134,4 @@ public class AClient
       e.printStackTrace();
     }
   }
-  
 }
