@@ -1,5 +1,6 @@
 package models;
 
+import models.interfaces.GUIConstants.NetworkConstants;
 import views.ErrorAlertType;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class Server extends Thread
 {
   public static ServerSocket serverSocket;
   static Socket socket;
+  private static boolean running = NetworkConstants.LOOP_START;
   public Server(int port)
   {
     try
@@ -22,6 +24,8 @@ public class Server extends Thread
     } catch (BindException e){
       ErrorAlertType.PORT_ALREADY_IN_USE.
               getAlert().showAndWait();
+
+      System.out.println("port nicht vorhanden");
     }
     catch (IOException e)
     {
@@ -36,7 +40,7 @@ public class Server extends Thread
     System.out.println("Server gestartet");
     try
     {
-      while (!serverSocket.isClosed())
+      while (running)
       {
         /*
         Solange der Serversocket nicht geschlossen ist,
@@ -72,7 +76,9 @@ public class Server extends Thread
     möglichen Fehlermledungen.
      */
     try
+
     {
+      running = NetworkConstants.LOOP_STOP;
       if(Server.socket != null){
         socket.close();
       }
@@ -86,6 +92,7 @@ public class Server extends Thread
       e.printStackTrace();
     }
   }
+
 }
 
 
