@@ -54,7 +54,8 @@ public class GUIController
   /**
    * Aktueller Stil der Grafischen Benutzeroberfläche
    */
-  private static StyleTypes currentStyleTypes = StyleTypes.BRIGHT;
+  private static StyleTypes currentStyleTypes
+    = GUIControllerConstants.INITIAL_STYLE;
   
   /**
    * Menüleiste der Szene
