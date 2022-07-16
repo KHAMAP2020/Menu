@@ -20,6 +20,8 @@ public class ClientHandler implements Runnable
   private BufferedWriter bufferedWriter;
   private final String clientUsername;
   private static boolean running = NetworkConstants.LOOP_START;
+
+  public static boolean userCount = false;
   
   public ClientHandler(Socket socket)
   {

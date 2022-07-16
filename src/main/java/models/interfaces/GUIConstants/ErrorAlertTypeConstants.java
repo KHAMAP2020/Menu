@@ -42,8 +42,6 @@ public interface ErrorAlertTypeConstants
 
   final String SERVER_CONNECT_FAILED_TITLE =
           "Server Error!";
-  final String CONNECTION_LOST =
-          "Verbindung zum Server wurde getrennt";
 
   final String SEND_MESSAGE_FAILED_TEXT =
           "Naricht konnte nicht gesendet werden";
@@ -82,4 +80,12 @@ public interface ErrorAlertTypeConstants
           "angegebene Host-Adresse ist Fehlerhaft";
   final String HOST_ADRESS_WRONG_TITLE =
           "Host-Adress Error";
+  final String CONNECTION_LOST_TEXT =
+          "Verbindung zum Server verloren";
+  final String CONNECTION_LOST_TITLE =
+          "Connection Error";
+  final String SERVER_CLOSING_TITLE =
+          "Server Warnung";
+  final String SERVER_CLOSING_TEXT =
+          "Server wird geschlossen";
 }

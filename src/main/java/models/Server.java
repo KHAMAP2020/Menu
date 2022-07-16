@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import static controller.GUIController.close;
+
 /**
 @author Philipp Gohlke 5157842
  */
@@ -74,8 +77,10 @@ public class Server extends Thread
         @Override
         public void run()
         {
-          ErrorAlertType.SERVER_CONNECT_FAILED.
-                  getAlert().showAndWait();
+          if(!close){
+            ErrorAlertType.SERVER_CONNECT_FAILED.
+                    getAlert().showAndWait();
+          }
         }
       });
 

@@ -81,7 +81,20 @@ public enum ErrorAlertType
   (
     ErrorAlertTypeConstants.HOST_ADRESS_WRONG_TITLE,
     ErrorAlertTypeConstants.HOST_ADRESS_WRONG_TEXT
+  ),
+
+  CONNECTION_LOST
+  (
+    ErrorAlertTypeConstants.CONNECTION_LOST_TITLE,
+    ErrorAlertTypeConstants.CONNECTION_LOST_TEXT
+  ),
+  SERVER_CLOSING
+  (
+    ErrorAlertTypeConstants.SERVER_CLOSING_TITLE,
+    ErrorAlertTypeConstants.SERVER_CLOSING_TEXT
   )
+
+
   ;
 
 //-------------------------------------------------------------

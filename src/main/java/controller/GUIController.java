@@ -11,10 +11,7 @@ import models.Client;
 import models.Server;
 import models.ClientHandler;
 import models.interfaces.GUIConstants.GUIControllerConstants;
-import views.CenterPaneType;
-import views.MenuSettings;
-import views.Menu;
-import views.StyleTypes;
+import views.*;
 
 /**
  * erstellt und kontrolliert die Grafische
@@ -31,7 +28,7 @@ public class GUIController
    * Layout der primären Ebene
    */
   private static final BorderPane borderPane = new BorderPane();
-  
+  public static boolean close = false;
   /**
    * Szene der primären Ebene
    */
@@ -116,10 +113,14 @@ public class GUIController
         @Override
         public void handle(WindowEvent windowEvent)
         {
+          ErrorAlertType.SERVER_CLOSING.
+                  getAlert().showAndWait();
           Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();
-          System.out.println("geschlossen");
+          close = true;
+
+          System.out.println("vallah");
         }
       }
     );

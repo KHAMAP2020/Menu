@@ -9,6 +9,8 @@ import views.ErrorAlertType;
 import java.io.*;
 import java.net.*;
 
+import static controller.GUIController.close;
+
 /**
 @author Philipp Gohlke 5157842
  */
@@ -17,12 +19,15 @@ public class Client
   public static Socket socket;
   private static BufferedReader bufferedReader;
   private static BufferedWriter bufferedWriter;
+  private static boolean closing = NetworkConstants.LOOP_STOP;
   private String userName = null;
+
   public static boolean startChat;
 
-  private static boolean running = true;
+  public static boolean running = NetworkConstants.LOOP_START;
+  private String receivingMessage;
 
-  
+
   public Client(String hostAdress, int port, String userName)
           throws IOException
   {
@@ -61,9 +66,15 @@ public class Client
               getAlert().showAndWait();
       startChat = false;
     }catch(ConnectException e){
-      ErrorAlertType.SERVER_CONNECT_FAILED.
-              getAlert().showAndWait();
+      if(ClientHandler.userCount && !close){
+        System.out.println("nein");
+        ErrorAlertType.CONNECTION_LOST.
+                getAlert().showAndWait();
+      }
       closeEverything();
+
+
+
       GUIController.setCenterPane(CenterPaneType.START);
 
       startChat = false;
@@ -113,7 +124,6 @@ public class Client
       @Override
       public void run()
       {
-        String receivingMessage;
         while (running)
         {
           try
@@ -122,8 +132,11 @@ public class Client
             wartet auf eingehende Narichten, solange der
             Socket eine Verbindung zum Server hat
              */
-            receivingMessage = bufferedReader.readLine();
-            if(receivingMessage!= null)
+            if(bufferedReader != null && closing){
+              receivingMessage = bufferedReader.readLine();
+            }
+
+            if(receivingMessage != null)
             {
               AMessageController.incomingMessage
                 (receivingMessage);
@@ -136,13 +149,18 @@ public class Client
               @Override
               public void run()
               {
-                ErrorAlertType.REICIVE_MESSAGE_FAILED.
-                        getAlert().showAndWait();
                 closeEverything();
+                System.out.println("naricht 143");
+                if(running && !closing){
+                  ErrorAlertType.REICIVE_MESSAGE_FAILED.
+                          getAlert().showAndWait();
+                }
+
+
+
+
               }
             });
-
-            //Wirft Fehler
 
           }
         }
@@ -178,12 +196,15 @@ public class Client
       if (bufferedReader != null)
       {
         bufferedReader.close();
+
       }
     
       if (bufferedWriter != null)
       {
         bufferedWriter.close();
       }
+
+      closing = true;
     } catch (IOException e)
     {
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
