@@ -75,6 +75,12 @@ public enum ErrorAlertType
           (
             ErrorAlertTypeConstants.CANNOT_FIND_SEVER_TITLE,
             ErrorAlertTypeConstants.CANNOT_FIND_SERVER_TEXT
+          ),
+
+  HOST_ADRESS_WRONG
+          (
+                  ErrorAlertTypeConstants.HOST_ADRESS_WRONG_TITLE,
+                  ErrorAlertTypeConstants.HOST_ADRESS_WRONG_TEXT
           )
   ;
 

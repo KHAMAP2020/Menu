@@ -54,7 +54,7 @@ public class Client
       bufferedWriter.flush();
       listenForMessage();
     }catch(UnknownHostException e){
-      ErrorAlertType.SERVER_REACH_FAILED.
+      ErrorAlertType.HOST_ADRESS_WRONG.
               getAlert().showAndWait();
     }catch(NoRouteToHostException e){
       ErrorAlertType.SERVER_REACH_FAILED.

@@ -78,4 +78,8 @@ public interface ErrorAlertTypeConstants
           "Server konnte nicht gefunden werden";
   final String CANNOT_FIND_SEVER_TITLE =
           "Connection Error!";
+  final String HOST_ADRESS_WRONG_TEXT =
+          "angegebene Host-Adresse ist Fehlerhaft";
+  final String HOST_ADRESS_WRONG_TITLE =
+          "Host-Adress Error";
 }
