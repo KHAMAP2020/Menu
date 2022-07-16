@@ -105,7 +105,7 @@ public enum ErrorAlertType
      */
 
     this.alert.setTitle(title);
-    this.alert.setContentText(contentText);
+    this.alert.setHeaderText(contentText);
   }
   
   /**
