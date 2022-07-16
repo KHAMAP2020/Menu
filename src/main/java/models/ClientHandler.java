@@ -109,6 +109,7 @@ public class ClientHandler implements Runnable
                 getAlert().showAndWait();
         closeEverything();
         throw new RuntimeException(e);
+
       }
     }
   }

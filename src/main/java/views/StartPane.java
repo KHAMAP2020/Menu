@@ -70,7 +70,8 @@ public class StartPane
   public static void createStartBox()
   {
     startBox.setAlignment(Pos.CENTER);
-    startBox.getChildren().addAll(welcomeLabel, joinButton, hostButton);
+    startBox.getChildren().addAll
+            (welcomeLabel, joinButton, hostButton);
     
     buttonEventSettings();
   }
@@ -132,12 +133,14 @@ public class StartPane
     
                 AMessageController.resetMessages();
                 if(Client.startChat){
-                  GUIController.setCenterPane(CenterPaneType.CHAT);
+                  GUIController.setCenterPane
+                          (CenterPaneType.CHAT);
                 }
 
             } catch (IOException e)
             {
-              ErrorAlertType.SERVER_REACH_FAILED.getAlert().showAndWait();
+              ErrorAlertType.SERVER_REACH_FAILED.
+                      getAlert().showAndWait();
             }
           }
         }

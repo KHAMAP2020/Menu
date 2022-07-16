@@ -132,8 +132,8 @@ public class Client
           {
             closeEverything();
             //Wirft Fehler
-            //ErrorAlertType.REICIVE_MESSAGE_FAILED.
-            //        getAlert().show();
+              ErrorAlertType.REICIVE_MESSAGE_FAILED.
+                   getAlert().show();
           }
         }
       }
