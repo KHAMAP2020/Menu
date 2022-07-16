@@ -118,7 +118,6 @@ public class GUIController
           Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();
-          
           System.out.println("geschlossen");
         }
       }

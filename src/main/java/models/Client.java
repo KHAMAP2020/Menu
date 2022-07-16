@@ -1,7 +1,9 @@
 package models;
 
 import controller.AMessageController;
+import controller.GUIController;
 import models.interfaces.GUIConstants.NetworkConstants;
+import views.CenterPaneType;
 import views.ErrorAlertType;
 
 import java.io.*;
@@ -61,6 +63,9 @@ public class Client
     }catch(ConnectException e){
       ErrorAlertType.SERVER_CONNECT_FAILED.
               getAlert().showAndWait();
+      closeEverything();
+      GUIController.setCenterPane(CenterPaneType.START);
+
       startChat = false;
     }catch(IOException e){
       startChat = false;

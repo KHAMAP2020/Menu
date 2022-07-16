@@ -68,8 +68,13 @@ public class Server extends Thread
       }
     } catch (IOException e)
     {
-      //ErrorAlertType.SERVER_CONNECT_FAILED.getAlert().show();
+      ErrorAlertType.SERVER_CONNECT_FAILED.getAlert().show();
       closeServerSocket();
+    }catch(NullPointerException e){
+      /*
+      Wird zum Beispiel ausgelöst, wenn ein 2. Server auf den
+      gleichen port versucht wird zu erstellen.
+       */
     }
   }
   

@@ -1,6 +1,8 @@
 package models;
 
+import controller.GUIController;
 import models.interfaces.GUIConstants.NetworkConstants;
+import views.CenterPaneType;
 import views.ErrorAlertType;
 
 import java.io.*;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
  */
 public class ClientHandler implements Runnable
 {
-  private static final ArrayList<ClientHandler> clientHandlers
+  private static ArrayList<ClientHandler> clientHandlers
                                             = new ArrayList<>();
   private Socket socket;
   private   BufferedReader bufferedReader;
