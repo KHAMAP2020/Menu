@@ -20,7 +20,8 @@ public class Client
   private static BufferedWriter bufferedWriter;
   private String userName = null;
 
-  private static boolean running = NetworkConstants.LOOP_START;
+  private static boolean running;
+
   
   public Client(String hostAdress, int port, String userName) throws IOException
   {
@@ -29,6 +30,7 @@ public class Client
       // Die Initialisierung des Sockets und der Streams
       try
       {
+        running = NetworkConstants.LOOP_START;
         socket = new Socket(hostAdress,port);
       }catch(NoRouteToHostException e){
         ErrorAlertType.SERVER_REACH_FAILED.
