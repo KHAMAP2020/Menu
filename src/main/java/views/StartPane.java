@@ -13,6 +13,7 @@ import models.*;
 
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.Optional;
 
 import models.interfaces.GUIConstants.StartPaneConstants;
@@ -137,10 +138,14 @@ public class StartPane
                           (CenterPaneType.CHAT);
                 }
 
-            } catch (IOException e)
+            } catch (NullPointerException e)
             {
+              System.out.println("fail");
               ErrorAlertType.SERVER_REACH_FAILED.
                       getAlert().showAndWait();
+            } catch (IOException e)
+            {
+              throw new RuntimeException(e);
             }
           }
         }

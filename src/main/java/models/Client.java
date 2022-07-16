@@ -7,10 +7,7 @@ import views.CenterPaneType;
 import views.ErrorAlertType;
 
 import java.io.*;
-import java.net.ConnectException;
-import java.net.NoRouteToHostException;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 
 /**
 @author Philipp Gohlke 5157842
@@ -56,6 +53,9 @@ public class Client
       bufferedWriter.newLine();
       bufferedWriter.flush();
       listenForMessage();
+    }catch(UnknownHostException e){
+      ErrorAlertType.SERVER_REACH_FAILED.
+              getAlert().showAndWait();
     }catch(NoRouteToHostException e){
       ErrorAlertType.SERVER_REACH_FAILED.
               getAlert().showAndWait();
@@ -65,10 +65,11 @@ public class Client
               getAlert().showAndWait();
       closeEverything();
       GUIController.setCenterPane(CenterPaneType.START);
-
+      e.printStackTrace();
       startChat = false;
     }catch(IOException e){
       startChat = false;
+      e.printStackTrace();
     }
   }
   
