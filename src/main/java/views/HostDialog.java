@@ -7,9 +7,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.HostData;
-import models.LoginData;
 
-import models.interfaces.GUIConstants.RegisterConstants;
+import models.interfaces.GUIConstants.DialogConstants;
 
 /**
  * Dialog, in dem der Anwender Daten zum aufbau eines Servers
@@ -53,19 +52,19 @@ public class HostDialog
    * Schriftzug neben dem Namenstextfeld
    */
   private static final Label nameLabel
-    = new Label(RegisterConstants.NAME_LABEL_STRING);
+    = new Label(DialogConstants.NAME_LABEL_STRING);
   
   /**
    * Schriftzug neben dem Portnummertextfeld
    */
   private static final Label portLabel
-    = new Label(RegisterConstants.PORT_LABEL_STRING);
+    = new Label(DialogConstants.PORT_LABEL_STRING);
   
   /**
    * Schriftzug neben dem Hostaddressentextfeld
    */
   private static final Label HostAddressLabel
-    = new Label(RegisterConstants.HOST_ADDRESS_LABEL_STRING);
+    = new Label(DialogConstants.HOST_ADDRESS_LABEL_STRING);
   
   //-----------------------------------------------------------
   //Schaltflächen
@@ -76,7 +75,7 @@ public class HostDialog
   private static final ButtonType buttonTypeContinue
     = new ButtonType
     (
-      RegisterConstants.CONTINUE_BUTTON_STRING,
+      DialogConstants.CONTINUE_BUTTON_STRING,
       ButtonBar.ButtonData.OK_DONE
     );
   
@@ -86,7 +85,7 @@ public class HostDialog
   private static final ButtonType buttonTypeCancel
     = new ButtonType
     (
-      RegisterConstants.CANCEL_BUTTON_STRING,
+      DialogConstants.CANCEL_BUTTON_STRING,
       ButtonBar.ButtonData.CANCEL_CLOSE
     );
   
@@ -118,13 +117,13 @@ public class HostDialog
      * Layouts des Dialogs
      */
     GridPane grid = new GridPane();
-    dialog.setTitle(RegisterConstants.CLIENT_DIALOG_TITLE);
+    dialog.setTitle(DialogConstants.HOST_DIALOG_TITLE);
     
     nameTextField.setPromptText
-      (RegisterConstants.NAME_PROMT_TEXT);
+      (DialogConstants.NAME_PROMT_TEXT);
     
     portTextField.setPromptText
-      (RegisterConstants.PORT_PROMT_TEXT);
+      (DialogConstants.PORT_PROMT_TEXT);
     
     
     grid.add(nameLabel, 1, 1);
@@ -174,9 +173,9 @@ public class HostDialog
         int portNumber = Integer.parseInt(portString);
         if
         (
-          portNumber > RegisterConstants.portMaxValue
+          portNumber > DialogConstants.portMaxValue
             ||
-            portNumber < RegisterConstants.portMinValue
+            portNumber < DialogConstants.portMinValue
         )
         {
           ErrorAlertType.PORT_RANGE.getAlert().showAndWait();
@@ -312,7 +311,7 @@ public class HostDialog
           {
             if
             (
-              !RegisterConstants.NUMBER_DEFINITION
+              !DialogConstants.NUMBER_DEFINITION
                 .contains(event.getCharacter())
             )
             {

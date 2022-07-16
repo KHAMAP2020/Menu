@@ -5,12 +5,14 @@ package models.interfaces.GUIConstants;
  *
  * @author A.Hoffmann 5137817
  */
-public interface RegisterConstants
+public interface DialogConstants
 {
   /**
    * Dialog Titel
    */
-  public final String CLIENT_DIALOG_TITLE = "Chat Beitreten";
+  public final String JOIN_DIALOG_TITLE = "Chat beitreten";
+  
+  public final String HOST_DIALOG_TITLE = "Chat hosten";
 
 //-------------------------------------------------------------
 //Butten-Konstanten

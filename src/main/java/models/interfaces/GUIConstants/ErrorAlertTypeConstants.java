@@ -20,8 +20,8 @@ public interface ErrorAlertTypeConstants
    */
   final String PORT_RANGE_TEXT
     = "Sie müssen einen Wert zwischen "
-    + RegisterConstants.portMinValue + " und "
-    + RegisterConstants.portMaxValue + " angeben.";
+    + DialogConstants.portMinValue + " und "
+    + DialogConstants.portMaxValue + " angeben.";
   
   /**
    * Titel von der Fehler Alarmierung "EMPTY_TEXTFIELD"
