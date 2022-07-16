@@ -1,6 +1,6 @@
 package models;
 
-import models.interfaces.GUIConstants.RegisterConstants;
+import models.interfaces.GUIConstants.DialogConstants;
 
 /**
  * Anmeldedaten die vom Host dialog zurückgegeben werden
@@ -27,7 +27,7 @@ public class HostData
    * Adresse des Hosts
    */
   public static String HostAddress
-    = RegisterConstants.HOST_ADRESS;
+    = DialogConstants.HOST_ADRESS;
 
 //-------------------------------------------------------------
 //Methoden
