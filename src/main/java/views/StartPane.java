@@ -10,10 +10,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import models.*;
-
-
 import java.io.IOException;
-import java.net.UnknownHostException;
+
 import java.util.Optional;
 
 import models.interfaces.GUIConstants.StartPaneConstants;

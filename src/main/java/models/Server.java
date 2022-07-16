@@ -1,5 +1,6 @@
 package models;
 
+import javafx.application.Platform;
 import models.interfaces.GUIConstants.NetworkConstants;
 import views.ErrorAlertType;
 
@@ -68,7 +69,16 @@ public class Server extends Thread
       }
     } catch (IOException e)
     {
-      ErrorAlertType.SERVER_CONNECT_FAILED.getAlert().show();
+      Platform.runLater(new Runnable()
+      {
+        @Override
+        public void run()
+        {
+          ErrorAlertType.SERVER_CONNECT_FAILED.
+                  getAlert().showAndWait();
+        }
+      });
+
       closeServerSocket();
     }catch(NullPointerException e){
       /*

@@ -2,10 +2,10 @@ package models;
 
 import controller.AMessageController;
 import controller.GUIController;
+import javafx.application.Platform;
 import models.interfaces.GUIConstants.NetworkConstants;
 import views.CenterPaneType;
 import views.ErrorAlertType;
-
 import java.io.*;
 import java.net.*;
 
@@ -65,11 +65,11 @@ public class Client
               getAlert().showAndWait();
       closeEverything();
       GUIController.setCenterPane(CenterPaneType.START);
-      e.printStackTrace();
+
       startChat = false;
     }catch(IOException e){
       startChat = false;
-      e.printStackTrace();
+
     }
   }
   
@@ -131,10 +131,19 @@ public class Client
           }
           catch (IOException e)
           {
-            closeEverything();
+            Platform.runLater(new Runnable()
+            {
+              @Override
+              public void run()
+              {
+                ErrorAlertType.REICIVE_MESSAGE_FAILED.
+                        getAlert().showAndWait();
+                closeEverything();
+              }
+            });
+
             //Wirft Fehler
-              ErrorAlertType.REICIVE_MESSAGE_FAILED.
-                   getAlert().show();
+
           }
         }
       }
