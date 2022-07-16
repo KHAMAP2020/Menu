@@ -15,22 +15,26 @@ public class Server extends Thread
 {
   public static ServerSocket serverSocket;
   static Socket socket;
-  private static boolean running = NetworkConstants.LOOP_START;
+  private static boolean running;
+  public static boolean startServer;
   
   private static ClientHandler clientHandler;
   public Server(int port)
   {
     try
     {
+      running  = NetworkConstants.LOOP_START;
       serverSocket = new ServerSocket(port);
+      startServer = true;
     } catch (BindException e){
       ErrorAlertType.PORT_ALREADY_IN_USE.
               getAlert().showAndWait();
-
+      startServer = false;
       System.out.println("port nicht vorhanden");
     }
     catch (IOException e)
     {
+      startServer = false;
       ErrorAlertType.HOSTING_FAILED.getAlert().showAndWait();
       e.printStackTrace();
     }
