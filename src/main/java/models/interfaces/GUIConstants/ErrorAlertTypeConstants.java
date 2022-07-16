@@ -27,7 +27,7 @@ public interface ErrorAlertTypeConstants
    * Titel von der Fehler Alarmierung "EMPTY_TEXTFIELD"
    */
   final String EMPTY_TEXT_FIELD_TITLE
-    = "Leeres TextFeld";
+    = "Leeres Text Feld";
   
   /**
    * Text von der Fehler Alarmierung "EMPTY_TEXTFIELD"

@@ -99,6 +99,7 @@ public class GUIController
   {
     borderPane.setTop(menuBar);
     setCenterPane(currentCenterPane);
+    setStyle(currentStyleTypes);
   }
   
   /**
