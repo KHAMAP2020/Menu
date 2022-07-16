@@ -9,15 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import models.Client;
-import models.HostData;
-import models.Server;
+import models.*;
 
 
 import java.io.IOException;
 import java.util.Optional;
 
-import models.LoginData;
 import models.interfaces.GUIConstants.StartPaneConstants;
 
 /**
@@ -53,6 +50,8 @@ public class StartPane
    */
   private static final Label welcomeLabel
   = new Label(StartPaneConstants.WELCOME_LABEL_STRING);
+
+
 
 //-------------------------------------------------------------
 //Methoden
@@ -132,8 +131,10 @@ public class StartPane
                 ClientController.setAClient(client);
     
                 AMessageController.resetMessages();
-    
-                GUIController.setCenterPane(CenterPaneType.CHAT);
+                if(Client.startChat){
+                  GUIController.setCenterPane(CenterPaneType.CHAT);
+                }
+
             } catch (IOException e)
             {
               ErrorAlertType.SERVER_REACH_FAILED.getAlert().showAndWait();
@@ -195,8 +196,10 @@ public class StartPane
                 (StartPaneConstants.START_CHAT_STRING);
   
               AMessageController.resetMessages();
-  
-              GUIController.setCenterPane(CenterPaneType.CHAT);
+              if(Client.startChat && Server.startServer){
+                GUIController.setCenterPane(CenterPaneType.CHAT);
+              }
+
             }
             catch (IOException e)
             {

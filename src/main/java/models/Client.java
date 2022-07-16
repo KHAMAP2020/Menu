@@ -19,26 +19,21 @@ public class Client
   private static BufferedReader bufferedReader;
   private static BufferedWriter bufferedWriter;
   private String userName = null;
+  public static boolean startChat;
 
-  private static boolean running = NetworkConstants.LOOP_START;
+  private static boolean running = true;
+
   
-  public Client(String hostAdress, int port, String userName) throws IOException
+  public Client(String hostAdress, int port, String userName)
+          throws IOException
   {
     try
     {
       // Die Initialisierung des Sockets und der Streams
-      try
-      {
-        socket = new Socket(hostAdress,port);
-      }catch(NoRouteToHostException e){
-        ErrorAlertType.SERVER_REACH_FAILED.
-                getAlert().showAndWait();
-      }catch(ConnectException e){
-        ErrorAlertType.SERVER_CONNECT_FAILED.
-                getAlert().showAndWait();
-      }
 
-
+      running = NetworkConstants.LOOP_START;
+      socket = new Socket(hostAdress,port);
+      startChat = true;
       OutputStreamWriter outputStreamWriter =
               new OutputStreamWriter(socket.getOutputStream());
       bufferedWriter
@@ -59,10 +54,16 @@ public class Client
       bufferedWriter.newLine();
       bufferedWriter.flush();
       listenForMessage();
-    } catch (IOException e)
-    {
-      closeEverything();
-      throw e;
+    }catch(NoRouteToHostException e){
+      ErrorAlertType.SERVER_REACH_FAILED.
+              getAlert().showAndWait();
+      startChat = false;
+    }catch(ConnectException e){
+      ErrorAlertType.SERVER_CONNECT_FAILED.
+              getAlert().showAndWait();
+      startChat = false;
+    }catch(IOException e){
+      startChat = false;
     }
   }
   

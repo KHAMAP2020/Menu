@@ -117,6 +117,7 @@ public class ClientHandler implements Runnable
     Wenn ein Client den Chat verlässt, werden alle informiert
     und der Client wird aus der ArrayList gelöscht
      */
+
     if(Server.serverSocket != null)
     {
       clientHandlers.remove(this);
@@ -145,9 +146,7 @@ public class ClientHandler implements Runnable
       {
         this.bufferedWriter.close();
       }
-      if(Server.serverSocket != null){
-        Server.serverSocket.close();
-      }
+
     } catch (IOException e)
     {
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
