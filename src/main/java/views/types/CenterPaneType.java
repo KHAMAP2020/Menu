@@ -27,12 +27,25 @@ public enum CenterPaneType
 //-------------------------------------------------------------
 //Datenfeld
   
+  /**
+   * Layout der Zentruminhalte
+   */
   private final VBox pane;
+  
+  /**
+   * Menüeinstellungen der Zentruminhalte
+   */
   private final MenuSettings menuSettings;
 
 //-------------------------------------------------------------
 //Methoden
   
+  /**
+   * Konstruktor der Aufzählungskonstanten
+   * @param pane das Layout der Aufzählungskonstanten
+   * @param menuSettings Menüeinstellungen der
+   *                     Aufzählungskonstanten
+   */
   CenterPaneType(VBox pane, MenuSettings menuSettings)
   {
     this.pane = pane;
