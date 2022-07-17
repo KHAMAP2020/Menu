@@ -6,6 +6,7 @@ import views.ErrorAlertType;
 
 import java.io.IOException;
 import java.net.BindException;
+import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -71,7 +72,7 @@ public class Server extends Thread
         Thread thread = new Thread(clientHandler);
         thread.start();
       }
-    } catch (IOException e)
+    } catch (ConnectException e)
     {
       Platform.runLater(new Runnable()
       {
@@ -91,6 +92,8 @@ public class Server extends Thread
       Wird zum Beispiel ausgelöst, wenn ein 2. Server auf den
       gleichen port versucht wird zu erstellen.
        */
+    }catch(IOException e){
+
     }
   }
   

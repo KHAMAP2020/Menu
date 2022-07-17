@@ -113,6 +113,7 @@ public class Client
       System.out.println("Fehler beim schicken");
       ErrorAlertType.SEND_MESSAGE_FAILED.
               getAlert().showAndWait();
+      e.printStackTrace();
       throw new RuntimeException(e);
     }
   }
