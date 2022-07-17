@@ -75,7 +75,7 @@ public class MessageController
     /*
     wird aufgerufen um den MessageController zu stoppen, indem
     die While Schleife beendet wird
-     */
+    */
     running = false;
   }
   public static void resetMessages()
