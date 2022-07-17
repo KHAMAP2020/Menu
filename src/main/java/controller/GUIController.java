@@ -113,7 +113,6 @@ public class GUIController
         @Override
         public void handle(WindowEvent windowEvent)
         {
-
           Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();

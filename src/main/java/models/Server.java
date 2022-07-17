@@ -22,7 +22,7 @@ public class Server extends Thread
   static Socket socket;
   private static boolean running;
   public static boolean startServer;
-  
+  public static boolean serverisNotNull;
   private static ClientHandler clientHandler;
   public Server(int port)
   {
@@ -30,6 +30,7 @@ public class Server extends Thread
     {
       running  = NetworkConstants.LOOP_START;
       serverSocket = new ServerSocket(port);
+
       startServer = true;
     } catch (BindException e){
       ErrorAlertType.PORT_ALREADY_IN_USE.
@@ -51,6 +52,9 @@ public class Server extends Thread
     {
       while (running)
       {
+        if(serverSocket == null){
+          Client.running = false;
+        }
         /*
         Solange der Serversocket nicht geschlossen ist,
         wird jeder eingehende Verbindungsversuch angenommen.
@@ -68,6 +72,7 @@ public class Server extends Thread
 
         Thread thread = new Thread(clientHandler);
         thread.start();
+
       }
     } catch (ConnectException e)
     {

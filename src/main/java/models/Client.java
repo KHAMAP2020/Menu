@@ -108,15 +108,7 @@ public class Client
         Dem BufferedWriter wird signalisiert das kein weiterer
         Input mehr kommt.
          */
-        bufferedWriter.flush();
-
-
-
-
-
-
-
-
+          bufferedWriter.flush();
         /*
         Wird bnötigt die Naricht abzuschicken. Sonst würde er
         warten bis der Writer voll ist.
@@ -125,7 +117,7 @@ public class Client
 
     } catch(SocketException e){
 
-        ErrorAlertType.CONNECTION_LOST.getAlert().showAndWait();
+      ErrorAlertType.CONNECTION_LOST.getAlert().showAndWait();
 
     }catch (IOException e)
     {
@@ -144,7 +136,7 @@ public class Client
       @Override
       public void run()
       {
-        while (running && bufferedReader != null)
+        while (running)
         {
           try
           {
@@ -152,12 +144,7 @@ public class Client
             wartet auf eingehende Narichten, solange der
             Socket eine Verbindung zum Server hat
              */
-
-                receivingMessage = bufferedReader.readLine();
-                System.out.println("client 155");
-
-
-
+              receivingMessage = bufferedReader.readLine();
 
             if(receivingMessage != null)
             {
@@ -179,13 +166,8 @@ public class Client
                   ErrorAlertType.REICIVE_MESSAGE_FAILED.
                           getAlert().showAndWait();
                 }
-
-
-
-
               }
             });
-
           }
         }
       }
@@ -228,12 +210,9 @@ public class Client
         bufferedWriter.close();
       }
 
-      closing = true;
     } catch (IOException e)
     {
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
-
   }
-
 }
