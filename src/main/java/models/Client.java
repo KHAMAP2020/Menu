@@ -4,6 +4,8 @@ import controller.AMessageController;
 import controller.GUIController;
 import javafx.application.Platform;
 import models.interfaces.GUIConstants.NetworkConstants;
+import views.types.CenterPaneType;
+import views.types.ErrorAlertType;
 
 import java.io.*;
 import java.net.*;

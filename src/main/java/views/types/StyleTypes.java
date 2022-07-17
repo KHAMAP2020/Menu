@@ -1,4 +1,4 @@
-package models;
+package views.types;
 
 import models.interfaces.GUIConstants.StyleTypesConstants;
 

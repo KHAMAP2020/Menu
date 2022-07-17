@@ -6,10 +6,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
-import models.ErrorAlertType;
 import models.LoginData;
 
 import models.interfaces.GUIConstants.DialogConstants;
+import views.types.ErrorAlertType;
 
 /**
  * Dialog in dem der Anwender Daten zum Beitreten eines Chats

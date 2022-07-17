@@ -9,6 +9,9 @@ import javafx.stage.WindowEvent;
 import models.*;
 import models.interfaces.GUIConstants.GUIControllerConstants;
 import views.*;
+import views.types.CenterPaneType;
+import views.types.MenuSettings;
+import views.types.StyleTypes;
 
 /**
  * erstellt und kontrolliert die Grafische

@@ -1,6 +1,7 @@
 package models;
 
 import models.interfaces.GUIConstants.NetworkConstants;
+import views.types.ErrorAlertType;
 
 import java.io.*;
 import java.net.Socket;

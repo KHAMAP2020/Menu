@@ -1,4 +1,4 @@
-package models;
+package views.types;
 
 import javafx.scene.layout.VBox;
 import views.ChatPane;
