@@ -72,12 +72,12 @@ public class Client
                 getAlert().showAndWait();
       }
       closeEverything();
-
-
-
       GUIController.setCenterPane(CenterPaneType.START);
 
       startChat = false;
+    }catch(BindException e){
+      ErrorAlertType.PORT_ALREADY_IN_USE.
+              getAlert().showAndWait();
     }catch(IOException e){
       startChat = false;
 

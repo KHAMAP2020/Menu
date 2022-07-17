@@ -55,9 +55,9 @@ public interface ErrorAlertTypeConstants
           "Host Error";
 
   final String PORT_ALREADY_IN_USE_TEXT =
-         "Port:" + LoginData.port + " ist bereits vergeben";
+         "Port ist bereits vergeben";
   final String PORT_ALREADY_IN_USE_TITLE =
-          "Port nicht erlaubt";
+          "Port Error";
   final String REICIVE_MESSAGE_FAILED_TITLE =
           "Message Error";
   final String REICIVE_MESSAGE_FAILED_TEXT =

@@ -37,6 +37,8 @@ public class StartPane
    */
   private static final Button joinButton
   = new Button(StartPaneConstants.JOIN_BUTTON_NAME);
+
+
   
   /**
    * Schaltfläche zum Erstellen eines neuen Chats

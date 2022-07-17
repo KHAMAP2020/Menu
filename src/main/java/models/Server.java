@@ -39,7 +39,8 @@ public class Server extends Thread
     catch (IOException e)
     {
       startServer = false;
-      ErrorAlertType.HOSTING_FAILED.getAlert().showAndWait();
+      ErrorAlertType.PORT_ALREADY_IN_USE.
+              getAlert().showAndWait();
       e.printStackTrace();
     }
   }
