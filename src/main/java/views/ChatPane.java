@@ -1,6 +1,6 @@
 package views;
 
-import controller.AMessageController;
+import controller.MessageController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -88,8 +88,8 @@ public class ChatPane
     sendBar.getChildren().addAll(textArea, sendButton);
     sendBar.setAlignment(Pos.CENTER_LEFT);
     
-    AMessageController.setMaxWidth(listView.widthProperty());
-    listView.setItems(AMessageController.getMessages());
+    MessageController.setMaxWidth(listView.widthProperty());
+    listView.setItems(MessageController.getMessages());
     
     vBox.getChildren().addAll(listView, sendBar);
     
@@ -113,7 +113,7 @@ public class ChatPane
           {
             String massageText = textArea.getText();
             
-            AMessageController.sendMessage(massageText);
+            MessageController.sendMessage(massageText);
 
             textArea.clear();
           }

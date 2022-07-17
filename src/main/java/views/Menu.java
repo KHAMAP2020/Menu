@@ -1,6 +1,6 @@
 package views;
 
-import controller.AMessageController;
+import controller.MessageController;
 import javafx.stage.Stage;
 import controller.GUIController;
 import javafx.event.ActionEvent;
@@ -188,7 +188,7 @@ public class Menu
         public void handle(ActionEvent event)
         {
           Client.closeEverything();
-          AMessageController.stopMessageController();
+          MessageController.stopMessageController();
           Server.closeEverything();
           GUIController.setCenterPane(CenterPaneType.START);
         }
