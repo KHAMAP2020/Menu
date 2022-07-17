@@ -12,4 +12,14 @@ public interface MessageConstants
    * sein soll
    */
   public final double MESSAGE_WIDTH_SCALE = 0.8;
+  
+  /**
+   * Status ob eine Nachricht eingehend ist
+   */
+  public final boolean MASSAGE_COMES_IN = true;
+  
+  /**
+   * Status ob eine Nachricht ausgehend
+   */
+  public final boolean MASSAGE_GOES_OUT = !MASSAGE_COMES_IN;
 }
