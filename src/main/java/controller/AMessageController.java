@@ -5,7 +5,7 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Message;
-import models.interfaces.GUIConstants.ChatConstants;
+import models.interfaces.GUIConstants.MessageConstants;
 
 /**
 @author Philipp Gohlke 5157842
@@ -36,7 +36,7 @@ public class AMessageController
     und auf der rechten Seite hinzugefügt
      */
     Message message = new Message(messageToSend,
-            ChatConstants.MASSAGE_GOES_OUT,maxWidth);
+            MessageConstants.MASSAGE_GOES_OUT,maxWidth);
     /*
     Platform.runLater(new Runnable()
     {
@@ -66,7 +66,7 @@ public class AMessageController
       public void run()
       {
         Message message = new Message(incomingMessage,
-                ChatConstants.MASSAGE_COMES_IN,maxWidth);
+                MessageConstants.MASSAGE_COMES_IN,maxWidth);
         messages.add(message);
         /*
         Hier werden eingehende Narichten an den Chat übergeben
