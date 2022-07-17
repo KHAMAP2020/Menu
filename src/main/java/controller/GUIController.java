@@ -115,7 +115,7 @@ public class GUIController
         {
           Client.closeEverything();
           AMessageController.stopMessageController();
-          Server.closeServerSocket();
+          Server.closeEverything();
 
 
 

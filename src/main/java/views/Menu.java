@@ -189,7 +189,7 @@ public class Menu
         {
           Client.closeEverything();
           AMessageController.stopMessageController();
-          Server.closeServerSocket();
+          Server.closeEverything();
           GUIController.setCenterPane(CenterPaneType.START);
         }
       }

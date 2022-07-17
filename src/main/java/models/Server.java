@@ -77,7 +77,7 @@ public class Server extends Thread
 
         System.out.println
                         ("ein neuer Client hat sich verbunden");
-  
+
         clientHandler = new ClientHandler(socket);
 
         Thread thread = new Thread(clientHandler);
@@ -99,7 +99,7 @@ public class Server extends Thread
         }
       });
 
-      closeServerSocket();
+      closeEverything();
     }catch(NullPointerException e){
       /*
       Wird zum Beispiel ausgelöst, wenn ein 2. Server auf den
@@ -110,11 +110,12 @@ public class Server extends Thread
     }
   }
   
-  public static void closeServerSocket()
+  public static void closeEverything()
   {
     /*
-    zur sicheren Schließung des Serversockets bei
-    möglichen Fehlermledungen.
+   Setzt den boolean running auf false, damit die While
+   Schleifen stoppen und schließt alle Objekte, sofern sie nicht
+   null sind
      */
     try
     {
@@ -133,6 +134,7 @@ public class Server extends Thread
     }
     catch (IOException e)
     {
+      //Ausgelöst wenn das Schließen fehlschlägt
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }
