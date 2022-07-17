@@ -115,7 +115,7 @@ public class Message
    * Gibt zurück, ob die Nachricht eingehen oder Ausgehen ist
    * @return ob die Nachricht eingehen oder Ausgehen ist
    */
-  public Boolean getReceivingMessage()
+  public Boolean getIsReceivingMessage()
   {
     return this.receivingMessage;
   }

@@ -45,7 +45,7 @@ public class MessageListCell extends ListCell<Message>
       //wenn die Nachricht eingehend ist soll sie
       //links ausgerichtet werden. Ansonsten wird sie
       //rechts ausgerichtet
-      if (message.getReceivingMessage())
+      if (message.getIsReceivingMessage())
       {
         message.getHBox().setAlignment(Pos.CENTER_LEFT);
       }
