@@ -55,7 +55,7 @@ public class AMessageController
     
        */
     messages.add(message);
-          ClientController.getAClient().sendMessage(messageToSend);
+          ClientController.getClient().sendMessage(messageToSend);
   }
   
   public static void incomingMessage(String incomingMessage)

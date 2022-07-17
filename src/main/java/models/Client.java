@@ -3,7 +3,7 @@ package models;
 import controller.AMessageController;
 import controller.GUIController;
 import javafx.application.Platform;
-import models.interfaces.GUIConstants.NetworkConstants;
+import models.interfaces.GeneralConstants;
 import views.types.CenterPaneType;
 import views.types.ErrorAlertType;
 
@@ -29,12 +29,12 @@ public class Client
   public static boolean startChat;
   /*
   Der boolean running ist notwendig um der While Schleife zu
-  signalisieren ob sie weiterlaufen oder abbrechen soll.
+  signalisieren, ob sie weiterlaufen oder abbrechen soll.
    */
-  public static boolean running = NetworkConstants.LOOP_START;
+  public static boolean running = GeneralConstants.LOOP_START;
   /*
   An dieser Variable werden die Narichten übergeben, welche
-  durch ein Readline() eingelesen werden.
+  durch ein readline() eingelesen werden.
    */
   private String receivingMessage;
 
@@ -50,10 +50,10 @@ public class Client
        starten können.
        */
 
-      running = NetworkConstants.LOOP_START;
+      running = GeneralConstants.LOOP_START;
       /*
       Dem Socket werden Hostadresse und port übergeben
-      und dementsprechend eine Verbindung aufgebaut,sofern
+      und dementsprechend eine Verbindung aufgebaut, sofern
       möglich.
        */
       socket = new Socket(hostAdress,port);
@@ -89,7 +89,7 @@ public class Client
       startChat = false;
     }catch(ConnectException e){
       /*
-      Ausgelöst wenn Keine besteht und der Chat
+      Ausgelöst, wenn Keine besteht und der Chat
       noch nicht gestartet wurde um zwischen "Verbindung
       verloren" und "Verbindung fehlgeschlagen, unterschieden
       werden kann
@@ -106,7 +106,6 @@ public class Client
       das die Verbindung verloren gegangen ist.
       */
         if(ClientHandler.userCount && !close){
-          System.out.println("nein");
           ErrorAlertType.CONNECTION_LOST.
                   getAlert().showAndWait();
         }
@@ -125,7 +124,7 @@ public class Client
     try
     {
       if(running){
-        System.out.println("senden");
+
          /*
       Führt das senden von Narichten, vom Client aus, aus
        */
@@ -193,7 +192,10 @@ public class Client
               public void run()
               {
                 closeEverything();
-
+                /*
+                ausgelöst durch einen Fehler im
+                BufferedReader
+                 */
                 if(running){
                   ErrorAlertType.REICIVE_MESSAGE_FAILED.
                           getAlert().showAndWait();
@@ -220,7 +222,7 @@ public class Client
       Dadurch werden die Threads terminiert, sobald die
       run()-Methode durchgelaufen ist.
        */
-      running = NetworkConstants.LOOP_STOP;
+      running = GeneralConstants.LOOP_STOP;
 
       /*
       Solange, das jeweilige Objekt nicht null ist, wird es
@@ -244,6 +246,7 @@ public class Client
 
     } catch (IOException e)
     {
+      //Ausgelöst beim schließen eines Objektes
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }

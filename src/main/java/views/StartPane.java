@@ -132,7 +132,7 @@ public class StartPane
                   loginData.getPort(),
                   loginData.getName()
                 );
-                ClientController.setAClient(client);
+                ClientController.setClient(client);
     
                 AMessageController.resetMessages();
                 if(Client.startChat){
@@ -200,7 +200,7 @@ public class StartPane
                 hostData.getName()
               );
               
-              ClientController.setAClient(client);
+              ClientController.setClient(client);
   
               System.out.println
                 (StartPaneConstants.START_CHAT_STRING);
