@@ -2,14 +2,11 @@ package controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import models.Client;
-import models.Server;
-import models.ClientHandler;
+import models.*;
 import models.interfaces.GUIConstants.GUIControllerConstants;
 import views.*;
 

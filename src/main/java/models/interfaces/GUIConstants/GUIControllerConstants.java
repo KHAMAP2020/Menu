@@ -1,7 +1,7 @@
 package models.interfaces.GUIConstants;
 
-import views.CenterPaneType;
-import views.StyleTypes;
+import models.CenterPaneType;
+import models.StyleTypes;
 
 /**
  * Fenster-, Szenen- und Layout-Konstanten

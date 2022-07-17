@@ -60,7 +60,7 @@ public class StartPane
   /**
    * Konstruktor des Startlayouts
    */
-  StartPane()
+  public StartPane()
   {
     createStartBox();
   }

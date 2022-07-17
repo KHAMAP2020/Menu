@@ -1,4 +1,4 @@
-package views;
+package models;
 
 import models.interfaces.GUIConstants.MenuConstants;
 
