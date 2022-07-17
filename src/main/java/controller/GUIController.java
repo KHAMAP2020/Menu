@@ -114,8 +114,8 @@ public class GUIController
         public void handle(WindowEvent windowEvent)
         {
           Client.closeEverything();
-          AMessageController.stopMessageController();
-          Server.closeServerSocket();
+          MessageController.stopMessageController();
+          Server.closeEverything();
 
 
 

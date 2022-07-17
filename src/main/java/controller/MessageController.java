@@ -10,52 +10,42 @@ import models.interfaces.GUIConstants.MessageConstants;
 /**
 @author Philipp Gohlke 5157842
  */
-public class AMessageController
+public class MessageController
 {
-  /**
-   * NachrichtenListe
+  /*
+   * In dieser ObservableList werden die Narichten gespeichert
+   * welche im Chat zu sehen sind. Dadurch das es eine
+   * ObservableList ist, können Listener diese List
+   * beobachten bzw. einlesen
    */
   private static ObservableList<Message> messages
     = FXCollections.observableArrayList();
-  
+
+  //Definiert die Breite der ListView
   private static ReadOnlyDoubleProperty maxWidth = null;
   private static boolean running = true;
   public static void setMaxWidth(ReadOnlyDoubleProperty width)
-  {
+  {//setter-Methode
     maxWidth = width;
   }
   public static ObservableList<Message> getMessages()
-  {
+  {//getter-Methode
     return messages;
   }
 
   public static void sendMessage(String messageToSend)
   {
     /*
-    Hier werden ausgehende Narichten an den Chat übergeben
-    und auf der rechten Seite hinzugefügt
+    hier werden Narichten im ChatFenster bzw. in der List
+        einsortiert und ankommende Narichten werden rechts
+        angezeigt.
      */
     Message message = new Message(messageToSend,
             MessageConstants.MASSAGE_GOES_OUT,maxWidth);
-    /*
-    Platform.runLater(new Runnable()
-    {
-      
-      @Override
-      public void run()
-      {
-        //In einer While schleife würde er unendlich lange versuchen was zu schocken
-        while(running)
-        {
-          messages.add(message);
-          ClientController.getAClient().sendMessage(messageToSend);
-        }
-      }
-    });
-    
-       */
+
     messages.add(message);
-          ClientController.getClient().sendMessage(messageToSend);
+          ClientController.getClient().sendMessage
+                  (messageToSend);
   }
   
   public static void incomingMessage(String incomingMessage)
@@ -65,6 +55,11 @@ public class AMessageController
       @Override
       public void run()
       {
+        /*
+        hier werden Narichten im ChatFenster bzw. in der List
+        einsortiert und ankommende Narichten werden links
+        angezeigt.
+         */
         Message message = new Message(incomingMessage,
                 MessageConstants.MASSAGE_COMES_IN,maxWidth);
         messages.add(message);
@@ -77,6 +72,10 @@ public class AMessageController
 
   }
   public static void stopMessageController(){
+    /*
+    wird aufgerufen um den MessageController zu stoppen, indem
+    die While Schleife beendet wird
+     */
     running = false;
   }
   public static void resetMessages()

@@ -1,7 +1,7 @@
 package views;
 
 
-import controller.AMessageController;
+import controller.MessageController;
 import controller.ClientController;
 import controller.GUIController;
 import javafx.scene.control.*;
@@ -134,7 +134,7 @@ public class StartPane
                 );
                 ClientController.setClient(client);
     
-                AMessageController.resetMessages();
+                MessageController.resetMessages();
                 if(Client.startChat){
                   GUIController.setCenterPane
                           (CenterPaneType.CHAT);
@@ -205,7 +205,7 @@ public class StartPane
               System.out.println
                 (StartPaneConstants.START_CHAT_STRING);
   
-              AMessageController.resetMessages();
+              MessageController.resetMessages();
               if(Client.startChat && Server.startServer){
                 GUIController.setCenterPane(CenterPaneType.CHAT);
               }

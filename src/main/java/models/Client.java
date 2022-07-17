@@ -1,6 +1,6 @@
 package models;
 
-import controller.AMessageController;
+import controller.MessageController;
 import controller.GUIController;
 import javafx.application.Platform;
 import models.interfaces.GeneralConstants;
@@ -179,7 +179,7 @@ public class Client
 
             if(receivingMessage != null)
             {
-              AMessageController.incomingMessage
+              MessageController.incomingMessage
                 (receivingMessage);
 
             }
