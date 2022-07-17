@@ -193,7 +193,10 @@ public class Client
               public void run()
               {
                 closeEverything();
-
+                /*
+                ausgelöst durch einen Fehler im
+                BufferedReader
+                 */
                 if(running){
                   ErrorAlertType.REICIVE_MESSAGE_FAILED.
                           getAlert().showAndWait();
@@ -244,6 +247,7 @@ public class Client
 
     } catch (IOException e)
     {
+      //Ausgelöst beim schließen eines Objektes
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }
