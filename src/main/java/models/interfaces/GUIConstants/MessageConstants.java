@@ -16,10 +16,10 @@ public interface MessageConstants
   /**
    * Status ob eine Nachricht eingehend ist
    */
-  public final boolean MASSAGE_COMES_IN = true;
+  public final boolean MESSAGE_COMES_IN = true;
   
   /**
    * Status ob eine Nachricht ausgehend
    */
-  public final boolean MASSAGE_GOES_OUT = !MASSAGE_COMES_IN;
+  public final boolean MESSAGE_GOES_OUT = !MESSAGE_COMES_IN;
 }
