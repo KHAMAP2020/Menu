@@ -113,7 +113,7 @@ public class GUIController
         @Override
         public void handle(WindowEvent windowEvent)
         {
-          if(Client.startChat == true){
+          if(Client.startChat == true ){
             ErrorAlertType.SERVER_CLOSING.
                     getAlert().showAndWait();
           }

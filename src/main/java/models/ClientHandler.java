@@ -76,9 +76,10 @@ public class ClientHandler implements Runnable
          
        } catch (IOException e)
        {
+         closeEverything();
          ErrorAlertType.SEND_MESSAGE_FAILED.
                  getAlert().showAndWait();
-         closeEverything();
+
        }
        catch (NullPointerException e)
        {
@@ -103,11 +104,13 @@ public class ClientHandler implements Runnable
           clientHandler.bufferedWriter.write(messageToSend);
           clientHandler.bufferedWriter.newLine();
           clientHandler.bufferedWriter.flush();
-          System.out.println(clientHandler.clientUsername +" bekommt von "+ messageToSend);
+          System.out.println(clientHandler.clientUsername +
+                  " bekommt von "+ messageToSend);
         }
       } catch (IOException e)
       {
-        ErrorAlertType.REICIVE_MESSAGE_FAILED.
+        System.out.println("clienthandler 111");
+        ErrorAlertType.SEND_MESSAGE_FAILED.
                 getAlert().showAndWait();
         closeEverything();
         throw new RuntimeException(e);
@@ -136,6 +139,8 @@ public class ClientHandler implements Runnable
     removeClientHandler();
     try
     {
+      String firstName;
+
       running = false;
       if (this.socket != null)
       {
@@ -154,6 +159,7 @@ public class ClientHandler implements Runnable
 
     } catch (IOException e)
     {
+      e.printStackTrace();
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }

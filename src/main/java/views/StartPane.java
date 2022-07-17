@@ -143,9 +143,9 @@ public class StartPane
               System.out.println("fail");
               ErrorAlertType.SERVER_REACH_FAILED.
                       getAlert().showAndWait();
-            } catch (IOException e)
+            } catch (IOException ignored)
             {
-              throw new RuntimeException(e);
+
             }
           }
         }

@@ -8,6 +8,7 @@ import views.CenterPaneType;
 import views.ErrorAlertType;
 import java.io.*;
 import java.net.*;
+import java.util.TimerTask;
 
 import static controller.GUIController.close;
 
@@ -22,6 +23,7 @@ public class Client
   private static boolean closing = NetworkConstants.LOOP_STOP;
   private String userName = null;
 
+  private static boolean alreadyCaught = false;
   public static boolean startChat;
 
   public static boolean running = NetworkConstants.LOOP_START;
@@ -66,16 +68,21 @@ public class Client
               getAlert().showAndWait();
       startChat = false;
     }catch(ConnectException e){
-      if(ClientHandler.userCount && !close){
-        System.out.println("nein");
-        ErrorAlertType.CONNECTION_LOST.
+      System.out.println("client 69");
+      if(!close && !Client.startChat)
+      {
+        ErrorAlertType.SERVER_REACH_FAILED.
                 getAlert().showAndWait();
       }
+        if(ClientHandler.userCount && !close){
+          System.out.println("nein");
+          ErrorAlertType.CONNECTION_LOST.
+                  getAlert().showAndWait();
+        }
       closeEverything();
       GUIController.setCenterPane(CenterPaneType.START);
-
       startChat = false;
-    }catch(BindException e){
+      } catch(BindException e){
       ErrorAlertType.PORT_ALREADY_IN_USE.
               getAlert().showAndWait();
     }catch(IOException e){
@@ -102,15 +109,25 @@ public class Client
         Input mehr kommt.
          */
         bufferedWriter.flush();
+
+
+
+
+
+
         /*
         Wird bnötigt die Naricht abzuschicken. Sonst würde er
         warten bis der Writer voll ist.
          */
       }
 
-    } catch (IOException e)
+    } catch(SocketException e){
+      if(!alreadyCaught){
+        ErrorAlertType.CONNECTION_LOST.getAlert().showAndWait();
+      }
+    }catch (IOException e)
     {
-      System.out.println("Fehler beim schicken");
+
       ErrorAlertType.SEND_MESSAGE_FAILED.
               getAlert().showAndWait();
       e.printStackTrace();
@@ -133,14 +150,16 @@ public class Client
             wartet auf eingehende Narichten, solange der
             Socket eine Verbindung zum Server hat
              */
-            if(bufferedReader != null && closing){
+            if(bufferedReader != null){
               receivingMessage = bufferedReader.readLine();
+              System.out.println("client 155");
             }
 
             if(receivingMessage != null)
             {
               AMessageController.incomingMessage
                 (receivingMessage);
+              System.out.println("client 162");
             }
           }
           catch (IOException e)
@@ -210,5 +229,7 @@ public class Client
     {
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
+
   }
+
 }

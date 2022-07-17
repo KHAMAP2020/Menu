@@ -39,10 +39,7 @@ public class Server extends Thread
     }
     catch (IOException e)
     {
-      startServer = false;
-      ErrorAlertType.PORT_ALREADY_IN_USE.
-              getAlert().showAndWait();
-      e.printStackTrace();
+
     }
   }
   
