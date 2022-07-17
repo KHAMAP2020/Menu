@@ -1,8 +1,7 @@
 package models;
 
-import models.interfaces.GUIConstants.NetworkConstants;
+import models.interfaces.GeneralConstants;
 import views.types.ErrorAlertType;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -11,14 +10,25 @@ import java.util.ArrayList;
  */
 public class ClientHandler implements Runnable
 {
-  private static ArrayList<ClientHandler> clientHandlers
+  /*
+  Die ArrayList clientHandlers beinhaltet jeden Client
+  der aktuell erstellt wurde
+   */
+  private static final ArrayList<ClientHandler> clientHandlers
                                             = new ArrayList<>();
   private Socket socket;
-  private   BufferedReader bufferedReader;
-  private BufferedWriter bufferedWriter;
+  private final BufferedReader bufferedReader;
+  private final BufferedWriter bufferedWriter;
   private final String clientUsername;
-  private static boolean running = NetworkConstants.LOOP_START;
+  /*
+ Der boolean running ist notwendig um der While Schleife zu
+ signalisieren, ob sie weiterlaufen oder abbrechen soll.
+  */
+  private static boolean running = GeneralConstants.LOOP_START;
 
+  /*
+  Sollte nur ein
+   */
   public static boolean userCount = false;
   
   public ClientHandler(Socket socket)
@@ -28,6 +38,12 @@ public class ClientHandler implements Runnable
      */
     try
     {
+      /*
+      überprüft ob es sich um den Host handelt
+       */
+      if(clientHandlers.size() > 1){
+        userCount = true;
+      }
       ClientHandler.this.socket = socket;
 
       OutputStreamWriter outputStreamWriter =
@@ -41,7 +57,11 @@ public class ClientHandler implements Runnable
       
       bufferedReader
         = new BufferedReader(inputStreamReader);
-      
+
+      /*
+      Name des beitretenden Clients wird an alle anderen
+      Clients geschickt
+       */
       this.clientUsername = bufferedReader.readLine();
       clientHandlers.add(this);
       broadcastMessage(clientUsername + " " +
@@ -49,6 +69,7 @@ public class ClientHandler implements Runnable
     }
     catch (IOException e)
     {
+      //Ausgelöst, wenn die Initialisierung fehlschlägt
       ErrorAlertType.INITIALIZATION_FAILED.
               getAlert().showAndWait();
       closeEverything();
@@ -90,7 +111,9 @@ public class ClientHandler implements Runnable
   {
     /*
     Hier werden Narichten an alle Chatteilnehmer gesendet,
-    außer an den, der die Naricht verschickt hat.
+    außer an den, der die Naricht verschickt hat. Dafür
+    wird extra in einer For-Schleife jeder Client
+    durchgegangen.
      */
     for (ClientHandler clientHandler:clientHandlers)
     {
@@ -107,7 +130,11 @@ public class ClientHandler implements Runnable
         }
       } catch (IOException e)
       {
-        System.out.println("clienthandler 111");
+        /*
+        Ausgelöst wenn der Bufferedwriter einen Fehler
+        auslöst
+         */
+
         ErrorAlertType.SEND_MESSAGE_FAILED.
                 getAlert().showAndWait();
         closeEverything();
@@ -134,10 +161,15 @@ public class ClientHandler implements Runnable
   }
   public void closeEverything()
   {
+    /*
+    Die removeClientHandler Methode wird ausgelöst und
+    alle Objekte werden geschlossen, sofern Sie nicht null sind
+    um NullPointerExceptions zu vermeiden
+     */
     removeClientHandler();
     try
     {
-      String firstName;
+
 
       running = false;
       if (this.socket != null)
@@ -157,7 +189,7 @@ public class ClientHandler implements Runnable
 
     } catch (IOException e)
     {
-      e.printStackTrace();
+      //Ausgelöst, wenn das schließen fehlschlägt
       ErrorAlertType.CLOSING_FAILED.getAlert().showAndWait();
     }
   }
