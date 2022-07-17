@@ -62,11 +62,7 @@ public enum ErrorAlertType
     ErrorAlertTypeConstants.INITIALIZATION_FAILED_TITLE,
     ErrorAlertTypeConstants.INITIALIZATION_FAILED_TEXT
   ),
-  HOSTING_FAILED
-  (
-    ErrorAlertTypeConstants.HOST_SERVER_FAILED_TITLE,
-    ErrorAlertTypeConstants.HOST_SERVER_FAILED_TEXT
-  ),
+
   SERVER_CONNECT_FAILED
   (
     ErrorAlertTypeConstants.SERVER_CONNECT_FAILED_TITLE,
@@ -89,11 +85,7 @@ public enum ErrorAlertType
     ErrorAlertTypeConstants.CONNECTION_LOST_TITLE,
     ErrorAlertTypeConstants.CONNECTION_LOST_TEXT
   ),
-  SERVER_CLOSING
-  (
-    ErrorAlertTypeConstants.SERVER_CLOSING_TITLE,
-    ErrorAlertTypeConstants.SERVER_CLOSING_TEXT
-  )
+
 
 
   ;

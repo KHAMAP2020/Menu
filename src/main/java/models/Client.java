@@ -20,13 +20,22 @@ public class Client
   public static Socket socket;
   private static BufferedReader bufferedReader;
   private static BufferedWriter bufferedWriter;
-  private static boolean closing = NetworkConstants.LOOP_STOP;
   private String userName = null;
-
-  private static boolean alreadyCaught = false;
+  /*
+  startChat wurde erzeugt um zu verhindern, das mögliche
+  Fehler geschehen, die aber erst passieren dürfen, sofern der
+  Chat bereits aktiv ist.
+   */
   public static boolean startChat;
-
+  /*
+  Der boolean running ist notwendig um der While Schleife zu
+  signalisieren ob sie weiterlaufen oder abbrechen soll.
+   */
   public static boolean running = NetworkConstants.LOOP_START;
+  /*
+  An dieser Variable werden die Narichten übergeben, welche
+  durch ein Readline() eingelesen werden.
+   */
   private String receivingMessage;
 
 
@@ -35,9 +44,18 @@ public class Client
   {
     try
     {
-      // Die Initialisierung des Sockets und der Streams
+      /*
+       Die Initialisierung des Sockets und der Streams
+       running wird auf true gesetzt, damit die Schleifen
+       starten können.
+       */
 
       running = NetworkConstants.LOOP_START;
+      /*
+      Dem Socket werden Hostadresse und port übergeben
+      und dementsprechend eine Verbindung aufgebaut,sofern
+      möglich.
+       */
       socket = new Socket(hostAdress,port);
       startChat = true;
       OutputStreamWriter outputStreamWriter =
@@ -61,19 +79,32 @@ public class Client
       bufferedWriter.flush();
       listenForMessage();
     }catch(UnknownHostException e){
+      //Ausgelöst durch fehlerhafte Host Adresse
       ErrorAlertType.HOST_ADRESS_WRONG.
               getAlert().showAndWait();
     }catch(NoRouteToHostException e){
+      //Ausgelöst wenn der Server nicht gefunden wird
       ErrorAlertType.SERVER_REACH_FAILED.
               getAlert().showAndWait();
       startChat = false;
     }catch(ConnectException e){
-      System.out.println("client 69");
+      /*
+      Ausgelöst wenn Keine besteht und der Chat
+      noch nicht gestartet wurde um zwischen "Verbindung
+      verloren" und "Verbindung fehlgeschlagen, unterschieden
+      werden kann
+       */
       if(!close && !Client.startChat)
       {
         ErrorAlertType.SERVER_REACH_FAILED.
                 getAlert().showAndWait();
       }
+      /*
+      Ausgelöst wenn es nicht der Host ist, da der Host
+      mit dem Schließen des Servers automatisch sein Chatfenster
+      schließt und damit nicht darüber informiert werden muss,
+      das die Verbindung verloren gegangen ist.
+      */
         if(ClientHandler.userCount && !close){
           System.out.println("nein");
           ErrorAlertType.CONNECTION_LOST.
@@ -82,10 +113,8 @@ public class Client
       closeEverything();
       GUIController.setCenterPane(CenterPaneType.START);
       startChat = false;
-      } catch(BindException e){
-      ErrorAlertType.PORT_ALREADY_IN_USE.
-              getAlert().showAndWait();
-    }catch(IOException e){
+      }
+    catch(IOException e){
       startChat = false;
 
     }
@@ -116,16 +145,20 @@ public class Client
       }
 
     } catch(SocketException e){
-
+      //Ausgelöst durch einen Verbindungsverlust
       ErrorAlertType.CONNECTION_LOST.getAlert().showAndWait();
 
     }catch (IOException e)
     {
+      /*
+      Ausgelöst wenn der Bufferedwriter keine Verbindung hat
+      oder Methoden nicht einwandfrei laufen
+      */
 
       ErrorAlertType.SEND_MESSAGE_FAILED.
               getAlert().showAndWait();
-      e.printStackTrace();
-      throw new RuntimeException(e);
+
+
     }
   }
   
@@ -141,8 +174,7 @@ public class Client
           try
           {
             /*
-            wartet auf eingehende Narichten, solange der
-            Socket eine Verbindung zum Server hat
+            wartet auf eingehende Narichten
              */
               receivingMessage = bufferedReader.readLine();
 
@@ -150,7 +182,7 @@ public class Client
             {
               AMessageController.incomingMessage
                 (receivingMessage);
-              System.out.println("client 162");
+
             }
           }
           catch (IOException e)
@@ -161,7 +193,7 @@ public class Client
               public void run()
               {
                 closeEverything();
-                System.out.println("naricht 143");
+
                 if(running){
                   ErrorAlertType.REICIVE_MESSAGE_FAILED.
                           getAlert().showAndWait();

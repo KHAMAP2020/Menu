@@ -84,8 +84,5 @@ public interface ErrorAlertTypeConstants
           "Verbindung zum Server verloren";
   final String CONNECTION_LOST_TITLE =
           "Connection Error";
-  final String SERVER_CLOSING_TITLE =
-          "Server Warnung";
-  final String SERVER_CLOSING_TEXT =
-          "Server wird geschlossen";
+
 }
