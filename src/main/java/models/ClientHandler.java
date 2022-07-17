@@ -87,6 +87,10 @@ public class ClientHandler implements Runnable
         Solange der Socket eine Verbindung zum Server hat,
         werden ankommende Narichten gelesen und
         der BroadcastMessage-Methode übergeben.
+        Muss in einem Thread ausgeführt werden, da readline()
+        eine blockierende Methode ist, also erst in die nächste
+        Zeile geht, sobald readline ausgeführt wurde. Und das
+        würde das komplette Programm blockieren
          */
        try
        {
