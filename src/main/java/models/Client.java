@@ -144,7 +144,7 @@ public class Client
       @Override
       public void run()
       {
-        while (running)
+        while (running && bufferedReader != null)
         {
           try
           {
@@ -152,10 +152,12 @@ public class Client
             wartet auf eingehende Narichten, solange der
             Socket eine Verbindung zum Server hat
              */
-            if(bufferedReader != null){
-              receivingMessage = bufferedReader.readLine();
-              System.out.println("client 155");
-            }
+
+                receivingMessage = bufferedReader.readLine();
+                System.out.println("client 155");
+
+
+
 
             if(receivingMessage != null)
             {
@@ -173,7 +175,7 @@ public class Client
               {
                 closeEverything();
                 System.out.println("naricht 143");
-                if(running && !closing){
+                if(running){
                   ErrorAlertType.REICIVE_MESSAGE_FAILED.
                           getAlert().showAndWait();
                 }

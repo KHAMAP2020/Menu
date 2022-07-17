@@ -36,8 +36,9 @@ public enum ErrorAlertType
   ),
   PORT_ALREADY_IN_USE
   (
-    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TEXT,
-    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TITLE
+    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TITLE,
+    ErrorAlertTypeConstants.PORT_ALREADY_IN_USE_TEXT
+
   ),
   SEND_MESSAGE_FAILED
   (
