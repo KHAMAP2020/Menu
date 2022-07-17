@@ -9,6 +9,7 @@ import javafx.util.Callback;
 import models.LoginData;
 
 import models.interfaces.GUIConstants.DialogConstants;
+import models.interfaces.GeneralConstants;
 import views.types.ErrorAlertType;
 
 /**
@@ -197,9 +198,9 @@ public class JoinDialog
         int portNumber = Integer.parseInt(portString);
         if
         (
-          portNumber > DialogConstants.portMaxValue
+          portNumber > GeneralConstants.portMaxValue
             ||
-            portNumber < DialogConstants.portMinValue
+            portNumber < GeneralConstants.portMinValue
         )
         {
           ErrorAlertType.PORT_RANGE.getAlert().showAndWait();

@@ -1,6 +1,7 @@
 package models.interfaces.GUIConstants;
 
 import models.LoginData;
+import models.interfaces.GeneralConstants;
 
 /**
  * Konstanten für die Fehler-Alarmierungsaufzählung
@@ -20,8 +21,8 @@ public interface ErrorAlertTypeConstants
    */
   final String PORT_RANGE_TEXT
     = "Sie müssen einen Wert zwischen "
-    + DialogConstants.portMinValue + " und "
-    + DialogConstants.portMaxValue + " angeben.";
+    + GeneralConstants.portMinValue + " und "
+    + GeneralConstants.portMaxValue + " angeben.";
   
   /**
    * Titel von der Fehler Alarmierung "EMPTY_TEXTFIELD"

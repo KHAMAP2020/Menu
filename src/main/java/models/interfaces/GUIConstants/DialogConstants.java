@@ -74,16 +74,4 @@ public interface DialogConstants
    * Zahlendefinition für das Portnummer-Textfeld
    */
   public final String NUMBER_DEFINITION = "0123456789";
-  
-  /**
-   * Kleinste mögliche Portnummer
-   */
-  public final int portMinValue = 0;
-  
-  /**
-   * Größte mögliche Portnummer
-   */
-  public final int portMaxValue = 30000;
-  
-  public final String HOST_ADRESS = "localhost";
 }
