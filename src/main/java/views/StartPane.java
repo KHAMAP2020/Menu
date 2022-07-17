@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.Optional;
 
 import models.interfaces.GUIConstants.StartPaneConstants;
+import views.types.CenterPaneType;
+import views.types.ErrorAlertType;
 
 /**
  * Das Startlayout, wenn das Programm ausgeführt wird
@@ -60,7 +62,7 @@ public class StartPane
   /**
    * Konstruktor des Startlayouts
    */
-  StartPane()
+  public StartPane()
   {
     createStartBox();
   }

@@ -2,7 +2,7 @@ package models;
 
 import javafx.application.Platform;
 import models.interfaces.GUIConstants.NetworkConstants;
-import views.ErrorAlertType;
+import views.types.ErrorAlertType;
 
 import java.io.IOException;
 import java.net.BindException;

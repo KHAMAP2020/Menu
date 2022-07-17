@@ -1,4 +1,4 @@
-package views;
+package views.types;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

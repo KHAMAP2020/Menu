@@ -1,9 +1,7 @@
 package models;
 
-import controller.GUIController;
 import models.interfaces.GUIConstants.NetworkConstants;
-import views.CenterPaneType;
-import views.ErrorAlertType;
+import views.types.ErrorAlertType;
 
 import java.io.*;
 import java.net.Socket;

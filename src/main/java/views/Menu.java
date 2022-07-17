@@ -10,6 +10,8 @@ import javafx.stage.WindowEvent;
 import models.Client;
 import models.Server;
 import models.interfaces.GUIConstants.MenuConstants;
+import views.types.CenterPaneType;
+import views.types.StyleTypes;
 
 /**
  * Menüleiste für das Chatlayout und das Startlayout

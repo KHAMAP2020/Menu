@@ -1,6 +1,8 @@
-package views;
+package views.types;
 
 import javafx.scene.layout.VBox;
+import views.ChatPane;
+import views.StartPane;
 
 /**
  * Hier sind alle GUI Konsanten des Programmns

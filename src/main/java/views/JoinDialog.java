@@ -9,6 +9,7 @@ import javafx.util.Callback;
 import models.LoginData;
 
 import models.interfaces.GUIConstants.DialogConstants;
+import views.types.ErrorAlertType;
 
 /**
  * Dialog in dem der Anwender Daten zum Beitreten eines Chats
