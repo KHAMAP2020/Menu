@@ -7,13 +7,14 @@ import models.Client;
  */
 public class ClientController
 {
+  //Beinhaltet die getter-/setter-Methoden des Clients
   private static Client client = null;
   
-  public static void setAClient(Client client)
+  public static void setClient(Client client)
   {
     ClientController.client = client;
   }
-  public static Client getAClient()
+  public static Client getClient()
   {
     return client;
   }
