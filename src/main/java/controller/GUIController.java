@@ -113,17 +113,12 @@ public class GUIController
         @Override
         public void handle(WindowEvent windowEvent)
         {
-          if(Client.startChat == true ){
-            ErrorAlertType.SERVER_CLOSING.
-                    getAlert().showAndWait();
-          }
 
           Client.closeEverything();
           AMessageController.stopMessageController();
           Server.closeServerSocket();
-          close = true;
 
-          System.out.println("vallah");
+
         }
       }
     );

@@ -108,7 +108,16 @@ public class Client
         Dem BufferedWriter wird signalisiert das kein weiterer
         Input mehr kommt.
          */
-        bufferedWriter.flush();
+        if(Server.serverSocket != null){
+          bufferedWriter.flush();
+        }
+        if(Server.serverSocket.isClosed()){
+          ErrorAlertType.CONNECTION_LOST.
+                  getAlert().showAndWait();
+          closeEverything();
+          alreadyCaught = true;
+        }
+
 
 
 
@@ -122,6 +131,7 @@ public class Client
       }
 
     } catch(SocketException e){
+      e.printStackTrace();
       if(!alreadyCaught){
         ErrorAlertType.CONNECTION_LOST.getAlert().showAndWait();
       }
