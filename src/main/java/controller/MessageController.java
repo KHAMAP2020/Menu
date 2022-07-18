@@ -41,7 +41,7 @@ public class MessageController
         angezeigt.
      */
     Message message = new Message(messageToSend,
-            MessageConstants.MASSAGE_GOES_OUT,maxWidth);
+            MessageConstants.MESSAGE_GOES_OUT,maxWidth);
 
     messages.add(message);
           ClientController.getClient().sendMessage
@@ -61,7 +61,7 @@ public class MessageController
         angezeigt.
          */
         Message message = new Message(incomingMessage,
-                MessageConstants.MASSAGE_COMES_IN,maxWidth);
+                MessageConstants.MESSAGE_COMES_IN,maxWidth);
         messages.add(message);
         /*
         Hier werden eingehende Narichten an den Chat übergeben
